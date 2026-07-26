@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a rebuilt scroll-driven Home section intro sequence, scroll-controlled typewriter animation, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a 100% **master scroll-driven interactive timeline engine** across all 6 sections where the mouse wheel directly controls 360-degree image rotations, panel entries, slowed-down typewriter character progress, and scene transitions, alongside a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
 
 ---
 
@@ -24,18 +24,23 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Rebuilt Home Section & Cinematic Flow Architecture
+## 🛠️ Master Scroll-Driven Cinematic Architecture (All Sections)
 
 * **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
 * **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
 * **Icons:** Font Awesome 6.5.1 CDN.
-* **Rebuilt Home Section Sequence:**
-  * **Step 1 — Pure Black Screen:** Starts on 100% black screen (`#000000`) with no content, profile image, or navbar visible. Only displays a subtle **"Scroll Down"** indicator (`#intro-scroll-prompt`).
-  * **Step 2 — Scroll Triggered 3D Zoom:** Scrolling initiates the 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.4)`).
-  * **Step 3 — Seamless Hero Reveal:** Before the name fully disappears (`p 0.35` to `0.55`), the profile image (360-degree rotation left) and information panel (slide right) enter together seamlessly.
-  * **Step 4 — Initial Text Hidden:** All typewriter targets (`.hero-type-target`) start 100% empty / hidden. Text is unreadable until typing begins.
-  * **Step 5 — Scroll-Controlled Typewriter:** Character progress (`p 0.55` to `0.85`) is 100% bound to scroll wheel movement. Scrolling forward types text; stopping scroll pauses typing instantly; scrolling back un-types text.
-  * **Step 6 — Navbar Reveal & Seamless Section Flow:** Navbar smoothly fades in ONLY after Hero typing completes (`p > 0.85`). Standard scrolling continues seamlessly to `#about`, `#journey`, `#experience`, `#skills`, and `#connect`.
+* **100% Scroll-Driven Cinematic Sequence (All 6 Sections):**
+  * **Zero Automatic Timers:** All `setTimeout` typing functions have been eliminated. The mouse wheel acts as the master timeline slider (`totalP` 0.0 to 1.0 across an `1800vh` master pin track).
+  * **Empty Black Start per Section:** Every section begins with a clean black backdrop. Text elements (`.scroll-type-target`) start 100% empty and unreadable.
+  * **Synchronized Entrance (Phase 1):** Left visual container (360-degree rotation) and Right content panel slide in together (`localP` 0.00 to 0.25).
+  * **Slowed-Down Scroll Typewriter (Phase 2):**
+    - Character progress is spread across 63% of the local scene scroll range (`localP` 0.25 to 0.88), providing a calm, gradual, and easy-to-read typewriter reveal.
+    - **Scroll fast:** Text types faster.
+    - **Scroll slow:** Text types slowly.
+    - **Stop scrolling:** Typing freezes instantly at that exact character.
+    - **Scroll backward:** Text un-types character-by-character.
+  * **Fade Out & Next Section Reveal (Phase 3):** Active section smoothly fades out to pure black before the next section begins (`localP` 0.88 to 1.00).
+  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero entrance completes (`totalP > 0.10`).
 * **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
 * **Hosting:** Deployed via **GitHub Pages**.
 
