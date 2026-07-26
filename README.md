@@ -1,6 +1,6 @@
 # MOHMOS - Personal Portfolio & Web3 Hub
 
-Welcome to the official repository of my personal portfolio and Web3 professional hub. This repository contains the source code for my live portfolio website: **[mohammedmuostafa.github.io/portfolio](https://mohammedmuostafa.github.io/portfolio/)**.
+Welcome to the official repository of my personal portfolio and Web3 professional hub. This repository contains the source code for my live portfolio website: **(https://mohammedmuostafa.github.io/portfolio/)**.
 
 ---
 
