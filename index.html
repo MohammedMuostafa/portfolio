@@ -45,15 +45,15 @@
                     },
                     colors: {
                         dark: {
-                            bg: '#000000',
+                            bg: '#050505',
                             card: '#0a0a0d',
-                            cardHover: '#121217',
+                            cardHover: '#111117',
                             border: '#1a1a22',
                         },
                         redAccent: {
                             DEFAULT: '#ff1e1e',
                             hover: '#e01212',
-                            glow: 'rgba(255, 30, 30, 0.4)',
+                            glow: 'rgba(255, 30, 30, 0.35)',
                         }
                     }
                 }
@@ -63,7 +63,7 @@
 
     <style>
         body {
-            background-color: #000000;
+            background-color: #050505;
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -82,20 +82,20 @@
         }
 
         .red-card:hover {
-            border-color: rgba(255, 30, 30, 0.5);
-            box-shadow: 0 12px 35px -10px rgba(255, 30, 30, 0.3);
+            border-color: rgba(255, 30, 30, 0.45);
+            box-shadow: 0 12px 35px -10px rgba(255, 30, 30, 0.25);
             transform: translateY(-4px);
         }
 
         .red-badge {
             background: rgba(255, 30, 30, 0.08);
-            border: 1px solid rgba(255, 30, 30, 0.3);
+            border: 1px solid rgba(255, 30, 30, 0.25);
             color: #ff5555;
         }
 
-        /* 300vh Pinned Hero Track & Sticky Viewport */
+        /* 350vh Pinned Hero Track & Sticky Viewport */
         .hero-scroll-track {
-            height: 320vh;
+            height: 350vh;
             position: relative;
         }
 
@@ -105,7 +105,7 @@
             height: 100vh;
             width: 100%;
             overflow: hidden;
-            background: #000000;
+            background: #050505;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -129,7 +129,7 @@
             font-weight: 900;
             letter-spacing: -0.04em;
             color: #ffffff;
-            text-shadow: 0 0 50px rgba(255, 30, 30, 0.6);
+            text-shadow: 0 0 50px rgba(255, 30, 30, 0.5);
             transform-origin: center center;
             will-change: transform, opacity;
         }
@@ -161,15 +161,15 @@
             position: absolute;
             inset: -14px;
             border-radius: 50%;
-            border: 2px dashed rgba(255, 30, 30, 0.6);
+            border: 2px dashed rgba(255, 30, 30, 0.5);
             animation: spin360 14s linear infinite;
-            box-shadow: 0 0 30px rgba(255, 30, 30, 0.3);
+            box-shadow: 0 0 25px rgba(255, 30, 30, 0.25);
         }
 
         .photo-360-frame {
             position: relative;
-            box-shadow: 0 0 40px rgba(255, 30, 30, 0.4), inset 0 0 25px rgba(255, 30, 30, 0.25);
-            border: 2px solid rgba(255, 30, 30, 0.6);
+            box-shadow: 0 0 35px rgba(255, 30, 30, 0.35), inset 0 0 20px rgba(255, 30, 30, 0.2);
+            border: 2px solid rgba(255, 30, 30, 0.5);
             animation: floatUpDown 5s ease-in-out infinite;
         }
 
@@ -183,7 +183,7 @@
             50% { transform: translateY(-10px) rotate(1deg); }
         }
 
-        /* Stage 3: Scroll Reveal Animations */
+        /* Stage 3: Scroll Reveal Engine */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -220,7 +220,7 @@
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #000000;
+            background: #050505;
         }
         ::-webkit-scrollbar-thumb {
             background: #1a1a22;
@@ -235,9 +235,9 @@
 <body class="min-h-screen selection:bg-red-600 selection:text-white flex flex-col">
 
     <!-- Header Navigation (Minimalist Black/Red Theme, No Top Logo Box, No Top Discord Icon) -->
-    <header id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#000000]/90 backdrop-blur-md border-b border-zinc-900 opacity-0 transition-opacity duration-500">
+    <header id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#050505]/90 backdrop-blur-md border-b border-zinc-900 opacity-0 transition-opacity duration-500">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <!-- Brand Name Only -->
+            <!-- Brand Name Only (MOHMOS in both languages) -->
             <a href="#" class="font-black text-xl tracking-tight text-white hover:text-red-500 transition-colors flex items-center gap-2">
                 <span>MOHMOS</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
@@ -277,7 +277,7 @@
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-900 bg-[#000000] px-6 py-4 space-y-3">
+        <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-900 bg-[#050505] px-6 py-4 space-y-3">
             <a href="#about" class="block text-zinc-300 hover:text-white text-sm font-medium py-1" data-lang-en="About" data-lang-ar="عني">About</a>
             <a href="#journey" class="block text-zinc-300 hover:text-white text-sm font-medium py-1" data-lang-en="Journey" data-lang-ar="المسيرة">Journey</a>
             <a href="#experience" class="block text-zinc-300 hover:text-white text-sm font-medium py-1" data-lang-en="Experience" data-lang-ar="الخبرات">Experience</a>
@@ -287,14 +287,14 @@
         </div>
     </header>
 
-    <!-- STAGE 1 & 2: 320vh PINNED SCROLL-DRIVEN CINEMATIC HERO TRACK -->
+    <!-- STAGE 1 & 2: 350vh PINNED SCROLL-DRIVEN CINEMATIC HERO TRACK -->
     <div id="hero-scroll-track" class="hero-scroll-track">
         <div class="hero-sticky-viewport">
 
-            <!-- STAGE 1: DEAD CENTERED CINEMATIC ZOOM-IN NAME -->
+            <!-- STAGE 1: DEAD CENTERED CINEMATIC ZOOM-IN NAME ("MOHMOS" IN BOTH LANGUAGES) -->
             <div id="stage1-container" class="stage1-zoom-container">
                 <div id="stage1-name" class="zoom-title-text flex items-center gap-2">
-                    <span data-lang-en="MOHMOS" data-lang-ar="محمد مصطفى">MOHMOS</span>
+                    <span>MOHMOS</span>
                     <span class="text-red-500 font-bold">.</span>
                 </div>
 
@@ -308,7 +308,7 @@
                 </div>
             </div>
 
-            <!-- STAGE 2: HERO SPLIT LAYOUT (Photo Left 360 Spin / Bio Right) -->
+            <!-- STAGE 2: HERO SPLIT LAYOUT (Photo Left 360 Spin / Bio Right in Prominent Text) -->
             <div id="stage2-split-hero" class="stage2-split-container">
                 <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
                     
@@ -323,17 +323,17 @@
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             
                             <!-- Dark Gradient Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-75"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-75"></div>
 
                             <!-- Live Active Status Badge -->
-                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#000000]/90 border border-red-500/40 text-xs backdrop-blur-md shadow-lg">
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#050505]/90 border border-red-500/40 text-xs backdrop-blur-md shadow-lg">
                                 <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
                                 <span class="font-mono text-white text-[11px] tracking-wider font-bold">MOHMOS</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- RIGHT SIDE: BIO & HEADLINE DETAILS -->
+                    <!-- RIGHT SIDE: PROMINENT BIO & HEADLINE DETAILS -->
                     <div id="stage2-text" class="flex-1 space-y-5 text-left rtl:text-right transition-all duration-700">
                         
                         <!-- Status Badge -->
@@ -356,13 +356,11 @@
                             </h2>
                         </div>
 
-                        <!-- Bio Copywriting -->
-                        <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl"
-                            data-lang-en="Specialized in building and optimizing Discord server infrastructure, managing community operations, and leading written protocol communications. Currently studying Computer Science to expand into blockchain architecture and smart contract engineering."
-                            data-lang-ar="مختص في بناء وتحسين البنية التحتية لسيرفرات ديسكورد، إدارة العمليات المجتمعية، وقيادة اتصالات البروتوكول الكتابية. أدرس حالياً علوم الحاسوب لتوسيع معرفتي في هندسة البلوكشين والعقود الذكية.">
-                            Specialized in building and optimizing Discord server infrastructure, managing community operations,
-                            and leading written protocol communications. Currently studying Computer Science to expand into
-                            blockchain architecture and smart contract engineering.
+                        <!-- Exact Updated Bio Copywriting (Prominent Large Text) -->
+                        <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal"
+                            data-lang-en="Passionate about Discord communities and the Web3 ecosystem. I specialize in building and managing professional Discord servers, improving community operations, configuring bots, organizing permissions, and supporting blockchain communities. My Web3 journey started in 2022 with Bag Guild, and I currently serve as Protocol Lead at Lit Clinic (LitVM Ecosystem)."
+                            data-lang-ar="شغوف بمجتمعات ديسكورد وعالم الـ Web3. أختص في بناء وإدارة سيرفرات ديسكورد الاحترافية، تحسين العمليات المجتمعية، ضبط البوتات، تنظيم الصلاحيات، ودعم مجتمعات البلوكشين. بدأت رحلتي في الـ Web3 عام 2022 مع Bag Guild، وأعمل حالياً كـ Protocol Lead في عيادة Lit (نظام LitVM).">
+                            Passionate about Discord communities and the Web3 ecosystem. I specialize in building and managing professional Discord servers, improving community operations, configuring bots, organizing permissions, and supporting blockchain communities. My Web3 journey started in 2022 with Bag Guild, and I currently serve as Protocol Lead at Lit Clinic (LitVM Ecosystem).
                         </p>
 
                         <!-- Action Buttons -->
@@ -513,7 +511,7 @@
 
                 <!-- Milestone 1: Bag Guild -->
                 <div class="relative reveal reveal-delay-1">
-                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#050505] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
                         1
                     </div>
                     <div class="red-card rounded-2xl p-5 md:p-6 space-y-3 text-left rtl:text-right">
@@ -539,7 +537,7 @@
 
                 <!-- Milestone 2: OnChain -->
                 <div class="relative reveal reveal-delay-2">
-                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#050505] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
                         2
                     </div>
                     <div class="red-card rounded-2xl p-5 md:p-6 space-y-3 text-left rtl:text-right">
@@ -884,7 +882,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-900 bg-[#000000] py-8">
+    <footer class="border-t border-zinc-900 bg-[#050505] py-8">
         <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
             <div class="flex items-center gap-2">
                 <span class="font-bold text-white">MOHMOS</span>
@@ -906,11 +904,11 @@
         </div>
     </div>
 
-    <!-- Scripts (300vh Pinned Scroll Progress Engine, Bilingual Toggle, & Copy Tag) -->
+    <!-- Scripts (350vh Pinned Scroll Progress Engine, Bilingual Toggle, & Copy Tag) -->
     <script>
         let currentLang = 'en';
 
-        // Seamless EN <-> AR Language Switcher
+        // Seamless EN <-> AR Language Switcher (Keep MOHMOS name in both languages)
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ar' : 'en';
             const isAr = currentLang === 'ar';
@@ -956,7 +954,7 @@
             }, 3000);
         }
 
-        // 🎬 300vh PINNED SCROLL-DRIVEN CINEMATIC PROGRESS ENGINE
+        // 🎬 350vh PINNED SCROLL-DRIVEN CINEMATIC PROGRESS ENGINE
         document.addEventListener('DOMContentLoaded', () => {
             const track = document.getElementById('hero-scroll-track');
             const stage1Container = document.getElementById('stage1-container');
@@ -978,8 +976,8 @@
                 if (progress <= 0.45) {
                     const zoomProgress = progress / 0.45; // 0.0 -> 1.0
                     
-                    // Scale grows from 0.35 up to 2.4 directly toward user's view
-                    const scale = 0.35 + (zoomProgress * 2.05);
+                    // Scale grows from 0.35 up to 2.5 directly toward user's view
+                    const scale = 0.35 + (zoomProgress * 2.15);
                     const opacity = Math.min(1, zoomProgress * 2.5);
 
                     stage1Name.style.transform = `scale(${scale})`;
