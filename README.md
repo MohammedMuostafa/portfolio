@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a 6-step scroll-triggered intro, standardized 2-column scenes with 360-degree rotating image entries, a 5-stage sequential typewriter text engine, CSS scroll snapping, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a 100% **scroll-driven interactive timeline engine** where the mouse wheel directly controls 360-degree image rotations, panel entries, typewriter character progress, and scene transitions, alongside a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
 
 ---
 
@@ -24,23 +24,24 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Tech Stack & Fixed Cinematic Architecture
+## 🛠️ Tech Stack & Scroll-Driven Timeline Architecture
 
 * **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
 * **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
 * **Icons:** Font Awesome 6.5.1 CDN.
-* **AAA Cinematic Mechanics & Sequence:**
-  * **6-Step Intro Sequence:**
-    1. Page loads on pure black screen (`#000000`).
-    2. Displays "Scroll Down to Begin Experience" prompt.
-    3. User initiates scroll input.
-    4. Name **MOHMOS** performs 3D Zoom In (`scale(0.4)` $\rightarrow$ `scale(1.25)`).
-    5. Fades everything into a pure black blackout for 1.0s.
-    6. Reveals Scene 1 (Hero) ONLY after blackout completes.
-  * **Hero & Navbar Synchronization:** Navbar remains completely hidden (`display: none; opacity: 0;`) during intro and Hero animations. It smoothly fades in *only* after Scene 1 typewriter completes 100%.
-  * **5-Stage Typewriter Queue:** Sequential Promise queue (`runSequential5StageTypewriter`) typing in exact order: `Title` $\rightarrow$ `Subtitle` $\rightarrow$ `Paragraphs` $\rightarrow$ `Badges/Stats` $\rightarrow$ `Buttons`. Text targets (`.typewriter-target`) are hidden until Left and Right entry panels settle (`transitionend`).
-  * **Standardized 2-Column Scenes:** Every scene features a Left visual container (`scene-left-enter`) with 360° entry rotation and a Right content panel (`scene-right-enter`).
-  * **CSS Scroll Snapping:** Applied `scroll-snap-type: y mandatory` and `scroll-snap-align: center` for zero-jump, zero-offset, smooth scene transitions.
+* **100% Scroll-Driven Animation Mechanics:**
+  * **Zero Automatic Timers:** All `setTimeout` typing functions have been eliminated. The mouse wheel / scroll position acts as the master timeline slider (`totalProgress` 0.0 to 1.0).
+  * **Scroll-Driven Typewriter Engine:**
+    - Character progress computed via `charIndex = Math.floor(progress * fullText.length)`.
+    - **Scroll fast:** Text types fast.
+    - **Scroll slow:** Text types slowly.
+    - **Stop scrolling:** Typing freezes instantly at that exact character.
+    - **Scroll backward:** Text un-types character-by-character.
+  * **Stage 0 Intro Zoom:** Scroll progress `0.0` to `0.12` controls the 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.25)`) and transition to blackout.
+  * **Phase 1 Panel Entry:** Left image 360-degree rotation (`rotate(-360deg)` $\rightarrow$ `rotate(0deg)`) and Right panel slide are mapped to scene progress `0.0` to `0.22`.
+  * **Phase 2 Typewriter Phase:** Character progress mapped to scene progress `0.22` to `0.85`.
+  * **Phase 3 Fade Out:** Scene smoothly fades out to pure black before the next section enters (`0.85` to `1.0`).
+  * **Navbar Delay:** `#main-navbar` smoothly fades in *only* after Hero typewriter progress completes (`totalProgress > 0.25`).
 * **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
 * **Hosting:** Deployed via **GitHub Pages**.
 
