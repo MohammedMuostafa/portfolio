@@ -24,15 +24,17 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Tech Stack & Interactive Cinematic Features
+## 🛠️ Tech Stack & Fixed Cinematic Architecture
 
 * **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
 * **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
 * **Icons:** Font Awesome 6.5.1 CDN.
-* **AAA Cinematic Features:**
-  * **Cinematic Intro & Blackout:** Displays a dramatic 3D zoom entrance of **MOHMOS**, followed by a brief anticipation blackout before revealing the portfolio.
-  * **360° Rotation & Scene Entry:** Every scroll-triggered scene features a 360-degree spinning visual container on the Left (`scene-left-enter`) and an information panel on the Right (`scene-right-enter`).
-  * **Sequential Typewriter Engine:** Custom zero-dependency JavaScript typewriter (`typeElementText`) with a blinking crimson cursor (`|`) that types out headings and paragraphs sequentially.
+* **AAA Cinematic Bug Fixes & Mechanics:**
+  * **Hero & Navbar Synchronization:** Navbar remains completely hidden (`display: none; opacity: 0;`) during intro and Hero animations. It smoothly fades in *only* after the Hero sequence completes 100%.
+  * **Panel Settlement & Typewriter Sync:** Text targets (`.typewriter-target`) are hidden until Left (360 photo) and Right (info panel) CSS transitions settle (`transitionend`).
+  * **Promise-Based Sequential Typewriter:** Async queue (`typeElementPromise`) ensuring Heading 1 finishes 100% $\rightarrow$ Paragraph 1 finishes 100% $\rightarrow$ Paragraph 2 finishes 100% with a single blinking crimson cursor (`|`). Includes `Esc` key bypass.
+  * **Smooth 360 Spin & Floating Isolation:** Entry rotation (`transform: rotate(-360deg)` $\rightarrow$ `rotate(0deg)`) runs without jitter; continuous floating orbit activates *after* entry settles.
+  * **Zero-Jump Scene Alignment:** SceneController ensures clean vertical snap alignment without extra blank gaps or jumping.
   * **Ambient Particles:** Lightweight HTML5 Canvas particle overlay (`#particle-canvas`) rendering subtle floating dark-red dust motes.
 * **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
 * **Hosting:** Deployed via **GitHub Pages**.
