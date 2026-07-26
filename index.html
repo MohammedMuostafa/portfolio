@@ -93,7 +93,42 @@
             color: #f87171;
         }
 
-        /* 360-Degree Continuous Rotating Orbit Ring & Floating Photo Effect */
+        /* Fixed Fullscreen Intro Name Zoom Overlay (Phase 1 & 2) */
+        #cinematic-intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: #050507;
+            display: flex;
+            align-items: center;
+            justify-center;
+            pointer-events: none;
+            transition: opacity 0.6s ease-out;
+        }
+
+        .cinematic-zoom-name {
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            text-shadow: 0 0 40px rgba(239, 68, 68, 0.4);
+            transform: scale(0.85);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out;
+            will-change: transform, opacity;
+        }
+
+        .cinematic-zoom-name.active-zoom {
+            transform: scale(1.15);
+            opacity: 1;
+        }
+
+        .cinematic-zoom-name.docked-out {
+            transform: scale(1.6) translateY(-40px);
+            opacity: 0;
+        }
+
+        /* 360-Degree Rotating Profile Photo Frame */
         .photo-360-container {
             position: relative;
             perspective: 1000px;
@@ -125,7 +160,7 @@
             50% { transform: translateY(-10px) rotate(1deg); }
         }
 
-        /* Scroll Reveal Animations */
+        /* Scroll Reveal Engine */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -158,9 +193,31 @@
             right: 20px;
         }
 
-        /* Cinematic Hero Title Reveal Scale Effect */
-        #cinematic-hero-title {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease-out;
+        /* Slide In Animations for Hero Photo Left & Text Right */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html[dir="rtl"] .slide-in-left {
+            transform: translateX(50px);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html[dir="rtl"] .slide-in-right {
+            transform: translateX(-50px);
+        }
+
+        .slide-in-left.active-slide,
+        .slide-in-right.active-slide {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         ::-webkit-scrollbar {
@@ -181,8 +238,20 @@
 
 <body class="min-h-screen selection:bg-red-600 selection:text-white flex flex-col">
 
+    <!-- PHASE 1 & 2: FULLSCREEN CINEMATIC INTRO ZOOM NAME OVERLAY -->
+    <div id="cinematic-intro-overlay" class="flex flex-col items-center justify-center">
+        <div id="intro-name" class="cinematic-zoom-name flex items-center gap-3">
+            <span data-lang-en="MOHMOS" data-lang-ar="محمد مصطفى">MOHMOS</span>
+            <span class="text-red-500 font-bold">.</span>
+        </div>
+        <div class="mt-6 flex items-center gap-2 text-xs text-zinc-500 font-mono animate-bounce">
+            <i class="fa-solid fa-arrow-down text-red-500"></i>
+            <span data-lang-en="SCROLL TO ENTER EXPERIENCE" data-lang-ar="قم بالسحب للأسفل للدخول">SCROLL TO ENTER EXPERIENCE</span>
+        </div>
+    </div>
+
     <!-- Header Navigation (Minimalist Black/Red Theme, No Top Logo Box, No Top Discord Icon) -->
-    <header class="sticky top-0 z-50 bg-[#050507]/90 backdrop-blur-md border-b border-zinc-900">
+    <header class="sticky top-0 z-50 bg-[#050507]/90 backdrop-blur-md border-b border-zinc-900 opacity-90">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <!-- Brand Text Only -->
             <a href="#" class="font-black text-xl tracking-tight text-white hover:text-red-500 transition-colors flex items-center gap-2">
@@ -235,25 +304,25 @@
     </header>
 
     <!-- Main Container -->
-    <main class="flex-grow max-w-5xl mx-auto px-6 py-8 space-y-20">
+    <main class="flex-grow max-w-5xl mx-auto px-6 py-10 space-y-20">
 
-        <!-- CINEMATIC HERO SECTION (Split Photo Left / Bio Right + Center Name Entrance) -->
-        <section id="hero" class="pt-6 pb-8 flex flex-col md:flex-row items-center justify-between gap-12 reveal active">
+        <!-- PHASE 2: HERO SPLIT LAYOUT (Photo Slide Left / Bio Slide Right) -->
+        <section id="hero" class="pt-8 pb-10 flex flex-col md:flex-row items-center justify-between gap-12">
             
-            <!-- LEFT SIDE: 360-DEGREE CONTINUOUS ROTATING PROFILE PHOTO CONTAINER -->
-            <div class="flex-shrink-0 photo-360-container">
+            <!-- LEFT SIDE: 360-DEGREE ROTATING PROFILE PHOTO CONTAINER (Slides in from Left) -->
+            <div id="hero-photo-container" class="flex-shrink-0 photo-360-container slide-in-left">
                 <!-- 360 Rotating Dash Orbit Ring -->
                 <div class="photo-360-orbit"></div>
 
-                <!-- Floating Photo Box -->
-                <div class="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden photo-360-frame bg-zinc-900 group">
+                <!-- Floating Photo Frame -->
+                <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden photo-360-frame bg-zinc-900 group">
                     <img src="assets/avatar.png" alt="MOHMOS Profile Photo"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                     
                     <!-- Dark Gradient Overlay -->
                     <div class="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent opacity-75"></div>
 
-                    <!-- Live Active Status Tag -->
+                    <!-- Live Active Status Badge -->
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#050507]/90 border border-red-500/40 text-xs backdrop-blur-md shadow-lg">
                         <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
                         <span class="font-mono text-white text-[11px] tracking-wider font-bold">MOHMOS</span>
@@ -261,8 +330,8 @@
                 </div>
             </div>
 
-            <!-- RIGHT SIDE: BIO & PROFESSIONAL DETAILS -->
-            <div class="flex-1 space-y-6 text-left rtl:text-right">
+            <!-- RIGHT SIDE: BIO & HEADLINE DETAILS (Slides in from Right) -->
+            <div id="hero-text-container" class="flex-1 space-y-6 text-left rtl:text-right slide-in-right">
                 
                 <!-- Status Badge -->
                 <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md red-badge text-xs font-mono">
@@ -271,8 +340,8 @@
                         data-lang-ar="قائد البروتوكول في Lit Clinic (منظومة LitVM)">Protocol Lead @ Lit Clinic (LitVM Ecosystem)</span>
                 </div>
 
-                <!-- Main Headline Name & Title -->
-                <div class="space-y-2" id="cinematic-hero-title">
+                <!-- Main Name & Title -->
+                <div class="space-y-2">
                     <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white">
                         MOHMOS
                     </h1>
@@ -330,6 +399,8 @@
             </div>
 
         </section>
+
+        <!-- PHASE 3: DEEP SCROLL STORYTELLING SECTIONS -->
 
         <!-- ABOUT ME SECTION -->
         <section id="about" class="space-y-6 reveal">
@@ -827,7 +898,7 @@
         </div>
     </div>
 
-    <!-- Scripts (Language Switcher, Scroll Reveal Observer, Cinematic Scale, & Copy Tag) -->
+    <!-- Scripts (Cinematic Scroll Engine & Bilingual Switcher) -->
     <script>
         let currentLang = 'en';
 
@@ -877,8 +948,52 @@
             }, 3000);
         }
 
-        // Intersection Observer for Smooth Scroll Reveal Animations
+        // 🎬 ADVANCED CINEMATIC SCROLL SEQUENCE ENGINE
         document.addEventListener('DOMContentLoaded', () => {
+
+            const introOverlay = document.getElementById('cinematic-intro-overlay');
+            const introName = document.getElementById('intro-name');
+            const photoContainer = document.getElementById('hero-photo-container');
+            const textContainer = document.getElementById('hero-text-container');
+
+            // Phase 1: Activate initial zoom-in entrance on page load
+            setTimeout(() => {
+                introName.classList.add('active-zoom');
+            }, 100);
+
+            // Scroll Listener for Phase 1 (Zoom Name) & Phase 2 (Split Transition)
+            let introFinished = false;
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                if (!introFinished) {
+                    if (scrollY > 20) {
+                        // Phase 2: Fade out intro overlay and slide in Split Hero Layout
+                        introName.classList.remove('active-zoom');
+                        introName.classList.add('docked-out');
+                        introOverlay.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            introOverlay.style.display = 'none';
+                            photoContainer.classList.add('active-slide');
+                            textContainer.classList.add('active-slide');
+                        }, 400);
+
+                        introFinished = true;
+                    }
+                }
+            });
+
+            // Fallback trigger if user reloads mid-page
+            if (window.scrollY > 30) {
+                introOverlay.style.display = 'none';
+                photoContainer.classList.add('active-slide');
+                textContainer.classList.add('active-slide');
+                introFinished = true;
+            }
+
+            // Phase 3: Deep Scroll Storytelling Observer
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -895,16 +1010,6 @@
 
             document.querySelectorAll('.reveal').forEach(el => {
                 observer.observe(el);
-            });
-
-            // Cinematic Scroll Title Dynamic Scale
-            const titleEl = document.getElementById('cinematic-hero-title');
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                if (scrollY < 300 && titleEl) {
-                    const scaleFactor = 1 + (scrollY * 0.0004);
-                    titleEl.style.transform = `scale(${scaleFactor})`;
-                }
             });
         });
     </script>
