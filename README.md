@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, enlarged visual focal elements, universal scroll typewriter coverage across all 6 sections, and a **sequential cascading finale animation** (`stagger: 0.28s`) upon experience completion.
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, an intentional **Hero typography hierarchy**, universal text formatting, and a **sequential cascading finale animation** (`stagger: 0.28s`) upon experience completion.
 
 ---
 
@@ -24,17 +24,17 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 📂 Modular Architecture & Refined Features
+## 📂 Modular Architecture & Typography Refinements
 
 ```
 portfolio/
 │
-├── index.html              # Clean semantic HTML markup & universal typewriter targets
+├── index.html              # Clean semantic HTML markup & structured typography hierarchy
 ├── assets/                 # Profile, guild & organization logos
 ├── css/                    # Modular Design System Stylesheets
-│   ├── variables.css       # Tokens, colors, fonts
-│   ├── layout.css          # Stage layout, enlarged bounds & stack collapse rules
-│   ├── components.css      # Enlarged photo 360 orbit frame & card focus styles
+│   ├── variables.css       # Design tokens, color variables & typography scale
+│   ├── layout.css          # Stage layout, text hierarchy rules & stack collapse
+│   ├── components.css      # AAA game cards, photo orbit & badge components
 │   ├── animations.css      # Keyframes, ambient aurora light & SplitType styles
 │   └── main.css            # Main CSS bundle importing all modules
 │
@@ -49,10 +49,15 @@ portfolio/
 └── README.md               # Technical project documentation
 ```
 
-### 🌟 Sequential Cascade & Universal Typewriter Refinements
+### 🌟 Typography Hierarchy System
 
-1. **Sequential Cascading Finale Animation:** When the cinematic timeline reaches 100% completion (`totalP >= 0.98`), a sequential GSAP cascading collapse animation (`stagger: 0.28s`) settles each section **one by one in order** (Hero $\rightarrow$ About $\rightarrow$ Journey $\rightarrow$ Experience $\rightarrow$ Skills $\rightarrow$ Connect) gracefully into the final vertical HTML layout.
-2. **Universal Typewriter Across All Sections:** Applied `.split-type-target` to every heading, paragraph, subtitle, card description, list item, and platform link across **Hero, About, Journey, Experience, Skills, and Connect**. Every piece of text is typed character-by-character driven by scroll progress.
+1. **Hero Text Hierarchy:**
+   - `MOHMOS.` (Brand Title — Largest: `text-4xl sm:text-6xl font-black text-white`)
+   - `Mohamed Mostafa` (Full Name — Secondary: `text-xl sm:text-2xl font-extrabold text-zinc-200`)
+   - `Protocol Lead @ Lit Clinic` (Primary Role Highlight — Red Accent: `text-base sm:text-lg font-bold text-red-500`)
+   - `Discord Infrastructure Specialist` (Specialty Role: `text-sm sm:text-base font-semibold text-zinc-300`)
+   - `Computer Science Student` (Academic Background: `text-xs sm:text-sm font-mono text-zinc-400`)
+2. **Universal Paragraph & Card Alignment:** Standardized line height (`leading-relaxed`), paragraph widths (`max-w-xl`), equal card padding (`p-4.5 sm:p-6`), and responsive breakpoint scaling across mobile, tablet, laptop, and desktop viewports.
 
 ---
 

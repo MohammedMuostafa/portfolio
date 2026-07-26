@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS VARIABLES & DESIGN TOKENS
+   CSS VARIABLES & TYPOGRAPHY DESIGN TOKENS
    ========================================================================== */
 
 :root {
@@ -17,4 +17,15 @@
     --font-sans: 'Plus Jakarta Sans', 'Cairo', sans-serif;
     --font-arabic: 'Cairo', 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+
+    /* Typographic Hierarchy Tokens */
+    --h1-size: clamp(2.25rem, 5vw, 3.75rem);
+    --h2-size: clamp(1.25rem, 3vw, 1.875rem);
+    --h3-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    --body-size: clamp(0.8125rem, 1.5vw, 0.9375rem);
+    --small-size: clamp(0.75rem, 1.2vw, 0.8125rem);
+
+    --lh-tight: 1.15;
+    --lh-normal: 1.45;
+    --lh-relaxed: 1.65;
 }

@@ -166,32 +166,49 @@
                         </div>
                     </div>
 
-                    <div class="flex-1 space-y-4 text-left rtl:text-right scene-content-right">
+                    <!-- REFINED HERO TEXT HIERARCHY (Requirement 1) -->
+                    <div class="flex-1 space-y-3.5 text-left rtl:text-right scene-content-right">
+                        
                         <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md red-badge text-xs font-mono">
                             <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
                             <span class="split-type-target" data-lang-en="Protocol Lead @ Lit Clinic (LitVM Ecosystem)"
                                 data-lang-ar="قائد البروتوكول في Lit Clinic (منظومة LitVM)">Protocol Lead @ Lit Clinic (LitVM Ecosystem)</span>
                         </div>
 
-                        <div class="space-y-1">
-                            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white split-type-target"
-                                data-lang-en="Mohamed Mostafa (MOHMOS)" data-lang-ar="محمد مصطفى (MOHMOS)">
-                                Mohamed Mostafa (MOHMOS)
-                            </h1>
-                            <h2 class="text-base sm:text-xl font-semibold text-zinc-400 leading-snug split-type-target"
-                                data-lang-en="Protocol Lead @LitClinic & Discord Infrastructure Specialist"
-                                data-lang-ar="قائد البروتوكول @LitClinic ومختص بنية ديسكورد">
-                                Protocol Lead @LitClinic & Discord Infrastructure Specialist
-                            </h2>
+                        <!-- 1. MOHMOS (Largest Brand Title) -->
+                        <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white split-type-target">
+                            MOHMOS<span class="text-red-500 font-bold">.</span>
+                        </h1>
+
+                        <!-- 2. Mohamed Mostafa (Full Name - Secondary) -->
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-zinc-200 tracking-tight split-type-target"
+                            data-lang-en="Mohamed Mostafa" data-lang-ar="محمد مصطفى">
+                            Mohamed Mostafa
+                        </h2>
+
+                        <!-- 3. Roles Stack (Protocol Lead -> Discord Specialist -> CS Student) -->
+                        <div class="space-y-1 pt-0.5">
+                            <div class="text-base sm:text-lg font-bold text-red-500 split-type-target"
+                                data-lang-en="Protocol Lead @ Lit Clinic" data-lang-ar="قائد البروتوكول في Lit Clinic">
+                                Protocol Lead @ Lit Clinic
+                            </div>
+                            <div class="text-sm sm:text-base font-semibold text-zinc-300 split-type-target"
+                                data-lang-en="Discord Infrastructure Specialist" data-lang-ar="مختص بنية ديسكورد التحتية">
+                                Discord Infrastructure Specialist
+                            </div>
+                            <div class="text-xs sm:text-sm font-mono text-zinc-400 split-type-target"
+                                data-lang-en="Computer Science Student (20 Years Old)" data-lang-ar="طالب علوم حاسوب (20 سنة)">
+                                Computer Science Student (20 Years Old)
+                            </div>
                         </div>
 
-                        <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed max-w-xl font-normal split-type-target"
+                        <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed max-w-xl font-normal pt-1 split-type-target"
                             data-lang-en="Passionate about Discord communities and the Web3 ecosystem. Specializing in professional server architecture, permission tree design, auto-moderation workflows, and leading written protocol communication."
                             data-lang-ar="شغوف بمجتمعات ديسكورد وعالم الـ Web3. أختص في هندسة السيرفرات الاحترافية، تصميم الصلاحيات، الحماية التلقائية، وقيادة الاتصالات الكتابية للبروتوكول.">
                             Passionate about Discord communities and the Web3 ecosystem. Specializing in professional server architecture, permission tree design, auto-moderation workflows, and leading written protocol communication.
                         </p>
 
-                        <div class="flex flex-wrap items-center gap-3 pt-1">
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
                             <button onclick="scrollToProgress(0.24)"
                                 class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-all shadow-lg shadow-red-950/50 flex items-center gap-2">
                                 <span data-lang-en="Read Full Story" data-lang-ar="اقرأ القصة الكاملة">Read Full Story</span>
@@ -218,6 +235,7 @@
                                 <div class="text-[10px] text-zinc-500" data-lang-en="CS Student" data-lang-ar="طالب علوم حاسوب">CS Student</div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -235,36 +253,36 @@
                     </div>
 
                     <div class="md:col-span-2 red-card rounded-2xl p-6 space-y-3 scene-content-right">
-                        <div class="space-y-2.5 text-left rtl:text-right">
+                        <div class="space-y-3 text-left rtl:text-right">
                             
-                            <h3 class="text-xl font-black text-white tracking-tight split-type-target" data-lang-en="Biography & Goals" data-lang-ar="السيرة والاهداف">Biography & Goals</h3>
+                            <h3 class="text-2xl font-black text-white tracking-tight split-type-target" data-lang-en="Biography & Goals" data-lang-ar="السيرة والاهداف">Biography & Goals</h3>
                             <div class="text-xs font-semibold text-red-400 font-mono split-type-target" data-lang-en="Computer Science Student & Protocol Lead" data-lang-ar="طالب علوم حاسوب وقائد بروتوكول">Computer Science Student & Protocol Lead</div>
 
-                            <p class="text-zinc-200 text-xs leading-relaxed font-normal split-type-target"
+                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
                                 data-lang-en="I am Mohamed Mostafa (MOHMOS), a 20 year old Computer Science student with a strong passion for Discord communities, blockchain technology, and the Web3 ecosystem."
                                 data-lang-ar="أنا محمد مصطفى (MOHMOS)، طالب علوم حاسوب يبلغ من العمر 20 عاماً، شغوف بمجتمعات ديسكورد، تقنيات البلوكشين، وعالم الـ Web3.">
                                 I am Mohamed Mostafa (MOHMOS), a 20 year old Computer Science student with a strong passion for Discord communities, blockchain technology, and the Web3 ecosystem.
                             </p>
 
-                            <p class="text-zinc-200 text-xs leading-relaxed font-normal split-type-target"
+                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
                                 data-lang-en="My Web3 journey began in 2022 with Bag Guild, where I helped build and manage the community. I later contributed to OnChain before joining the LitVM ecosystem as a Protocol Lead. Today, I continue supporting the community through Lit Clinic, helping bridge technical concepts between the product, the team, and the community while improving communication and user experience."
                                 data-lang-ar="بدأت رحلتي في الـ Web3 عام 2022 مع Bag Guild، حيث ساهمت في بناء وإدارة المجتمع. ساهمت لاحقاً مع OnChain قبل الانضمام إلى منظومة LitVM كـ Protocol Lead. اليوم، أواصل دعم المجتمع من خلال Lit Clinic، حيث أساعد في ربط المفاهيم التقنية بين المنتج والفريق والمجتمع مع تحسين التواصل وتجربة المستخدم.">
                                 My Web3 journey began in 2022 with Bag Guild, where I helped build and manage the community. I later contributed to OnChain before joining the LitVM ecosystem as a Protocol Lead. Today, I continue supporting the community through Lit Clinic, helping bridge technical concepts between the product, the team, and the community while improving communication and user experience.
                             </p>
 
-                            <p class="text-zinc-200 text-xs leading-relaxed font-normal split-type-target"
+                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
                                 data-lang-en="My expertise focuses on building and managing professional Discord servers, organizing roles and permissions, configuring bots, improving community operations, and supporting blockchain communities with scalable and well structured server infrastructure."
                                 data-lang-ar="تركز خبرتي على بناء وإدارة سيرفرات ديسكورد الاحترافية، تنظيم الأدوار والصلاحيات، ضبط البوتات، تحسين العمليات المجتمعية، ودعم مجتمعات البلوكشين ببنية تحتية قابلة للتوسع ومنظمة جيداً.">
                                 My expertise focuses on building and managing professional Discord servers, organizing roles and permissions, configuring bots, improving community operations, and supporting blockchain communities with scalable and well structured server infrastructure.
                             </p>
 
-                            <p class="text-zinc-200 text-xs leading-relaxed font-normal split-type-target"
+                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
                                 data-lang-en="Alongside my practical experience, I am currently pursuing a Bachelor's degree in Computer Science while expanding my knowledge of blockchain technology, decentralized systems, and Web3 development. My long term goal is to become a Blockchain Developer by combining academic knowledge with real world experience gained from Web3 projects."
                                 data-lang-ar="إلى جانب خبرتي العملية، أدرس حالياً للحصول على درجة البكالوريوس في علوم الحاسوب مع توسيع معرفتي بتقنيات البلوكشين، الأنظمة اللامركزية، وتطوير Web3. هدفي على المدى الطويل هو أن أصبح طور بلوكشين (Blockchain Developer) من خلال دمج المعرفة الأكاديمية مع الخبرة العملية المكتسبة من مشاريع Web3.">
                                 Alongside my practical experience, I am currently pursuing a Bachelor's degree in Computer Science while expanding my knowledge of blockchain technology, decentralized systems, and Web3 development. My long term goal is to become a Blockchain Developer by combining academic knowledge with real world experience gained from Web3 projects.
                             </p>
 
-                            <p class="text-zinc-200 text-xs leading-relaxed font-normal split-type-target"
+                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
                                 data-lang-en="I believe that honesty, responsibility, and continuous learning are the foundation of professional growth. If a task is outside my current expertise, I communicate that openly instead of making promises I cannot keep. I enjoy learning new technologies, solving challenging problems, working effectively under pressure, and building practical solutions that create value for both teams and communities."
                                 data-lang-ar="أؤمن بأن الصدق والمسؤولية والتعلم المستمر هي أساس النمو المهني. إذا كانت المهمة خارج نطاق خبرتي الحالية، أفصح عن ذلك بأمانة بدلاً من إعطاء وعود لا أستطيع الوفاء بها. أستمتع بتعلم التقنيات الجديدة، حل المشكلات التنافسية، العمل بكفاءة تحت الضغط، وبناء حلول عملية تخلق قيمة حقيقية للفرق والمجتمعات.">
                                 I believe that honesty, responsibility, and continuous learning are the foundation of professional growth. If a task is outside my current expertise, I communicate that openly instead of making promises I cannot keep. I enjoy learning new technologies, solving challenging problems, working effectively under pressure, and building practical solutions that create value for both teams and communities.
@@ -291,7 +309,7 @@
                         
                         <div class="relative">
                             <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">1</div>
-                            <div class="red-card rounded-2xl p-4 space-y-1.5 text-left rtl:text-right">
+                            <div class="red-card rounded-2xl p-4.5 space-y-1.5 text-left rtl:text-right">
                                 <div class="flex items-center justify-between border-b border-zinc-900 pb-1.5">
                                     <div class="flex items-center gap-3">
                                         <img src="assets/bag_guild.png" alt="Bag Guild" class="w-7 h-7 object-contain">
@@ -309,7 +327,7 @@
 
                         <div class="relative">
                             <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">2</div>
-                            <div class="red-card rounded-2xl p-4 space-y-1.5 text-left rtl:text-right">
+                            <div class="red-card rounded-2xl p-4.5 space-y-1.5 text-left rtl:text-right">
                                 <div class="flex items-center justify-between border-b border-zinc-900 pb-1.5">
                                     <div class="flex items-center gap-3">
                                         <img src="assets/onchain.jpg" alt="OnChain Outlaws" class="w-7 h-7 object-cover rounded-lg">
@@ -327,7 +345,7 @@
 
                         <div class="relative">
                             <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-red-600 border-2 border-red-400 flex items-center justify-center text-[10px] text-white font-bold animate-pulse">3</div>
-                            <div class="red-card rounded-2xl p-4 space-y-1.5 text-left rtl:text-right border-red-500/40">
+                            <div class="red-card rounded-2xl p-4.5 space-y-1.5 text-left rtl:text-right border-red-500/40">
                                 <div class="flex items-center justify-between border-b border-zinc-900 pb-1.5">
                                     <div class="flex items-center gap-3">
                                         <img src="assets/litclinic.png" alt="Lit Clinic" class="w-7 h-7 object-contain">
@@ -362,7 +380,7 @@
 
                     <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left rtl:text-right scene-content-right">
                         
-                        <div class="red-card rounded-2xl p-4 space-y-2">
+                        <div class="red-card rounded-2xl p-4.5 space-y-2">
                             <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
                                 <i class="fa-solid fa-comments text-red-500 text-xs"></i>
                                 <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Protocol Comm" data-lang-ar="اتصالات البروتوكول">Protocol Comm</h4>
@@ -372,7 +390,7 @@
                             </p>
                         </div>
 
-                        <div class="red-card rounded-2xl p-4 space-y-2">
+                        <div class="red-card rounded-2xl p-4.5 space-y-2">
                             <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
                                 <i class="fa-solid fa-server text-red-500 text-xs"></i>
                                 <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Discord Arch" data-lang-ar="هندسة ديسكورد">Discord Arch</h4>
@@ -382,7 +400,7 @@
                             </p>
                         </div>
 
-                        <div class="red-card rounded-2xl p-4 space-y-2">
+                        <div class="red-card rounded-2xl p-4.5 space-y-2">
                             <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
                                 <i class="fa-solid fa-users text-red-500 text-xs"></i>
                                 <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="User Onboarding" data-lang-ar="إعداد ودعم الأعضاء">User Onboarding</h4>
@@ -411,7 +429,7 @@
 
                     <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left rtl:text-right scene-content-right">
                         
-                        <div class="red-card rounded-2xl p-4 space-y-2.5">
+                        <div class="red-card rounded-2xl p-4.5 space-y-2.5">
                             <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
                                 <i class="fa-solid fa-server text-red-500 text-xs"></i>
                                 <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Discord Infra" data-lang-ar="بنية ديسكورد">Discord Infra</h4>
@@ -424,7 +442,7 @@
                             </ul>
                         </div>
 
-                        <div class="red-card rounded-2xl p-4 space-y-2.5">
+                        <div class="red-card rounded-2xl p-4.5 space-y-2.5">
                             <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
                                 <i class="fa-solid fa-users-gear text-red-500 text-xs"></i>
                                 <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Operations" data-lang-ar="العمليات">Operations</h4>
@@ -437,7 +455,7 @@
                             </ul>
                         </div>
 
-                        <div class="red-card rounded-2xl p-4 space-y-2.5">
+                        <div class="red-card rounded-2xl p-4.5 space-y-2.5">
                             <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
                                 <i class="fa-solid fa-laptop-code text-red-500 text-xs"></i>
                                 <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="CS & Tools" data-lang-ar="علوم الحاسوب">CS & Tools</h4>

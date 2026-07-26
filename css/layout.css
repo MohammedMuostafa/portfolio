@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LAYOUT, STAGE & SECTION ARCHITECTURE
+   LAYOUT, STAGE & TYPOGRAPHY ARCHITECTURE
    ========================================================================== */
 
 html.lenis, html.lenis body {
@@ -28,6 +28,30 @@ body {
 
 html[dir="rtl"] body {
     font-family: var(--font-arabic);
+}
+
+/* Typography Utility Classes */
+.text-hierarchy-title {
+    font-size: var(--h1-size);
+    line-height: var(--lh-tight);
+    letter-spacing: -0.03em;
+}
+
+.text-hierarchy-subtitle {
+    font-size: var(--h2-size);
+    line-height: var(--lh-normal);
+}
+
+.text-hierarchy-h3 {
+    font-size: var(--h3-size);
+    line-height: var(--lh-normal);
+    letter-spacing: -0.01em;
+}
+
+.text-hierarchy-paragraph {
+    font-size: var(--body-size);
+    line-height: var(--lh-relaxed);
+    color: #d4d4d8;
 }
 
 /* GSAP Master Scroll Track & Sticky Viewport */
@@ -72,7 +96,7 @@ body.unlocked-normal-flow .scene-stage-wrapper {
     margin: 0 auto 4.5rem auto !important;
 }
 
-/* Scene Stage Wrapper & Container Rhythm (Enlarged Container Width) */
+/* Scene Stage Wrapper & Container Rhythm */
 .scene-stage-wrapper {
     position: absolute;
     inset: 0;
