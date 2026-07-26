@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a rebuilt cinematic intro sequence, subtle blur-and-fade section reveals via IntersectionObserver, a reliable typewriter text engine, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
 
 ---
 
@@ -24,18 +24,21 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Rebuilt Clean Cinematic Architecture
+## 🛠️ Technology Stack & Refined Architecture
 
 * **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
+* **Inertial Smooth Scroll:** **Lenis 1.0.42** (Studio Freight / Darkroom Engineering) for fluid, Apple-grade wheel scroll momentum (`lerp: 0.08`).
+* **Animation Engines:** **GSAP 3.12.5** and **ScrollTrigger** for 60fps sub-pixel timeline scrubbing, smooth easing (`power3.out`), and zero layout reflows.
+* **Text Parser:** **SplitType 0.3.4** for discrete character-by-character typewriter animation (`span.char`).
 * **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
 * **Icons:** Font Awesome 6.5.1 CDN.
-* **Rebuilt Animation System:**
-  * **Pure Black Intro Start:** Page starts on a 100% black screen (`#cinematic-intro`) displaying only a subtle "Scroll Down to Begin Experience" prompt.
-  * **Scroll-Triggered 3D Zoom:** User scroll initiates the 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.25)`).
-  * **Seamless Hero Reveal:** Overlay fades into the Hero section seamlessly. The 360-degree profile image orbit and right bio panel enter together.
-  * **Subtle Section Reveals:** Remaining sections use elegant, non-exaggerated transitions (`opacity: 0`, `translateY(35px)`, `filter: blur(6px)` $\rightarrow$ `opacity: 1`, `translateY(0)`, `filter: blur(0px)`) via native IntersectionObserver.
-  * **Clean Typewriter Engine:** Text targets (`.typewriter-target`) start 100% hidden and type character-by-character smoothly. Once revealed, content stays displayed.
-  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero typewriter finishes.
+* **Cinematic Feature Set:**
+  * **Stage 0 Intro Zoom:** Pure black screen + scroll prompt $\rightarrow$ 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.4)`).
+  * **Elegant Depth & Blur Entrance:** Replaced mechanical side sliding with subtle depth, opacity, scale (`0.92` $\rightarrow$ `1.0`), and Gaussian blur (`10px` $\rightarrow$ `0px`) entrance reveals.
+  * **True Character Typewriter:** SplitType splits headings and paragraphs into discrete characters. Scrolling reveals characters one by one with a blinking crimson cursor (`|`). Sentence 1 finishes 100% before Sentence 2 starts.
+  * **Scene Completion State Memory:** Once a scene is revealed, it is tracked in `completedScenes`. Scrolling back upward later maintains 100% visible text without re-triggering typing or hiding content.
+  * **Multi-Layered Ambient Aurora Canvas:** Renders floating red dust motes, subtle star motes, and soft glowing red radial aurora lights (`radial-gradient(circle, rgba(255, 30, 30, 0.12), transparent 70%)`).
+  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero entrance completes (`totalP > 0.09`).
 * **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
 * **Hosting:** Deployed via **GitHub Pages**.
 
