@@ -1,0 +1,109 @@
+/* ==========================================================================
+   LAYOUT, STAGE & SECTION ARCHITECTURE
+   ========================================================================== */
+
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+}
+
+/* GSAP Master Scroll Track & Sticky Viewport */
+#gsap-scroll-track {
+    height: 1500vh;
+    position: relative;
+}
+
+#gsap-sticky-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--bg-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Unlocked Normal Webpage Layout State */
+body.unlocked-normal-flow #gsap-scroll-track {
+    height: auto !important;
+}
+
+body.unlocked-normal-flow #gsap-sticky-stage {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+}
+
+body.unlocked-normal-flow .scene-stage-wrapper {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    filter: none !important;
+    margin-bottom: 5rem;
+}
+
+/* Scene Stage Wrapper & Container Rhythm */
+.scene-stage-wrapper {
+    position: absolute;
+    inset: 0;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity, transform, filter;
+}
+
+/* Timeline Connector Line */
+.timeline-line::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--red-accent), var(--border-dark));
+}
+
+html[dir="rtl"] .timeline-line::before {
+    left: auto;
+    right: 20px;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-black); }
+::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--red-accent); }

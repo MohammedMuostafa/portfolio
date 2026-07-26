@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a modular software engineering architecture powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, an unlocked normal scroll architecture, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
 
 ---
 
@@ -24,23 +24,49 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Technology Stack & Refined Architecture
+## 📂 Modular Software Engineering Architecture
 
-* **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
-* **Inertial Smooth Scroll:** **Lenis 1.0.42** (Studio Freight / Darkroom Engineering) for fluid, Apple-grade wheel scroll momentum (`lerp: 0.08`).
-* **Animation Engines:** **GSAP 3.12.5** and **ScrollTrigger** for 60fps sub-pixel timeline scrubbing, smooth easing (`power3.out`), and zero layout reflows.
-* **Text Parser:** **SplitType 0.3.4** for discrete character-by-character typewriter animation (`span.char`).
-* **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
-* **Icons:** Font Awesome 6.5.1 CDN.
-* **Cinematic Feature Set:**
-  * **Stage 0 Intro Zoom:** Pure black screen + scroll prompt $\rightarrow$ 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.4)`).
-  * **Elegant Depth & Blur Entrance:** Replaced mechanical side sliding with subtle depth, opacity, scale (`0.92` $\rightarrow$ `1.0`), and Gaussian blur (`10px` $\rightarrow$ `0px`) entrance reveals.
-  * **True Character Typewriter:** SplitType splits headings and paragraphs into discrete characters. Scrolling reveals characters one by one with a blinking crimson cursor (`|`). Sentence 1 finishes 100% before Sentence 2 starts.
-  * **Scene Completion State Memory:** Once a scene is revealed, it is tracked in `completedScenes`. Scrolling back upward later maintains 100% visible text without re-triggering typing or hiding content.
-  * **Multi-Layered Ambient Aurora Canvas:** Renders floating red dust motes, subtle star motes, and soft glowing red radial aurora lights (`radial-gradient(circle, rgba(255, 30, 30, 0.12), transparent 70%)`).
-  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero entrance completes (`totalP > 0.09`).
-* **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
-* **Hosting:** Deployed via **GitHub Pages**.
+```
+portfolio/
+│
+├── index.html              # Clean semantic HTML markup
+├── assets/                 # Profile, guild & organization logos
+│   ├── avatar.png
+│   ├── bag_guild.png
+│   ├── litclinic.png
+│   └── onchain.jpg
+│
+├── css/                    # Modular Design System Stylesheets
+│   ├── variables.css       # Design tokens, color variables & fonts
+│   ├── layout.css          # Stage layout, unlocked flow & grid constraints
+│   ├── components.css      # AAA game cards, red badges & 360 photo frame
+│   ├── animations.css      # Ambient aurora light & SplitType typewriter styles
+│   └── main.css            # Main CSS bundle importing all modules
+│
+├── js/                     # Modular JavaScript ES Subsystems
+│   ├── app.js              # Main ES module orchestrator
+│   ├── background.js       # Multi-layer particle canvas & ambient aurora engine
+│   ├── navigation.js       # Header navbar fade & mobile drawer controls
+│   ├── scroll.js           # Lenis smooth scroll & GSAP timeline engine
+│   ├── typewriter.js       # SplitType character parser & typewriter state
+│   └── utils.js            # Language switcher & clipboard toast utilities
+│
+└── README.md               # Technical project documentation
+```
+
+---
+
+## 🛠️ Key Architectural Innovations
+
+1. **Unlocked Normal Webpage Scroll Architecture:**
+   - Once the visitor completes the initial cinematic presentation (`totalP >= 0.98`), the pinned stage seamlessly unlocks into a normal vertical HTML page layout (`body.unlocked-normal-flow`).
+   - The user can scroll up and down like a standard website without re-triggering cinematic locks, re-typing text, or hiding completed content!
+2. **Modular CSS & JS Separated Concerns:**
+   - All styling rules, layout grids, components, and keyframe animations are decoupled into `css/`.
+   - All business logic, background particle physics, SplitType character management, scroll engines, and navigation drawers are decoupled into modular ES modules in `js/`.
+3. **Inertial Smooth Scroll & GPU Timeline Scrubbing:**
+   - **Lenis 1.0.42** provides fluid Apple-grade scroll momentum (`lerp: 0.08`).
+   - **GSAP 3.12.5 + ScrollTrigger** scrubs sub-pixel character visibility (`opacity: 0.15` $\rightarrow$ `1.0`).
 
 ---
 

@@ -1,0 +1,77 @@
+/* ==========================================================================
+   ANIMATIONS, TYPEWRITER & AMBIENT AURORA BACKDROP
+   ========================================================================== */
+
+/* Ambient Aurora Light Overlay */
+.ambient-aurora {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 50vh;
+    background: radial-gradient(circle, rgba(255, 30, 30, 0.12) 0%, rgba(120, 0, 0, 0.05) 45%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform, opacity;
+}
+
+/* Particle Canvas Overlay */
+#particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.55;
+}
+
+/* Intro Name Overlay */
+#intro-name-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-black);
+    pointer-events: none;
+}
+
+.intro-title {
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    text-shadow: 0 0 60px rgba(255, 30, 30, 0.6);
+    transform-origin: center center;
+    will-change: transform, opacity, filter;
+}
+
+/* SplitType Character Typewriter Styles */
+.char {
+    display: inline-block;
+    opacity: 0.15;
+    transition: opacity 0.1s ease, color 0.1s ease;
+    will-change: opacity;
+}
+
+.char.char-typed {
+    opacity: 1;
+    color: #ffffff;
+}
+
+.char.char-cursor::after {
+    content: '|';
+    color: var(--red-accent);
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 2px;
+    animation: cursorBlink 0.8s infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

@@ -1,0 +1,69 @@
+/* ==========================================================================
+   COMPONENTS: AAA GAME CARDS, BADGES & PHOTO ORBIT
+   ========================================================================== */
+
+/* AAA Game Cards & Lighting */
+.red-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.red-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 30, 30, 0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.red-card:hover {
+    border-color: rgba(255, 30, 30, 0.5);
+    box-shadow: 0 15px 40px -10px rgba(255, 30, 30, 0.3);
+    transform: translateY(-4px);
+}
+
+.red-card:hover::before { opacity: 1; }
+
+/* Red Badge */
+.red-badge {
+    background: var(--red-badge-bg);
+    border: 1px solid var(--red-badge-border);
+    color: var(--red-badge-text);
+}
+
+/* 360-Degree Photo Orbit */
+.photo-360-container {
+    position: relative;
+    perspective: 1000px;
+    will-change: transform, opacity, filter;
+}
+
+.photo-360-orbit {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 30, 30, 0.55);
+    box-shadow: 0 0 30px rgba(255, 30, 30, 0.3);
+    animation: spin360 14s linear infinite;
+}
+
+.photo-360-frame {
+    position: relative;
+    box-shadow: 0 0 40px rgba(255, 30, 30, 0.4), inset 0 0 25px rgba(255, 30, 30, 0.25);
+    border: 2px solid rgba(255, 30, 30, 0.6);
+    animation: floatUpDown 5s ease-in-out infinite;
+}
+
+@keyframes spin360 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes floatUpDown {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+}

@@ -1,0 +1,20 @@
+/* ==========================================================================
+   CSS VARIABLES & DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+    --bg-black: #000000;
+    --card-bg: #08080c;
+    --card-hover-bg: #101017;
+    --border-dark: #181822;
+    --red-accent: #ff1e1e;
+    --red-hover: #e01212;
+    --red-glow: rgba(255, 30, 30, 0.4);
+    --red-badge-bg: rgba(255, 30, 30, 0.08);
+    --red-badge-border: rgba(255, 30, 30, 0.3);
+    --red-badge-text: #ff5555;
+
+    --font-sans: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+    --font-arabic: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
