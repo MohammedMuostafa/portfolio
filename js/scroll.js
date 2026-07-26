@@ -40,7 +40,7 @@ export function initScrollTimeline() {
         let totalP = -trackRect.top / scrollableDistance;
         totalP = Math.max(0, Math.min(1, totalP)); // Master float 0.0 -> 1.0
 
-        // UNLOCKED NORMAL FLOW & CASCADING STACK SETTLEMENT (Requirement 4)
+        // UNLOCKED NORMAL FLOW & SEQUENTIAL CASCADING STACK SETTLEMENT (Issue 1)
         if (totalP >= 0.98 && !isUnlockedNormalFlow) {
             isUnlockedNormalFlow = true;
             document.body.classList.add('unlocked-normal-flow');
@@ -48,15 +48,15 @@ export function initScrollTimeline() {
                 completedScenes.add(i);
             }
 
-            // Trigger satisfying cascading collapse animation
+            // Trigger beautiful sequential cascading animation (one by one in order)
             if (window.gsap) {
-                window.gsap.from('.scene-stage-wrapper', {
-                    y: 60,
+                window.gsap.from(sceneWrappers, {
+                    y: 90,
                     opacity: 0,
-                    filter: 'blur(10px)',
-                    stagger: 0.12,
-                    duration: 0.9,
-                    ease: 'power3.out',
+                    filter: 'blur(12px)',
+                    stagger: 0.28, // Each section settles 0.28s after the previous section!
+                    duration: 0.85,
+                    ease: 'power2.out',
                     clearProps: 'transform,opacity,filter'
                 });
             }
@@ -165,7 +165,6 @@ export function initScrollTimeline() {
             if (idx === activeIdx) {
                 scene.style.pointerEvents = 'auto';
 
-                // Requirement 2 & 3: 1-Second Read Pause & Smooth Fade
                 let stageOpacity = 1;
                 if (localP < 0.12 && !isCompleted) {
                     stageOpacity = localP / 0.12;

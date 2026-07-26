@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, enlarged visual focal elements, a generous **1-second section reading pause**, and a satisfying **cascading stack collapse animation** upon experience completion.
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, enlarged visual focal elements, universal scroll typewriter coverage across all 6 sections, and a **sequential cascading finale animation** (`stagger: 0.28s`) upon experience completion.
 
 ---
 
@@ -24,12 +24,12 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 📂 Modular Architecture & Key Polish Features
+## 📂 Modular Architecture & Refined Features
 
 ```
 portfolio/
 │
-├── index.html              # Clean semantic HTML markup & enlarged focal elements
+├── index.html              # Clean semantic HTML markup & universal typewriter targets
 ├── assets/                 # Profile, guild & organization logos
 ├── css/                    # Modular Design System Stylesheets
 │   ├── variables.css       # Tokens, colors, fonts
@@ -42,18 +42,17 @@ portfolio/
 │   ├── app.js              # Main ES module orchestrator
 │   ├── background.js       # Multi-layer particle canvas & ambient aurora engine
 │   ├── navigation.js       # Header navbar fade & mobile drawer controls
-│   ├── scroll.js           # Lenis smooth scroll, GSAP 1-sec pause & cascading stack engine
+│   ├── scroll.js           # Lenis smooth scroll, 1-sec pause & sequential cascade engine
 │   ├── typewriter.js       # SplitType character parser & typewriter state manager
 │   └── utils.js            # Language switcher & clipboard toast utilities
 │
 └── README.md               # Technical project documentation
 ```
 
-### 🌟 Interaction Refinement Highlights
+### 🌟 Sequential Cascade & Universal Typewriter Refinements
 
-1. **Larger Visual Focus Elements:** Profile photos enlarged to `w-64 sm:w-80 h-64 sm:h-80`, section focus cards to `min-h-[280px]`, icons to `text-3xl`, creating immersive visual impact while keeping the layout responsive.
-2. **1-Second Reading Pause Before Transition:** Once the typewriter reveal completes (`localP = 0.55`), the scene stays 100% typed & visible until `localP = 0.88`, giving visitors ample time to comfortably finish reading before smoothly fading out.
-3. **Satisfying Cascading Stack Settlement Animation:** When the cinematic timeline reaches 100% completion (`totalP >= 0.98`), a staggered GSAP cascading collapse animation (`y: 60`, `opacity: 0`, `blur: 10px`, `stagger: 0.12s`) gently settles all completed sections into a standard vertical HTML layout.
+1. **Sequential Cascading Finale Animation:** When the cinematic timeline reaches 100% completion (`totalP >= 0.98`), a sequential GSAP cascading collapse animation (`stagger: 0.28s`) settles each section **one by one in order** (Hero $\rightarrow$ About $\rightarrow$ Journey $\rightarrow$ Experience $\rightarrow$ Skills $\rightarrow$ Connect) gracefully into the final vertical HTML layout.
+2. **Universal Typewriter Across All Sections:** Applied `.split-type-target` to every heading, paragraph, subtitle, card description, list item, and platform link across **Hero, About, Journey, Experience, Skills, and Connect**. Every piece of text is typed character-by-character driven by scroll progress.
 
 ---
 
