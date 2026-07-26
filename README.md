@@ -1,6 +1,10 @@
 # MOHMOS Portfolio
 
 The source for [Mohamed Mostafa's portfolio](https://mohammedmuostafa.github.io/portfolio/). It presents MOHMOS as a Computer Science student, Web3 builder, full-stack developer, content creator, and Co-Founder and Protocol Lead at Lit Clinic.
+<img width="1911" height="1115" alt="image" src="https://github.com/user-attachments/assets/c0191ab4-48c7-498a-8571-9b6bdbfade35" />
+
+
+
 
 The visual identity combines a pure black background, crimson accents, game-inspired cards, subtle ambient particles, and bilingual English and Arabic content. The site is progressively enhanced: all content remains readable without JavaScript, while supported browsers receive section reveals, active navigation, language persistence, and clipboard feedback.
 
