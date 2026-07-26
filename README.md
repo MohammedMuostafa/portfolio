@@ -30,7 +30,7 @@ This portfolio is designed to showcase my professional journey, technical expert
 ## 🌐 Connect & Socials
 * **Website / Lit Clinic:** [litclinic.xyz](https://litclinic.xyz)
 * **Linktree:** [moh.mos](https://linktree.com/moh.mos)
-* **GitHub:** [Mohammed-Muostafa](https://github.com/Mohammed-Muostafa)
+* **GitHub:** [MohammedMuostafa](https://github.com/MohammedMuostafa)
 * **X (Twitter):** [@mohmos](https://x.com/mohmos)
 * **Telegram:** [@MOH-MOS](https://t.me/MOH-MOS)
 * **YouTube:** [MOHMOS base](https://www.youtube.com/@MOH-MOS)
