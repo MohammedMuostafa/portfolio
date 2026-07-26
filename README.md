@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a 100% **master scroll-driven interactive timeline engine** across all 6 sections where the mouse wheel directly controls 360-degree image rotations, panel entries, slowed-down typewriter character progress, and scene transitions, alongside a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a 100% **master scroll-driven interactive timeline engine** across all 6 sections. Incorporating lightweight **GSAP (GreenSock Animation Platform)** CDNs for GPU-accelerated motion, it delivers elegant depth-and-blur entrance reveals, true character-by-character typewriter scrolling, scene completion state memory, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
 
 ---
 
@@ -24,23 +24,18 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Master Scroll-Driven Cinematic Architecture (All Sections)
+## 🛠️ Refined Cinematic Architecture & Technology Stack
 
 * **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
+* **Animation Engines:** Lightweight **GSAP 3.12.5** and **ScrollTrigger** CDNs (~30KB) for 60fps sub-pixel motion, smooth easing (`power3.out`), and zero layout reflows.
 * **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
 * **Icons:** Font Awesome 6.5.1 CDN.
-* **100% Scroll-Driven Cinematic Sequence (All 6 Sections):**
-  * **Zero Automatic Timers:** All `setTimeout` typing functions have been eliminated. The mouse wheel acts as the master timeline slider (`totalP` 0.0 to 1.0 across an `1800vh` master pin track).
-  * **Empty Black Start per Section:** Every section begins with a clean black backdrop. Text elements (`.scroll-type-target`) start 100% empty and unreadable.
-  * **Synchronized Entrance (Phase 1):** Left visual container (360-degree rotation) and Right content panel slide in together (`localP` 0.00 to 0.25).
-  * **Slowed-Down Scroll Typewriter (Phase 2):**
-    - Character progress is spread across 63% of the local scene scroll range (`localP` 0.25 to 0.88), providing a calm, gradual, and easy-to-read typewriter reveal.
-    - **Scroll fast:** Text types faster.
-    - **Scroll slow:** Text types slowly.
-    - **Stop scrolling:** Typing freezes instantly at that exact character.
-    - **Scroll backward:** Text un-types character-by-character.
-  * **Fade Out & Next Section Reveal (Phase 3):** Active section smoothly fades out to pure black before the next section begins (`localP` 0.88 to 1.00).
-  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero entrance completes (`totalP > 0.10`).
+* **Refined Cinematic Features:**
+  * **Elegant Content Entrance:** Replaced mechanical side sliding with subtle depth, opacity, scale (`0.92` $\rightarrow$ `1.0`), and Gaussian blur (`10px` $\rightarrow$ `0px`) entrance reveals.
+  * **True Character-by-Character Typewriter:** Text elements (`.gsap-char-target`) are split into individual character `<span>` tags. Scrolling reveals characters one by one with a blinking crimson cursor (`|`). Paragraphs never dump all at once.
+  * **Scene Completion State Memory:** Once a scene is revealed, it is tracked in `completedScenes`. Scrolling back upward later maintains 100% visible text without re-triggering typing or hiding content.
+  * **Balanced Section Spacing:** Reduced excessive vertical padding (`max-w-58rem`, `py-8`, `gap-6`) so sections fill the screen naturally without empty gaps.
+  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero entrance completes (`totalP > 0.09`).
 * **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
 * **Hosting:** Deployed via **GitHub Pages**.
 
