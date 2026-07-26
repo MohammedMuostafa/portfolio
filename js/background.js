@@ -1,102 +1,148 @@
-export function initAmbientParticles() {
-    const canvas = document.getElementById('particle-canvas');
-    if (!(canvas instanceof HTMLCanvasElement)) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    const particleCanvas = canvas;
-    const drawingContext = ctx;
+/**
+ * Draws a lightweight, pointer-reactive Web3 network behind the document.
+ * @returns {() => void}
+ */
+export function initNetworkBackground() {
+    const canvasElement = document.getElementById('network-canvas');
+    if (!(canvasElement instanceof HTMLCanvasElement)) return () => {};
+    const canvas = canvasElement;
 
+    const drawingContext = canvas.getContext('2d');
+    if (!drawingContext) return () => {};
+    const context = drawingContext;
+
+    const controller = new AbortController();
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const particleCount = window.innerWidth < 640 ? 14 : 28;
-    const particles = createParticles(particleCount);
+    const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    /** @type {Array<{x: number, y: number, vx: number, vy: number, radius: number, red: boolean}>} */
+    let nodes = [];
     let width = 0;
     let height = 0;
-    let animationFrame = 0;
+    let frame = 0;
     let lastFrame = 0;
+    let running = false;
+    const pointer = { x: 0, y: 0, active: false };
 
-    function resizeCanvas() {
-        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-        width = window.innerWidth;
+    function resize() {
+        width = Math.round(window.visualViewport?.width ?? document.documentElement.clientWidth);
         height = window.innerHeight;
-        particleCanvas.width = Math.round(width * ratio);
-        particleCanvas.height = Math.round(height * ratio);
-        particleCanvas.style.width = `${width}px`;
-        particleCanvas.style.height = `${height}px`;
-        drawingContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        createNodes();
+        draw(false);
     }
 
-    /** @param {number} time */
-    function render(time) {
-        if (time - lastFrame < 32) {
-            animationFrame = requestAnimationFrame(render);
-            return;
+    function createNodes() {
+        const nodeCount = width < 768 ? 20 : (width < 1280 ? 30 : 38);
+        nodes = Array.from({ length: nodeCount }, (_, index) => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.18,
+            vy: (Math.random() - 0.5) * 0.18,
+            radius: index % 7 === 0 ? 1.7 : 1.1,
+            red: index % 5 === 0,
+        }));
+    }
+
+    /** @param {boolean} update */
+    function draw(update) {
+        context.clearRect(0, 0, width, height);
+
+        if (pointer.active) {
+            const glow = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 220);
+            glow.addColorStop(0, 'rgba(255, 61, 66, 0.07)');
+            glow.addColorStop(1, 'rgba(255, 61, 66, 0)');
+            context.fillStyle = glow;
+            context.fillRect(pointer.x - 220, pointer.y - 220, 440, 440);
         }
 
-        lastFrame = time;
-        drawParticles(drawingContext, particles, width, height, !motionQuery.matches, time);
-        if (!motionQuery.matches) animationFrame = requestAnimationFrame(render);
-    }
+        nodes.forEach((node) => {
+            if (!update) return;
+            node.x += node.vx;
+            node.y += node.vy;
 
-    function updateAnimation() {
-        cancelAnimationFrame(animationFrame);
-        if (document.hidden) return;
-        animationFrame = requestAnimationFrame(render);
-    }
+            if (node.x < -10) node.x = width + 10;
+            else if (node.x > width + 10) node.x = -10;
+            if (node.y < -10) node.y = height + 10;
+            else if (node.y > height + 10) node.y = -10;
 
-    resizeCanvas();
-    updateAnimation();
+            if (!pointer.active) return;
+            const offsetX = node.x - pointer.x;
+            const offsetY = node.y - pointer.y;
+            const distance = Math.hypot(offsetX, offsetY);
+            if (distance > 0 && distance < 150) {
+                const force = (150 - distance) / 150;
+                node.x += (offsetX / distance) * force * 0.55;
+                node.y += (offsetY / distance) * force * 0.55;
+            }
+        });
 
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        updateAnimation();
-    }, { passive: true });
-    document.addEventListener('visibilitychange', updateAnimation);
-    motionQuery.addEventListener('change', updateAnimation);
-}
+        const connectionDistance = width < 768 ? 118 : 152;
+        for (let first = 0; first < nodes.length; first++) {
+            for (let second = first + 1; second < nodes.length; second++) {
+                const nodeA = nodes[first];
+                const nodeB = nodes[second];
+                const distance = Math.hypot(nodeA.x - nodeB.x, nodeA.y - nodeB.y);
+                if (distance >= connectionDistance) continue;
 
-/** @param {number} count */
-function createParticles(count) {
-    const particles = [];
-    for (let i = 0; i < count; i++) {
-        particles.push({
-            x: Math.random(),
-            y: Math.random(),
-            r: Math.random() * 1.6 + 0.4,
-            vx: (Math.random() - 0.5) * 0.18,
-            vy: (Math.random() - 0.5) * 0.18 - 0.06,
-            alpha: Math.random() * 0.3 + 0.08,
+                context.beginPath();
+                context.moveTo(nodeA.x, nodeA.y);
+                context.lineTo(nodeB.x, nodeB.y);
+                context.strokeStyle = `rgba(170, 180, 205, ${(1 - (distance / connectionDistance)) * 0.12})`;
+                context.lineWidth = 0.7;
+                context.stroke();
+            }
+        }
+
+        nodes.forEach((node) => {
+            context.beginPath();
+            context.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            context.fillStyle = node.red ? 'rgba(255, 91, 96, 0.72)' : 'rgba(160, 225, 244, 0.58)';
+            context.fill();
         });
     }
-    return particles;
-}
 
-/**
- * @param {CanvasRenderingContext2D} ctx
- * @param {ReturnType<typeof createParticles>} particles
- * @param {number} width
- * @param {number} height
- * @param {boolean} animate
- * @param {number} time
- */
-function drawParticles(ctx, particles, width, height, animate, time) {
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach((particle) => {
-        if (animate) {
-            particle.x += particle.vx / Math.max(width, 1);
-            particle.y += particle.vy / Math.max(height, 1);
-        }
+    /** @param {number} timestamp */
+    function animate(timestamp) {
+        if (!running) return;
+        frame = window.requestAnimationFrame(animate);
+        if (timestamp - lastFrame < 32) return;
+        lastFrame = timestamp;
+        draw(true);
+    }
 
-        if (particle.x < 0) particle.x = 1;
-        if (particle.x > 1) particle.x = 0;
-        if (particle.y < 0) particle.y = 1;
-        if (particle.y > 1) particle.y = 0;
+    function updateAnimationState() {
+        running = !motionQuery.matches && !document.hidden;
+        window.cancelAnimationFrame(frame);
+        if (running) frame = window.requestAnimationFrame(animate);
+        else draw(false);
+    }
 
-        const pulse = Math.sin(time * 0.0015 + particle.x * 8) * 0.05;
-        ctx.beginPath();
-        ctx.arc(particle.x * width, particle.y * height, particle.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 49, 49, ${Math.max(0.04, particle.alpha + pulse)})`;
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = '#ff3131';
-        ctx.fill();
-    });
+    window.addEventListener('resize', resize, { signal: controller.signal });
+    document.addEventListener('visibilitychange', updateAnimationState, { signal: controller.signal });
+    motionQuery.addEventListener('change', updateAnimationState, { signal: controller.signal });
+
+    if (finePointerQuery.matches) {
+        window.addEventListener('pointermove', (event) => {
+            pointer.x = event.clientX;
+            pointer.y = event.clientY;
+            pointer.active = true;
+        }, { passive: true, signal: controller.signal });
+        document.addEventListener('pointerleave', () => {
+            pointer.active = false;
+        }, { signal: controller.signal });
+    }
+
+    resize();
+    updateAnimationState();
+
+    return () => {
+        running = false;
+        window.cancelAnimationFrame(frame);
+        controller.abort();
+    };
 }

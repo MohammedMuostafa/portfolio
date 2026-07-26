@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 const port = Number.parseInt(process.env.PORT ?? '3000', 10);
+const pagesBasePath = '/portfolio';
 const contentTypes = new Map([
     ['.css', 'text/css; charset=utf-8'],
     ['.html', 'text/html; charset=utf-8'],
@@ -19,7 +20,10 @@ const contentTypes = new Map([
 
 const server = createServer(async (request, response) => {
     const requestUrl = new URL(request.url ?? '/', 'http://localhost');
-    const pathname = decodeURIComponent(requestUrl.pathname);
+    let pathname = decodeURIComponent(requestUrl.pathname);
+    if (pathname === pagesBasePath) pathname = '/';
+    else if (pathname.startsWith(`${pagesBasePath}/`)) pathname = pathname.slice(pagesBasePath.length);
+
     const relativePath = pathname.endsWith('/') ? `${pathname}index.html` : pathname;
     const filePath = path.resolve(root, `.${relativePath}`);
 
@@ -46,3 +50,5 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port);
+
+export { server };

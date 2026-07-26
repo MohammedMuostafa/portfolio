@@ -2,10 +2,11 @@
   "name": "mohmos-web3-portfolio",
   "version": "2.0.0",
   "private": true,
-  "description": "Portfolio for Mohamed Mostafa, Web3 builder, full-stack developer, content creator, and Lit Clinic protocol lead.",
+  "description": "Portfolio for MOHMOS, Protocol Lead at Lit Clinic in the LitVM ecosystem and Discord Infrastructure Specialist.",
   "type": "module",
   "scripts": {
-    "build": "npm run optimize:images && postcss css/main.css -o styles.css && node scripts/build-site.js",
+    "build": "npm run optimize:images && npm run build:icons && postcss css/main.css -o styles.css && node scripts/build-site.js",
+    "build:icons": "esbuild js/icons-runtime.js --bundle --minify --format=iife --outfile=vendor/lucide-icons.min.js",
     "dev": "npm run build && node scripts/server.js",
     "lint": "eslint js scripts tests eslint.config.js && html-validate index.html",
     "optimize:images": "node scripts/optimize-images.js",
@@ -19,21 +20,26 @@
     "lit-clinic",
     "litvm",
     "discord-infrastructure",
-    "blockchain-developer"
+    "community-support"
   ],
-  "author": "Mohamed Mostafa (MOHMOS)",
+  "author": "MOHMOS",
   "license": "UNLICENSED",
   "engines": {
     "node": ">=20"
   },
   "packageManager": "npm@11.16.0",
+  "dependencies": {
+    "gsap": "3.15.0"
+  },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@types/node": "22.10.2",
     "autoprefixer": "10.4.20",
+    "esbuild": "0.28.1",
     "eslint": "10.8.0",
     "globals": "15.14.0",
     "html-validate": "11.5.6",
+    "lucide": "1.27.0",
     "postcss": "8.5.23",
     "postcss-cli": "11.0.0",
     "postcss-import": "16.1.0",

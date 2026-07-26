@@ -1,19 +1,166 @@
 :root {
-    --bg-black: #000000;
-    --card-bg: #08080c;
-    --card-hover-bg: #101017;
-    --border-dark: #24242e;
-    --red-accent: #ff3131;
-    --red-hover: #ff4d4d;
-    --red-glow: rgba(255, 49, 49, 0.24);
-    --red-badge-bg: rgba(255, 49, 49, 0.09);
-    --red-badge-border: rgba(255, 49, 49, 0.32);
-    --red-badge-text: #ff6b6b;
+    --page: #070709;
+    --page-deep: #030304;
+    --surface: rgba(17, 17, 22, 0.78);
+    --surface-solid: #111116;
+    --surface-raised: rgba(24, 24, 31, 0.9);
+    --text: #f5f4f2;
+    --text-soft: #c9c7c4;
+    --text-muted: #85838a;
+    --line: rgba(255, 255, 255, 0.1);
+    --line-strong: rgba(255, 255, 255, 0.18);
+    --accent: #ff3d42;
+    --accent-soft: #ff777b;
+    --accent-wash: rgba(255, 61, 66, 0.1);
+    --cyan: #8ee7ff;
+    --violet: #9f8cff;
+    --success: #8bf7bd;
+    --font-display: 'Manrope', system-ui, sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+    --font-mono: 'DM Mono', ui-monospace, monospace;
+    --font-arabic: 'Cairo', 'Tahoma', sans-serif;
+    --content: 74rem;
+    --gutter: clamp(1rem, 3.5vw, 2.5rem);
+    --section-space: clamp(6rem, 12vw, 10rem);
+    --header-height: 4.75rem;
+    --radius-sm: 0.65rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-    --font-sans: 'Plus Jakarta Sans', 'Cairo', sans-serif;
-    --font-arabic: 'Cairo', 'Plus Jakarta Sans', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-    --section-space: clamp(4.5rem, 9vw, 7.5rem);
-    --content-width: 64rem;
+html {
+    min-width: 20rem;
+    overflow-x: clip;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    background: var(--page);
+    scrollbar-color: #34343c var(--page-deep);
+}
+
+body {
+    min-width: 20rem;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: clip;
+    color: var(--text);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+html.language-pending body {
+    visibility: hidden;
+}
+
+html[dir='rtl'] body {
+    font-family: var(--font-arabic);
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    color: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+svg,
+canvas {
+    display: block;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd,
+figure {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.05;
+    text-wrap: balance;
+}
+
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3 {
+    font-family: var(--font-arabic);
+}
+
+::selection {
+    color: #ffffff;
+    background: rgba(255, 61, 66, 0.55);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-soft);
+    outline-offset: 4px;
+}
+
+.technical {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+.technical {
+    font-family: var(--font-mono);
+}
+
+.role-line {
+    display: inline-block;
+    unicode-bidi: plaintext;
+    word-spacing: 0.12em;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

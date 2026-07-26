@@ -1,68 +1,51 @@
 # MOHMOS Portfolio
 
-The source for [Mohamed Mostafa's portfolio](https://mohammedmuostafa.github.io/portfolio/). It presents MOHMOS as a Computer Science student, Web3 builder, full-stack developer, content creator, and Co-Founder and Protocol Lead at Lit Clinic.
+Bilingual English/Arabic portfolio for MOHMOS, Protocol Lead at Lit Clinic in the LitVM ecosystem and Discord Infrastructure Specialist.
+
+Live website: [mohammedmuostafa.github.io/portfolio](https://mohammedmuostafa.github.io/portfolio/)
+
 <img width="1911" height="1115" alt="image" src="https://github.com/user-attachments/assets/c0191ab4-48c7-498a-8571-9b6bdbfade35" />
 
+## Content
 
+The site presents the CV-verified profile in this order:
 
+1. Hero
+2. About Me
+3. Current Project
+4. Experience
+5. Education
+6. Skills & Tools
+7. Languages & Personal Information
+8. Contact & Socials
 
-The visual identity combines a pure black background, crimson accents, game-inspired cards, subtle ambient particles, and bilingual English and Arabic content. The site is progressively enhanced: all content remains readable without JavaScript, while supported browsers receive section reveals, active navigation, language persistence, and clipboard feedback.
+The page uses native scrolling, lightweight GSAP section reveals, and a reduced-motion-aware canvas background. English and Arabic share one semantic document with runtime metadata, direction, and accessibility-label updates.
 
 ## Development
 
-Requirements:
-
-- Node.js 20 or newer
-- npm 11
-
-Install and validate:
-
 ```bash
 npm install
-npm run lint
-npm run type-check
-npm run build
-npm test
-```
-
-Run the production build locally:
-
-```bash
 npm run dev
 ```
 
-The development server serves `dist/`. Source styles live in `css/`; PostCSS compiles Tailwind and the local design system into `styles.css`. The build also creates compressed WebP assets and copies only production files into `dist/`.
+The local server exposes both `/` and `/portfolio/` so GitHub Pages subpath behavior can be checked before deployment.
 
-## Structure
+## Validation
 
-```text
-portfolio/
-|-- .github/workflows/deploy.yml  # Validation and GitHub Pages deployment
-|-- assets/                       # Source and generated optimized images
-|-- css/                          # Design tokens, layout, components, animations
-|-- js/                           # Navigation, language, scroll, and canvas modules
-|-- scripts/                      # Deterministic image and site build scripts
-|-- tests/                        # Metadata, security, and asset smoke tests
-|-- index.html                    # Semantic single-page portfolio
-|-- robots.txt                    # Search crawler policy
-|-- sitemap.xml                   # Canonical site URL
-`-- site.webmanifest              # Install and theme metadata
+```bash
+npm run lint
+npm run type-check
+npm test
+npm run build
 ```
 
-## Deployment
+## Contact & Socials
 
-Pushes to `main` trigger the GitHub Pages workflow. The workflow installs locked dependencies, runs linting and type checks, builds the production artifact, runs tests, and deploys `dist/` only after every check succeeds.
-
-## Profiles
-
+- [Lit Clinic](https://litclinic.xyz)
+- [Linktree](https://linktr.ee/moh.mos)
+- [GitHub](https://github.com/MohammedMuostafa)
+- [X](https://x.com/mohmos_base)
+- [Telegram](https://t.me/MOHMOS_base)
+- [YouTube](https://www.youtube.com/@MOH-MOS)
+- [Kick](https://kick.com/moh-mos)
 - Discord: `mohmos`
-- Lit Clinic: [litclinic.xyz](https://litclinic.xyz)
-- Linktree: [moh.mos](https://linktr.ee/moh.mos)
-- GitHub: [MohammedMuostafa](https://github.com/MohammedMuostafa)
-- X: [@mohmos](https://x.com/mohmos)
-- YouTube: [@MOH-MOS](https://www.youtube.com/@MOH-MOS)
-- Kick: [moh-mos](https://kick.com/moh-mos)
-
-## Copyright
-
-Copyright 2026 Mohamed Mostafa (MOHMOS). All rights reserved. The source is publicly visible but is not licensed for reuse.

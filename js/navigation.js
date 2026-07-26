@@ -1,52 +1,53 @@
 export function initNavigation() {
-    const toggleBtn = document.getElementById('mobile-toggle');
+    const controller = new AbortController();
+    const toggleButton = document.getElementById('mobile-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    if (!(toggleBtn instanceof HTMLButtonElement) || !mobileMenu) return;
+    if (!(toggleButton instanceof HTMLButtonElement) || !mobileMenu) return () => {};
 
-    toggleBtn.addEventListener('click', () => {
-        const isOpening = mobileMenu.hasAttribute('hidden');
-        setMenuState(toggleBtn, mobileMenu, isOpening);
-    });
+    const closeMenu = () => setMenuState(toggleButton, mobileMenu, false);
+
+    toggleButton.addEventListener('click', () => {
+        setMenuState(toggleButton, mobileMenu, mobileMenu.hasAttribute('hidden'));
+    }, { signal: controller.signal });
 
     mobileMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeMobileMenu);
+        link.addEventListener('click', closeMenu, { signal: controller.signal });
     });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !mobileMenu.hasAttribute('hidden')) {
-            closeMobileMenu();
-            toggleBtn.focus();
-        }
-    });
+        if (event.key !== 'Escape' || mobileMenu.hasAttribute('hidden')) return;
+        closeMenu();
+        toggleButton.focus();
+    }, { signal: controller.signal });
 
     document.addEventListener('click', (event) => {
         if (!(event.target instanceof Node)) return;
-        if (!mobileMenu.contains(event.target) && !toggleBtn.contains(event.target)) {
-            closeMobileMenu();
-        }
-    });
+        if (!mobileMenu.contains(event.target) && !toggleButton.contains(event.target)) closeMenu();
+    }, { signal: controller.signal });
 
-    const desktopQuery = window.matchMedia('(min-width: 1024px)');
-    desktopQuery.addEventListener('change', ({ matches }) => {
-        if (matches) closeMobileMenu();
-    });
-}
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', ({ matches }) => {
+        if (matches) closeMenu();
+    }, { signal: controller.signal });
 
-export function closeMobileMenu() {
-    const toggleBtn = document.getElementById('mobile-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (!(toggleBtn instanceof HTMLButtonElement) || !mobileMenu) return;
-    setMenuState(toggleBtn, mobileMenu, false);
+    window.addEventListener('portfolio:language-change', () => {
+        setMenuState(toggleButton, mobileMenu, !mobileMenu.hasAttribute('hidden'));
+    }, { signal: controller.signal });
+
+    closeMenu();
+    return () => controller.abort();
 }
 
 /**
- * @param {HTMLButtonElement} toggleBtn
+ * @param {HTMLButtonElement} toggleButton
  * @param {HTMLElement} mobileMenu
  * @param {boolean} isOpen
  */
-function setMenuState(toggleBtn, mobileMenu, isOpen) {
-    toggleBtn.setAttribute('aria-expanded', String(isOpen));
-    toggleBtn.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+function setMenuState(toggleButton, mobileMenu, isOpen) {
+    const isArabic = document.documentElement.lang === 'ar';
+    toggleButton.setAttribute('aria-expanded', String(isOpen));
+    toggleButton.setAttribute('aria-label', isOpen
+        ? (isArabic ? 'إغلاق قائمة التنقل' : 'Close navigation')
+        : (isArabic ? 'فتح قائمة التنقل' : 'Open navigation'));
     mobileMenu.toggleAttribute('hidden', !isOpen);
 }

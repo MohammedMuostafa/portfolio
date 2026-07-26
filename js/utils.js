@@ -1,50 +1,94 @@
-let currentLang = 'en';
+/** @type {'en' | 'ar'} */
+let currentLanguage = document.documentElement.lang === 'ar' ? 'ar' : 'en';
 let toastTimer = 0;
 
 export function initUtilities() {
+    const controller = new AbortController();
     const languageButton = document.getElementById('lang-toggle-btn');
     const copyButton = document.getElementById('copy-discord');
     const year = document.querySelector('[data-current-year]');
 
     if (year) year.textContent = String(new Date().getFullYear());
+    applyLanguage(currentLanguage, false);
 
-    languageButton?.addEventListener('click', toggleLanguage);
-    copyButton?.addEventListener('click', copyDiscordTag);
+    languageButton?.addEventListener('click', () => {
+        applyLanguage(currentLanguage === 'en' ? 'ar' : 'en', true);
+    }, { signal: controller.signal });
+    copyButton?.addEventListener('click', copyDiscordUsername, { signal: controller.signal });
 
-    try {
-        if (localStorage.getItem('portfolio-language') === 'ar') toggleLanguage();
-    } catch {
-        // Storage can be unavailable in privacy-restricted browsing contexts.
-    }
+    return () => {
+        window.clearTimeout(toastTimer);
+        controller.abort();
+    };
 }
 
-function toggleLanguage() {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    const isAr = currentLang === 'ar';
+/**
+ * @param {'en' | 'ar'} language
+ * @param {boolean} persist
+ */
+function applyLanguage(language, persist) {
+    if (persist) window.dispatchEvent(new CustomEvent('portfolio:before-language-change'));
 
-    document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-    document.documentElement.lang = currentLang;
-
-    const langLabel = document.getElementById('lang-label');
-    if (langLabel) {
-        langLabel.textContent = isAr ? 'English' : 'العربية';
-    }
+    currentLanguage = language;
+    const isArabic = language === 'ar';
+    document.documentElement.lang = language;
+    document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
 
     document.querySelectorAll('[data-lang-en]').forEach((element) => {
-        const text = element.getAttribute(isAr ? 'data-lang-ar' : 'data-lang-en');
-        if (text) element.textContent = text;
+        const text = element.getAttribute(isArabic ? 'data-lang-ar' : 'data-lang-en');
+        if (text !== null) element.textContent = text;
+
+        const forcedDirection = element.getAttribute('data-direction');
+        const direction = forcedDirection ?? (isArabic ? 'rtl' : 'ltr');
+        element.setAttribute('dir', direction);
+        element.setAttribute('lang', direction === 'ltr' && isArabic ? 'en' : language);
     });
 
+    updateLocalizedAttribute('[data-aria-en]', 'aria-label', isArabic ? 'data-aria-ar' : 'data-aria-en');
+    updateLocalizedAttribute('[data-alt-en]', 'alt', isArabic ? 'data-alt-ar' : 'data-alt-en');
+
+    const pageTitle = document.querySelector('[data-title-en]');
+    const title = pageTitle?.getAttribute(isArabic ? 'data-title-ar' : 'data-title-en');
+    if (title) document.title = title;
+
+    document.querySelectorAll('[data-meta-en]').forEach((meta) => {
+        const content = meta.getAttribute(isArabic ? 'data-meta-ar' : 'data-meta-en');
+        if (content !== null) meta.setAttribute('content', content);
+    });
+
+    const languageLabel = document.getElementById('lang-label');
+    const languageButton = document.getElementById('lang-toggle-btn');
+    const copyButton = document.getElementById('copy-discord');
+    if (languageLabel) languageLabel.textContent = isArabic ? 'English' : 'العربية';
+    languageButton?.setAttribute('aria-label', isArabic ? 'Switch to English' : 'التبديل إلى العربية');
+    copyButton?.setAttribute('aria-label', isArabic ? 'نسخ اسم Discord: mohmos' : 'Copy Discord username mohmos');
+    document.documentElement.classList.remove('language-pending');
+
+    if (!persist) return;
+
     try {
-        localStorage.setItem('portfolio-language', currentLang);
+        localStorage.setItem('portfolio-language', language);
     } catch {
-        // The selected language still applies for the current page view.
+        // The selected language still applies to the current page.
     }
+
+    window.dispatchEvent(new CustomEvent('portfolio:language-change'));
 }
 
-async function copyDiscordTag() {
-    const didCopy = await writeClipboard('mohmos');
-    showToast(didCopy);
+/**
+ * @param {string} selector
+ * @param {string} targetAttribute
+ * @param {string} sourceAttribute
+ */
+function updateLocalizedAttribute(selector, targetAttribute, sourceAttribute) {
+    document.querySelectorAll(selector).forEach((element) => {
+        const value = element.getAttribute(sourceAttribute);
+        if (value !== null) element.setAttribute(targetAttribute, value);
+    });
+}
+
+async function copyDiscordUsername() {
+    showToast(await writeClipboard('mohmos'));
 }
 
 /** @param {string} value */
@@ -62,33 +106,31 @@ async function writeClipboard(value) {
 
 /** @param {string} value */
 function copyWithFallback(value) {
+    const focusedElement = document.activeElement;
     const textArea = document.createElement('textarea');
     textArea.value = value;
     textArea.setAttribute('readonly', '');
     textArea.className = 'clipboard-fallback';
     document.body.append(textArea);
     textArea.select();
-    const didCopy = document.execCommand('copy');
+    const copied = document.execCommand('copy');
     textArea.remove();
-    return didCopy;
+    if (focusedElement instanceof HTMLElement) focusedElement.focus();
+    return copied;
 }
 
-/** @param {boolean} didCopy */
-function showToast(didCopy) {
+/** @param {boolean} copied */
+function showToast(copied) {
     const toast = document.getElementById('toast');
     const toastText = document.getElementById('toast-text');
     if (!toast || !toastText) return;
 
-    const isAr = currentLang === 'ar';
-    toastText.textContent = didCopy
-        ? (isAr ? 'تم نسخ حساب ديسكورد mohmos.' : 'Discord username mohmos copied.')
-        : (isAr ? 'تعذر النسخ. حساب ديسكورد هو mohmos.' : 'Could not copy. The Discord username is mohmos.');
+    const isArabic = currentLanguage === 'ar';
+    toastText.textContent = copied
+        ? (isArabic ? 'تم نسخ اسم Discord: mohmos.' : 'Discord username mohmos copied.')
+        : (isArabic ? 'تعذر النسخ. اسم Discord هو mohmos.' : 'Could not copy. The Discord username is mohmos.');
 
-    toast.classList.remove('translate-y-20', 'opacity-0');
-    toast.classList.add('translate-y-0', 'opacity-100');
+    toast.classList.add('is-visible');
     window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-20', 'opacity-0');
-    }, 3000);
+    toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 3000);
 }

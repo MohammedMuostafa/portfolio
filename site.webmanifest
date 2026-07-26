@@ -1,11 +1,12 @@
 {
-  "name": "MOHMOS | Mohamed Mostafa",
+  "name": "MOHMOS Portfolio",
   "short_name": "MOHMOS",
-  "description": "Portfolio of Mohamed Mostafa, Web3 builder and full-stack developer.",
+  "description": "Protocol Lead at Lit Clinic (LitVM Ecosystem) and Discord Infrastructure Specialist.",
   "start_url": "/portfolio/",
+  "scope": "/portfolio/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#070709",
+  "theme_color": "#070709",
   "icons": [
     {
       "src": "favicon.svg",

@@ -10,6 +10,6 @@
     "target": "ES2022",
     "types": ["node"]
   },
-  "include": ["js/**/*.js", "scripts/**/*.js", "tests/**/*.js", "eslint.config.js"],
+  "include": ["js/**/*", "scripts/**/*.js", "tests/**/*.js", "eslint.config.js"],
   "exclude": ["node_modules"]
 }
