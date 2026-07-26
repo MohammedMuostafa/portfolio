@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a modular software engineering architecture powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, an unlocked normal scroll architecture, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, enlarged visual focal elements, a generous **1-second section reading pause**, and a satisfying **cascading stack collapse animation** upon experience completion.
 
 ---
 
@@ -24,49 +24,36 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 📂 Modular Software Engineering Architecture
+## 📂 Modular Architecture & Key Polish Features
 
 ```
 portfolio/
 │
-├── index.html              # Clean semantic HTML markup
+├── index.html              # Clean semantic HTML markup & enlarged focal elements
 ├── assets/                 # Profile, guild & organization logos
-│   ├── avatar.png
-│   ├── bag_guild.png
-│   ├── litclinic.png
-│   └── onchain.jpg
-│
 ├── css/                    # Modular Design System Stylesheets
-│   ├── variables.css       # Design tokens, color variables & fonts
-│   ├── layout.css          # Stage layout, unlocked flow & grid constraints
-│   ├── components.css      # AAA game cards, red badges & 360 photo frame
-│   ├── animations.css      # Ambient aurora light & SplitType typewriter styles
+│   ├── variables.css       # Tokens, colors, fonts
+│   ├── layout.css          # Stage layout, enlarged bounds & stack collapse rules
+│   ├── components.css      # Enlarged photo 360 orbit frame & card focus styles
+│   ├── animations.css      # Keyframes, ambient aurora light & SplitType styles
 │   └── main.css            # Main CSS bundle importing all modules
 │
 ├── js/                     # Modular JavaScript ES Subsystems
 │   ├── app.js              # Main ES module orchestrator
 │   ├── background.js       # Multi-layer particle canvas & ambient aurora engine
 │   ├── navigation.js       # Header navbar fade & mobile drawer controls
-│   ├── scroll.js           # Lenis smooth scroll & GSAP timeline engine
-│   ├── typewriter.js       # SplitType character parser & typewriter state
+│   ├── scroll.js           # Lenis smooth scroll, GSAP 1-sec pause & cascading stack engine
+│   ├── typewriter.js       # SplitType character parser & typewriter state manager
 │   └── utils.js            # Language switcher & clipboard toast utilities
 │
 └── README.md               # Technical project documentation
 ```
 
----
+### 🌟 Interaction Refinement Highlights
 
-## 🛠️ Key Architectural Innovations
-
-1. **Unlocked Normal Webpage Scroll Architecture:**
-   - Once the visitor completes the initial cinematic presentation (`totalP >= 0.98`), the pinned stage seamlessly unlocks into a normal vertical HTML page layout (`body.unlocked-normal-flow`).
-   - The user can scroll up and down like a standard website without re-triggering cinematic locks, re-typing text, or hiding completed content!
-2. **Modular CSS & JS Separated Concerns:**
-   - All styling rules, layout grids, components, and keyframe animations are decoupled into `css/`.
-   - All business logic, background particle physics, SplitType character management, scroll engines, and navigation drawers are decoupled into modular ES modules in `js/`.
-3. **Inertial Smooth Scroll & GPU Timeline Scrubbing:**
-   - **Lenis 1.0.42** provides fluid Apple-grade scroll momentum (`lerp: 0.08`).
-   - **GSAP 3.12.5 + ScrollTrigger** scrubs sub-pixel character visibility (`opacity: 0.15` $\rightarrow$ `1.0`).
+1. **Larger Visual Focus Elements:** Profile photos enlarged to `w-64 sm:w-80 h-64 sm:h-80`, section focus cards to `min-h-[280px]`, icons to `text-3xl`, creating immersive visual impact while keeping the layout responsive.
+2. **1-Second Reading Pause Before Transition:** Once the typewriter reveal completes (`localP = 0.55`), the scene stays 100% typed & visible until `localP = 0.88`, giving visitors ample time to comfortably finish reading before smoothly fading out.
+3. **Satisfying Cascading Stack Settlement Animation:** When the cinematic timeline reaches 100% completion (`totalP >= 0.98`), a staggered GSAP cascading collapse animation (`y: 60`, `opacity: 0`, `blur: 10px`, `stagger: 0.12s`) gently settles all completed sections into a standard vertical HTML layout.
 
 ---
 

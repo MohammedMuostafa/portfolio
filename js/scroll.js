@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SCROLL ENGINE MODULE: LENIS SMOOTH SCROLL, GSAP SCRUB & UNLOCKED FLOW
+   SCROLL ENGINE MODULE: LENIS SMOOTH SCROLL, GSAP SCRUB & CASCADING STACK
    ========================================================================== */
 
 import { splitTypeInstances } from './typewriter.js';
@@ -40,12 +40,25 @@ export function initScrollTimeline() {
         let totalP = -trackRect.top / scrollableDistance;
         totalP = Math.max(0, Math.min(1, totalP)); // Master float 0.0 -> 1.0
 
-        // UNLOCKED NORMAL FLOW CHECK (When overall timeline completes)
+        // UNLOCKED NORMAL FLOW & CASCADING STACK SETTLEMENT (Requirement 4)
         if (totalP >= 0.98 && !isUnlockedNormalFlow) {
             isUnlockedNormalFlow = true;
             document.body.classList.add('unlocked-normal-flow');
             for (let i = 0; i < sceneWrappers.length; i++) {
                 completedScenes.add(i);
+            }
+
+            // Trigger satisfying cascading collapse animation
+            if (window.gsap) {
+                window.gsap.from('.scene-stage-wrapper', {
+                    y: 60,
+                    opacity: 0,
+                    filter: 'blur(10px)',
+                    stagger: 0.12,
+                    duration: 0.9,
+                    ease: 'power3.out',
+                    clearProps: 'transform,opacity,filter'
+                });
             }
         }
 
@@ -141,7 +154,7 @@ export function initScrollTimeline() {
         }
 
         // Mark completed scenes
-        if (localP >= 0.85) {
+        if (localP >= 0.80) {
             completedScenes.add(activeIdx);
         }
 
@@ -152,21 +165,22 @@ export function initScrollTimeline() {
             if (idx === activeIdx) {
                 scene.style.pointerEvents = 'auto';
 
+                // Requirement 2 & 3: 1-Second Read Pause & Smooth Fade
                 let stageOpacity = 1;
-                if (localP < 0.10 && !isCompleted) {
-                    stageOpacity = localP / 0.10;
-                } else if (localP > 0.90) {
-                    stageOpacity = (1 - localP) / 0.10;
+                if (localP < 0.12 && !isCompleted) {
+                    stageOpacity = localP / 0.12;
+                } else if (localP > 0.88) {
+                    stageOpacity = (1 - localP) / 0.12;
                 }
                 scene.style.opacity = stageOpacity.toString();
 
                 const visualLeft = scene.querySelector('.scene-visual-left');
                 const contentRight = scene.querySelector('.scene-content-right');
 
-                let entranceP = isCompleted ? 1 : Math.min(1, localP / 0.22);
+                let entranceP = isCompleted ? 1 : Math.min(1, localP / 0.20);
                 let blurVal = (1 - entranceP) * 10;
-                let scaleVal = 0.92 + (entranceP * 0.08);
-                let yOffset = (1 - entranceP) * 30;
+                let scaleVal = 0.94 + (entranceP * 0.06);
+                let yOffset = (1 - entranceP) * 25;
                 let rotateDeg = -180 * (1 - entranceP);
 
                 const isRtl = document.documentElement.dir === 'rtl';
@@ -184,11 +198,12 @@ export function initScrollTimeline() {
                     contentRight.style.opacity = entranceP.toString();
                 }
 
+                // Typewriter finishes early (localP 0.20 -> 0.55), leaving localP 0.55 -> 0.88 for reading pause!
                 let typeP = 0;
                 if (isCompleted) {
                     typeP = 1;
-                } else if (localP >= 0.22) {
-                    typeP = Math.min(1, (localP - 0.22) / 0.65);
+                } else if (localP >= 0.20) {
+                    typeP = Math.min(1, (localP - 0.20) / 0.35);
                 }
 
                 const targets = scene.querySelectorAll('.split-type-target');
