@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHMOS | Protocol Lead & Discord Infrastructure Specialist</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official portfolio of MOHMOS - Protocol Lead at Lit Clinic (LitVM Ecosystem), Discord Infrastructure Specialist, and Computer Science Student focusing on Web3 and Smart Contracts.">
+    <meta name="keywords" content="MOHMOS, Lit Clinic, LitVM, Web3, Discord Infrastructure, Protocol Lead, OnChain Outlaws, Bag Guild, Smart Contracts, Blockchain Developer">
+    <meta name="author" content="MOHMOS">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="MOHMOS | Web3 Protocol Lead & Infrastructure Specialist">
+    <meta property="og:description" content="Protocol Lead at Lit Clinic & Discord Infrastructure Specialist. Building resilient Web3 communities and smart contract solutions.">
+    <meta property="og:image" content="assets/avatar.png">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#05070d',
+                            card: '#0b101d',
+                            border: '#1e293b',
+                            cyan: '#00f0ff',
+                            purple: '#8b5cf6',
+                            emerald: '#10b981',
+                            pink: '#ec4899',
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                        'border-beam': 'borderBeam 4s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', filter: 'blur(20px)' },
+                            '50%': { opacity: '0.8', filter: 'blur(30px)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS for Web3 Glows and Glassmorphism -->
+    <style>
+        body {
+            background-color: #05070d;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(11, 16, 29, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(0, 240, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .glass-nav {
+            background: rgba(5, 7, 13, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Gradient Text Utility */
+        .text-gradient-cyan {
+            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #00f0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05070d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-cyan-500 selection:text-black">
+
+    <!-- Interactive HTML5 Background Canvas -->
+    <canvas id="web3-bg" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Glowing Background Ambient Blobs -->
+    <div class="fixed top-1/4 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+    <div class="fixed bottom-1/3 right-10 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 p-[1px] group-hover:scale-105 transition-transform duration-300">
+                    <div class="w-full h-full bg-cyber-bg rounded-[11px] flex items-center justify-center font-mono font-bold text-cyan-400 text-lg">
+                        M
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-xl tracking-wider text-white group-hover:text-cyan-400 transition-colors">MOHMOS</span>
+                    <span class="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">Protocol Lead</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4 text-cyan-400"></i> About</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-purple-400"></i> Experience</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><i data-lucide="cpu" class="w-4 h-4 text-emerald-400"></i> Skills</a>
+                <a href="#education" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><i data-lucide="graduation-cap" class="w-4 h-4 text-yellow-400"></i> Education</a>
+                <a href="#socials" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><i data-lucide="share-2" class="w-4 h-4 text-pink-400"></i> Connect</a>
+            </nav>
+
+            <!-- Status Pill & Quick Action -->
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-mono text-emerald-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    Available for Web3 Roles
+                </div>
+                <button onclick="copyDiscordTag()" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-medium rounded-lg group bg-gradient-to-br from-cyan-500 to-purple-600 group-hover:from-cyan-500 group-hover:to-purple-600 text-white focus:ring-2 focus:outline-none focus:ring-cyan-800">
+                    <span class="relative px-4 py-2 transition-all ease-in duration-75 bg-slate-950 rounded-md group-hover:bg-opacity-0 font-semibold flex items-center gap-2">
+                        <i data-lucide="disc" class="w-4 h-4 text-cyan-400 group-hover:text-white"></i> Discord: mohmos
+                    </span>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav border-b border-slate-800 px-4 pt-2 pb-6 space-y-4">
+            <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900/50">About Me</a>
+            <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900/50">Experience</a>
+            <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900/50">Skills & Tools</a>
+            <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900/50">Education</a>
+            <a href="#socials" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-900/50">Social Hub</a>
+            <div class="pt-2 flex flex-col gap-3">
+                <div class="flex items-center gap-2 px-3 py-2 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-emerald-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Available for Web3 Projects
+                </div>
+                <button onclick="copyDiscordTag()" class="w-full py-2.5 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 text-sm">
+                    <i data-lucide="copy" class="w-4 h-4"></i> Copy Discord (mohmos)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-12">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="pt-8 md:pt-16 pb-12 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <!-- Hero Left Text Content -->
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                
+                <!-- Badge Pill -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs sm:text-sm font-mono tracking-wide">
+                    <i data-lucide="zap" class="w-4 h-4 text-cyan-400 animate-pulse"></i>
+                    <span>LitVM Ecosystem Protocol Lead</span>
+                </div>
+
+                <!-- Main Name & Title -->
+                <div class="space-y-3">
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">
+                        Hi, I'm <span class="text-gradient-cyan">MOHMOS</span>
+                    </h1>
+                    <h2 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-slate-300">
+                        Protocol Lead <span class="text-cyan-400">@ Lit Clinic</span> & Discord Infrastructure Specialist
+                    </h2>
+                </div>
+
+                <!-- Short Bio -->
+                <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Passionate about building resilient Discord communities, optimizing protocol communications, and engineering Web3 infrastructure. Computer Science undergrad actively mastering <span class="text-cyan-300 font-mono">Smart Contracts</span> to become a Web3 Blockchain Developer.
+                </p>
+
+                <!-- Call to Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#experience" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white font-semibold text-sm hover:shadow-[0_0_25px_rgba(0,240,255,0.4)] transition-all duration-300 flex items-center gap-2 group">
+                        View Projects & Experience 
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#socials" class="px-7 py-3.5 rounded-xl glass-card text-slate-200 font-semibold text-sm hover:border-cyan-500/50 hover:text-cyan-400 transition-all duration-300 flex items-center gap-2">
+                        <i data-lucide="message-square" class="w-4 h-4 text-purple-400"></i> Contact & Socials
+                    </a>
+                </div>
+
+                <!-- Quick Info Highlights -->
+                <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800/80">
+                    <div class="space-y-1">
+                        <div class="text-2xl font-extrabold text-white font-mono">2022+</div>
+                        <div class="text-xs text-slate-400">Web3 & Guild Exp</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-2xl font-extrabold text-cyan-400 font-mono">LitVM</div>
+                        <div class="text-xs text-slate-400">Protocol Ecosystem</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-2xl font-extrabold text-purple-400 font-mono">100%</div>
+                        <div class="text-xs text-slate-400">Security Record</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-2xl font-extrabold text-emerald-400 font-mono">B.Sc. CS</div>
+                        <div class="text-xs text-slate-400">Smart Contracts Focus</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Hero Right Card & Avatar Showcase -->
+            <div class="flex-1 w-full max-w-md lg:max-w-none flex flex-col items-center justify-center">
+                <div class="relative w-full max-w-sm sm:max-w-md">
+                    
+                    <!-- Glowing Backing Aura -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl blur-xl opacity-40 group-hover:opacity-100 transition duration-1000 animate-pulse-glow"></div>
+
+                    <!-- Main Avatar Card Frame -->
+                    <div class="relative glass-card rounded-3xl p-6 border border-slate-800 space-y-6">
+                        
+                        <!-- Header with Status -->
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            </div>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2.5 py-1 rounded-full border border-cyan-800/50">mohmos.eth // verified</span>
+                        </div>
+
+                        <!-- Real Avatar Image Container -->
+                        <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto rounded-2xl overflow-hidden border-2 border-cyan-500/40 shadow-2xl group">
+                            <img src="assets/avatar.png" alt="MOHMOS Profile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-slate-800">
+                                <span class="text-xs font-semibold text-white">MOHMOS</span>
+                                <span class="text-[10px] font-mono text-emerald-400">🟢 Online</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini Code Terminal Widget -->
+                        <div class="bg-slate-950/90 rounded-xl p-3.5 border border-slate-800 font-mono text-xs text-slate-300 space-y-2">
+                            <div class="flex items-center justify-between text-slate-500 text-[11px] pb-1 border-b border-slate-900">
+                                <span>terminal - mohmos@web3</span>
+                                <span>bash</span>
+                            </div>
+                            <div class="text-emerald-400">$ mohmos --status</div>
+                            <div class="text-slate-400 pl-2">&gt; Current Role: <span class="text-cyan-300">Lit Clinic Protocol Lead</span></div>
+                            <div class="text-slate-400 pl-2">&gt; Core Focus: <span class="text-purple-300">Discord Infra & Web3 Dev</span></div>
+                            <div class="text-slate-400 pl-2">&gt; Values: <span class="text-yellow-300 font-sans">Honesty • Responsibility</span></div>
+                            <div class="text-emerald-400 flex items-center gap-1">
+                                $ <span class="animate-pulse">_</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT ME SECTION -->
+        <section id="about" class="space-y-12">
+            
+            <!-- Section Header -->
+            <div class="text-center space-y-3 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-cyan-400 text-xs font-mono">
+                    <i data-lucide="user-check" class="w-3.5 h-3.5"></i> PROFILE & CORE ETHOS
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">About Me</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Bridging Web3 communities, infrastructure engineering, and future blockchain technology.</p>
+            </div>
+
+            <!-- About Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Left Main Bio Card -->
+                <div class="lg:col-span-7 glass-card glass-card-hover rounded-3xl p-8 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-800/50 text-cyan-400">
+                                <i data-lucide="compass" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">My Mission & Background</h3>
+                                <p class="text-xs text-cyan-400 font-mono">Web3 Infrastructure Pioneer Since 2022</p>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                            I am deeply passionate about Web3 communities and decentralized ecosystem governance. Since 2022, I have specialized in building and scaling professional Discord servers, organizing operational workflows, and protecting Web3 communities with robust security architectures.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                            Currently serving as the <strong class="text-cyan-400 font-semibold">Protocol Lead at Lit Clinic (LitVM Ecosystem)</strong>, I drive communication, support community growth, and manage infrastructure operations. In parallel, I am pursuing my Bachelor's degree in Computer Science with a strong focus on smart contract development and blockchain engineering.
+                        </p>
+                    </div>
+
+                    <!-- Languages Card Sub-Block -->
+                    <div class="pt-6 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🇸🇦</span>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Arabic</div>
+                                    <div class="text-xs text-slate-400">Native Speaker</div>
+                                </div>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-950/80 border border-emerald-800/50 text-[11px] font-mono text-emerald-400">Native</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🇬🇧</span>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">English</div>
+                                    <div class="text-xs text-slate-400">Working Proficiency</div>
+                                </div>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-cyan-950/80 border border-cyan-800/50 text-[11px] font-mono text-cyan-400">A2 - B1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Values & Goals Stack -->
+                <div class="lg:col-span-5 space-y-6">
+                    
+                    <!-- Values Card -->
+                    <div class="glass-card rounded-3xl p-6 space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i data-lucide="shield" class="w-5 h-5 text-purple-400"></i> Core Operating Values
+                        </h3>
+                        
+                        <div class="space-y-3">
+                            <div class="p-3.5 rounded-xl bg-slate-950/50 border border-slate-800/80 flex items-start gap-3">
+                                <div class="p-2 rounded-lg bg-cyan-950 text-cyan-400 mt-0.5">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Honesty & Transparency</h4>
+                                    <p class="text-xs text-slate-400">Building genuine trust with protocols, contributors, and community members.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-slate-950/50 border border-slate-800/80 flex items-start gap-3">
+                                <div class="p-2 rounded-lg bg-purple-950 text-purple-400 mt-0.5">
+                                    <i data-lucide="award" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Uncompromising Responsibility</h4>
+                                    <p class="text-xs text-slate-400">Managing server security, permissions, and protocol channels with extreme care.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-slate-950/50 border border-slate-800/80 flex items-start gap-3">
+                                <div class="p-2 rounded-lg bg-emerald-950 text-emerald-400 mt-0.5">
+                                    <i data-lucide="wrench" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Proactive Problem-Solving</h4>
+                                    <p class="text-xs text-slate-400">Designing automated bot workflows and ticket systems to resolve operational bottlenecks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Goal Banner -->
+                    <div class="p-6 rounded-3xl bg-gradient-to-br from-cyan-950/60 via-slate-900 to-purple-950/60 border border-cyan-500/30 space-y-3">
+                        <div class="flex items-center gap-2 text-xs font-mono text-cyan-400">
+                            <i data-lucide="target" class="w-4 h-4 text-cyan-400"></i> NEXT-GEN GOAL
+                        </div>
+                        <h4 class="text-base font-bold text-white">Becoming a Full-Fledged Blockchain Developer</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Combining computer science fundamentals with hands-on smart contract engineering to build decentralized applications (dApps) on EVM & LitVM ecosystems.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. CURRENT ROLE & EXPERIENCE SECTION -->
+        <section id="experience" class="space-y-12">
+            
+            <!-- Section Title -->
+            <div class="text-center space-y-3 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-purple-400 text-xs font-mono">
+                    <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> TRACK RECORD
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Roles & Web3 Experience</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Protocol leadership, community engineering, and infrastructure scaling across key projects.</p>
+            </div>
+
+            <!-- Experience Cards Stack -->
+            <div class="space-y-8">
+
+                <!-- 1. Lit Clinic / LitVM Card -->
+                <div class="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                        
+                        <!-- Role Details & Logo -->
+                        <div class="flex items-start sm:items-center gap-5">
+                            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-950 border border-cyan-500/40 p-2 flex-shrink-0">
+                                <img src="assets/litclinic.png" alt="Lit Clinic Logo" class="w-full h-full object-contain">
+                            </div>
+                            <div class="space-y-1">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/60 text-xs font-mono font-semibold">PRESENT ROLE</span>
+                                    <span class="text-xs text-slate-400 font-mono">2026 - Present</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">Protocol Lead</h3>
+                                <p class="text-sm font-semibold text-cyan-300">Lit Clinic (LitVM Ecosystem)</p>
+                            </div>
+                        </div>
+
+                        <!-- Role Highlights -->
+                        <div class="flex-1 lg:max-w-xl space-y-2 text-sm text-slate-300">
+                            <ul class="space-y-2 list-disc list-inside text-slate-300 text-sm leading-relaxed">
+                                <li>Directing protocol communications and official announcements across the LitVM ecosystem.</li>
+                                <li>Managing total Discord server infrastructure, role hierarchies, and automated member security.</li>
+                                <li>Coordinating community initiatives, technical support pipelines, and developer support channels.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Tech Tags -->
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+                        <span class="text-xs text-slate-500 font-mono mr-2">Ecosystem Tags:</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-400">LitVM</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-purple-400">Protocol Comm</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-400">Discord Security</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-slate-300">Community Ops</span>
+                    </div>
+                </div>
+
+                <!-- 2. OnChain Outlaws Card -->
+                <div class="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                        
+                        <!-- Role Details & Logo -->
+                        <div class="flex items-start sm:items-center gap-5">
+                            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-950 border border-purple-500/40 p-2 flex-shrink-0">
+                                <img src="assets/onchain.jpg" alt="OnChain Outlaws Logo" class="w-full h-full object-cover rounded-xl">
+                            </div>
+                            <div class="space-y-1">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-full bg-purple-950 text-purple-400 border border-purple-800/60 text-xs font-mono font-semibold">CORE CONTRIBUTOR</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Core Contributor</h3>
+                                <p class="text-sm font-semibold text-purple-300">OnChain Outlaws</p>
+                            </div>
+                        </div>
+
+                        <!-- Role Highlights -->
+                        <div class="flex-1 lg:max-w-xl space-y-2 text-sm text-slate-300">
+                            <ul class="space-y-2 list-disc list-inside text-slate-300 text-sm leading-relaxed">
+                                <li>Spearheading community organization, user onboarding, and member support workflows.</li>
+                                <li>Coordinating cross-functional project initiatives and interactive Web3 events.</li>
+                                <li>Maintaining server health, moderation integrity, and community engagement.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Tech Tags -->
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+                        <span class="text-xs text-slate-500 font-mono mr-2">Ecosystem Tags:</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-purple-400">OnChain</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-400">User Support</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-400">Project Coordination</span>
+                    </div>
+                </div>
+
+                <!-- 3. Bag Guild Card -->
+                <div class="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                        
+                        <!-- Role Details & Logo -->
+                        <div class="flex items-start sm:items-center gap-5">
+                            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-950 border border-amber-500/40 p-2 flex-shrink-0">
+                                <img src="assets/bag_guild.png" alt="Bag Guild Logo" class="w-full h-full object-contain">
+                            </div>
+                            <div class="space-y-1">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="px-2.5 py-0.5 rounded-full bg-amber-950 text-amber-400 border border-amber-800/60 text-xs font-mono font-semibold">2022 - 2025</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">Contributor & Community Leader</h3>
+                                <p class="text-sm font-semibold text-amber-300">Bag Guild</p>
+                            </div>
+                        </div>
+
+                        <!-- Role Highlights -->
+                        <div class="flex-1 lg:max-w-xl space-y-2 text-sm text-slate-300">
+                            <ul class="space-y-2 list-disc list-inside text-slate-300 text-sm leading-relaxed">
+                                <li>Built the entire Discord infrastructure from scratch for Bag Guild starting in 2022.</li>
+                                <li>Configured automated moderation, verification systems, ticket logging, and bot permissions.</li>
+                                <li>Led community growth activities and operational team management over 3+ years.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Tech Tags -->
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+                        <span class="text-xs text-slate-500 font-mono mr-2">Ecosystem Tags:</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-amber-400">Bag Guild</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-400">Discord Setup</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs font-mono text-purple-400">Guild Leadership</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. SKILLS & EXPERTISE MATRIX -->
+        <section id="skills" class="space-y-12">
+            
+            <!-- Section Title -->
+            <div class="text-center space-y-3 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-mono">
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i> CAPABILITIES
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Skills & Toolkit</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Comprehensive specialization across infrastructure, operations, and development tools.</p>
+            </div>
+
+            <!-- 3 Category Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Category 1: Discord Infrastructure -->
+                <div class="glass-card glass-card-hover rounded-3xl p-6 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-800/50 text-cyan-400">
+                                <i data-lucide="server" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Discord Infrastructure</h3>
+                                <p class="text-xs text-cyan-400 font-mono">Core Specialization</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400 flex-shrink-0"></i>
+                                <span>Advanced Server Setup & Layout</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="lock" class="w-4 h-4 text-cyan-400 flex-shrink-0"></i>
+                                <span>Anti-Raid Security & Auto-Mod</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="bot" class="w-4 h-4 text-cyan-400 flex-shrink-0"></i>
+                                <span>Bot Configuration & Webhooks</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="git-fork" class="w-4 h-4 text-cyan-400 flex-shrink-0"></i>
+                                <span>Role Hierarchy & Permission Trees</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="ticket" class="w-4 h-4 text-cyan-400 flex-shrink-0"></i>
+                                <span>Ticket Systems & Support Pipelines</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800/80 text-xs font-mono text-cyan-400 flex items-center justify-between">
+                        <span>Status: Battle-Tested</span>
+                        <span>100% Security</span>
+                    </div>
+                </div>
+
+                <!-- Category 2: Community & Operations -->
+                <div class="glass-card glass-card-hover rounded-3xl p-6 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-2xl bg-purple-950/80 border border-purple-800/50 text-purple-400">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Community & Operations</h3>
+                                <p class="text-xs text-purple-400 font-mono">Growth & Management</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="radio" class="w-4 h-4 text-purple-400 flex-shrink-0"></i>
+                                <span>Protocol Communication Strategy</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="user-plus" class="w-4 h-4 text-purple-400 flex-shrink-0"></i>
+                                <span>Web3 User Onboarding & Support</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="mic" class="w-4 h-4 text-purple-400 flex-shrink-0"></i>
+                                <span>Event & Voice AMA Hosting</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="siren" class="w-4 h-4 text-purple-400 flex-shrink-0"></i>
+                                <span>Crisis Management & Raid Response</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="workflow" class="w-4 h-4 text-purple-400 flex-shrink-0"></i>
+                                <span>Contributor Team Workflows</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800/80 text-xs font-mono text-purple-400 flex items-center justify-between">
+                        <span>Scope: Ecosystem-Wide</span>
+                        <span>High Engagement</span>
+                    </div>
+                </div>
+
+                <!-- Category 3: Tools & Developer Stack -->
+                <div class="glass-card glass-card-hover rounded-3xl p-6 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-2xl bg-emerald-950/80 border border-emerald-800/50 text-emerald-400">
+                                <i data-lucide="code-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Tools & Developer Stack</h3>
+                                <p class="text-xs text-emerald-400 font-mono">Software & AI Tech</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="terminal" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                                <span>VS Code & Command Line Interface</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="github" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                                <span>GitHub & Version Control</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                                <span>AI Workflows (ChatGPT, Gemini, Claude)</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="file-code-2" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                                <span>Smart Contracts & Web3 Basics</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="video" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                                <span>Video Production (CapCut & Premiere)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800/80 text-xs font-mono text-emerald-400 flex items-center justify-between">
+                        <span>CS Undergrad</span>
+                        <span>Active Builder</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. EDUCATION SECTION -->
+        <section id="education" class="space-y-12">
+            
+            <!-- Section Header -->
+            <div class="text-center space-y-3 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-yellow-400 text-xs font-mono">
+                    <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> ACADEMIC FOUNDATION
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Education & Studies</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Combining Computer Science rigor with Web3 & Smart Contract development.</p>
+            </div>
+
+            <!-- Degree Showcase Card -->
+            <div class="glass-card glass-card-hover rounded-3xl p-8 max-w-4xl mx-auto relative overflow-hidden">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    
+                    <div class="flex items-start gap-5">
+                        <div class="p-4 rounded-2xl bg-yellow-950/80 border border-yellow-800/50 text-yellow-400 flex-shrink-0">
+                            <i data-lucide="book-open" class="w-8 h-8"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="px-2.5 py-0.5 rounded-full bg-yellow-950 text-yellow-400 border border-yellow-800/60 text-xs font-mono">UNDERGRADUATE DEGREE</span>
+                            <h3 class="text-2xl font-bold text-white">Bachelor's Degree in Computer Science</h3>
+                            <p class="text-sm font-semibold text-slate-300">Focus: Software Engineering, Smart Contracts & Web3</p>
+                        </div>
+                    </div>
+
+                    <div class="px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-yellow-400">
+                        In Progress
+                    </div>
+                </div>
+
+                <!-- Academic Focus Chips -->
+                <div class="mt-8 pt-6 border-t border-slate-800/80 space-y-3">
+                    <div class="text-xs text-slate-400 font-mono uppercase tracking-wider">Key Specialization Modules:</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 font-mono flex items-center gap-2">
+                            <i data-lucide="code" class="w-4 h-4 text-cyan-400"></i> Software Eng.
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 font-mono flex items-center gap-2">
+                            <i data-lucide="cpu" class="w-4 h-4 text-purple-400"></i> Smart Contracts
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 font-mono flex items-center gap-2">
+                            <i data-lucide="network" class="w-4 h-4 text-emerald-400"></i> Web3 Protocols
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 font-mono flex items-center gap-2">
+                            <i data-lucide="database" class="w-4 h-4 text-yellow-400"></i> Algorithms & Data
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SOCIALS & CONTACT LINK HUB -->
+        <section id="socials" class="space-y-12">
+            
+            <!-- Section Header -->
+            <div class="text-center space-y-3 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-pink-400 text-xs font-mono">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5"></i> CONNECT & FOLLOW
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Social & Contact Links</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Reach out directly or explore my Web3 ecosystem presence.</p>
+            </div>
+
+            <!-- Social Cards Grid (8 Platforms) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- 1. Discord Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between border border-cyan-500/30 group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-indigo-950/80 border border-indigo-800/50 text-indigo-400">
+                                <i data-lucide="disc" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-indigo-950 text-[10px] font-mono text-indigo-300">PREFERRED</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Discord</h3>
+                            <p class="text-xs text-slate-400 font-mono">Tag: <span class="text-cyan-400">mohmos</span></p>
+                        </div>
+                    </div>
+                    <button onclick="copyDiscordTag()" class="w-full py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/40 text-indigo-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Tag (mohmos)
+                    </button>
+                </div>
+
+                <!-- 2. Lit Clinic Website Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-cyan-950/80 border border-cyan-800/50 text-cyan-400">
+                                <i data-lucide="globe" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-cyan-950 text-[10px] font-mono text-cyan-300">WEBSITE</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Lit Clinic</h3>
+                            <p class="text-xs text-slate-400 font-mono">litclinic.xyz</p>
+                        </div>
+                    </div>
+                    <a href="https://litclinic.xyz" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-xl bg-cyan-950/50 hover:bg-cyan-900/60 border border-cyan-800/50 text-cyan-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        Visit Site <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- 3. Linktree Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-800/50 text-emerald-400">
+                                <i data-lucide="tree-pine" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-emerald-950 text-[10px] font-mono text-emerald-300">HUB</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Linktree</h3>
+                            <p class="text-xs text-slate-400 font-mono">linktr.ee/moh.mos</p>
+                        </div>
+                    </div>
+                    <a href="https://linktr.ee/moh.mos" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-xl bg-emerald-950/50 hover:bg-emerald-900/60 border border-emerald-800/50 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        Open Linktree <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- 4. GitHub Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200">
+                                <i data-lucide="github" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-slate-900 text-[10px] font-mono text-slate-400">CODE</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">GitHub</h3>
+                            <p class="text-xs text-slate-400 font-mono">Mohammed Muostafa</p>
+                        </div>
+                    </div>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        View Repos <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- 5. X / Twitter Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-sky-950/80 border border-sky-800/50 text-sky-400">
+                                <i data-lucide="twitter" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-sky-950 text-[10px] font-mono text-sky-300">SOCIAL</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">X (Twitter)</h3>
+                            <p class="text-xs text-slate-400 font-mono">@mohmos base</p>
+                        </div>
+                    </div>
+                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-xl bg-sky-950/50 hover:bg-sky-900/60 border border-sky-800/50 text-sky-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        Follow @mohmos <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- 6. Telegram Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-blue-950/80 border border-blue-800/50 text-blue-400">
+                                <i data-lucide="send" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-blue-950 text-[10px] font-mono text-blue-300">CHAT</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Telegram</h3>
+                            <p class="text-xs text-slate-400 font-mono">@MOH-MOS</p>
+                        </div>
+                    </div>
+                    <a href="https://t.me/MOH-MOS" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-xl bg-blue-950/50 hover:bg-blue-900/60 border border-blue-800/50 text-blue-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        Message Telegram <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- 7. YouTube Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-red-950/80 border border-red-800/50 text-red-400">
+                                <i data-lucide="youtube" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-red-950 text-[10px] font-mono text-red-300">MEDIA</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">YouTube</h3>
+                            <p class="text-xs text-slate-400 font-mono">MOHMOS base</p>
+                        </div>
+                    </div>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-xl bg-red-950/50 hover:bg-red-900/60 border border-red-800/50 text-red-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        Watch Channel <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- 8. Kick Card -->
+                <div class="glass-card glass-card-hover rounded-2xl p-5 space-y-4 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-800/50 text-emerald-400">
+                                <i data-lucide="tv" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-emerald-950 text-[10px] font-mono text-emerald-300">STREAM</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Kick</h3>
+                            <p class="text-xs text-slate-400 font-mono">moh-mos</p>
+                        </div>
+                    </div>
+                    <a href="https://kick.com" target="_blank" rel="noopener noreferrer" class="w-full py-2 rounded-xl bg-emerald-950/50 hover:bg-emerald-900/60 border border-emerald-800/50 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                        Check Stream <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/90 relative z-10 mt-20 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white tracking-wide">MOHMOS</span>
+                <span class="text-slate-600">|</span>
+                <span class="text-xs text-slate-400 font-mono">Lit Clinic Protocol Lead</span>
+            </div>
+            <div class="text-xs text-slate-500 font-mono">
+                © 2026 MOHMOS. All rights reserved. Web3 Architecture.
+            </div>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 transition-colors" title="Back to Top">
+                <i data-lucide="arrow-up" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Glowing Toast Notification for Copy Tag -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card px-5 py-3 rounded-2xl border border-cyan-500/50 shadow-2xl flex items-center gap-3 text-white text-sm font-medium">
+            <div class="p-1.5 rounded-lg bg-cyan-500 text-slate-950">
+                <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span>Discord tag <strong class="text-cyan-400 font-mono">mohmos</strong> copied to clipboard!</span>
+        </div>
+    </div>
+
+    <!-- Interactive Canvas & UI Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Copy Discord Tag Function
+        function copyDiscordTag() {
+            navigator.clipboard.writeText('mohmos');
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Web3 Background Particle Canvas Animation
+        const canvas = document.getElementById('web3-bg');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        const particleCount = Math.min(Math.floor(width / 20), 65);
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 2 + 1,
+                color: Math.random() > 0.5 ? '#00f0ff' : '#8b5cf6'
+            });
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+
+                // Draw connecting lines between nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 130) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 * (1 - dist / 130)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        animateCanvas();
+    </script>
+</body>
+</html>

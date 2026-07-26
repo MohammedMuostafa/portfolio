@@ -1,0 +1,20 @@
+{
+  "name": "mohmos-web3-portfolio",
+  "version": "1.0.0",
+  "description": "Modern Web3 & Discord Infrastructure Specialist Portfolio for MOHMOS",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "web3",
+    "portfolio",
+    "lit-clinic",
+    "litvm",
+    "discord-infrastructure",
+    "blockchain-developer"
+  ],
+  "author": "MOHMOS",
+  "license": "MIT"
+}
