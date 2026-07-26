@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a 100% **master scroll-driven interactive timeline engine** across all 6 sections. Incorporating lightweight **GSAP (GreenSock Animation Platform)** CDNs for GPU-accelerated motion, it delivers elegant depth-and-blur entrance reveals, true character-by-character typewriter scrolling, scene completion state memory, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a rebuilt cinematic intro sequence, subtle blur-and-fade section reveals via IntersectionObserver, a reliable typewriter text engine, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
 
 ---
 
@@ -24,18 +24,18 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Refined Cinematic Architecture & Technology Stack
+## 🛠️ Rebuilt Clean Cinematic Architecture
 
 * **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
-* **Animation Engines:** Lightweight **GSAP 3.12.5** and **ScrollTrigger** CDNs (~30KB) for 60fps sub-pixel motion, smooth easing (`power3.out`), and zero layout reflows.
 * **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
 * **Icons:** Font Awesome 6.5.1 CDN.
-* **Refined Cinematic Features:**
-  * **Elegant Content Entrance:** Replaced mechanical side sliding with subtle depth, opacity, scale (`0.92` $\rightarrow$ `1.0`), and Gaussian blur (`10px` $\rightarrow$ `0px`) entrance reveals.
-  * **True Character-by-Character Typewriter:** Text elements (`.gsap-char-target`) are split into individual character `<span>` tags. Scrolling reveals characters one by one with a blinking crimson cursor (`|`). Paragraphs never dump all at once.
-  * **Scene Completion State Memory:** Once a scene is revealed, it is tracked in `completedScenes`. Scrolling back upward later maintains 100% visible text without re-triggering typing or hiding content.
-  * **Balanced Section Spacing:** Reduced excessive vertical padding (`max-w-58rem`, `py-8`, `gap-6`) so sections fill the screen naturally without empty gaps.
-  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero entrance completes (`totalP > 0.09`).
+* **Rebuilt Animation System:**
+  * **Pure Black Intro Start:** Page starts on a 100% black screen (`#cinematic-intro`) displaying only a subtle "Scroll Down to Begin Experience" prompt.
+  * **Scroll-Triggered 3D Zoom:** User scroll initiates the 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.25)`).
+  * **Seamless Hero Reveal:** Overlay fades into the Hero section seamlessly. The 360-degree profile image orbit and right bio panel enter together.
+  * **Subtle Section Reveals:** Remaining sections use elegant, non-exaggerated transitions (`opacity: 0`, `translateY(35px)`, `filter: blur(6px)` $\rightarrow$ `opacity: 1`, `translateY(0)`, `filter: blur(0px)`) via native IntersectionObserver.
+  * **Clean Typewriter Engine:** Text targets (`.typewriter-target`) start 100% hidden and type character-by-character smoothly. Once revealed, content stays displayed.
+  * **Delayed Navbar:** `#main-navbar` smoothly fades in *only* after Hero typewriter finishes.
 * **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
 * **Hosting:** Deployed via **GitHub Pages**.
 
