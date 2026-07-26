@@ -12,14 +12,14 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="MOHMOS | Protocol Lead & Discord Infrastructure Specialist">
-    <meta property="og:description" content="Web3 community architecture, Discord infrastructure, and smart contract development.">
+    <meta property="og:description" content="Web3 community architecture, Discord infrastructure, and computer science student.">
     <meta property="og:image" content="assets/avatar.png">
     <meta property="og:type" content="website">
 
-    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <!-- Google Fonts: Plus Jakarta Sans, Cairo (for Arabic), & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -31,7 +31,8 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
+                        arabic: ['Cairo', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
@@ -53,8 +54,12 @@
         body {
             background-color: #0b0f19;
             color: #f8fafc;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
             -webkit-font-smoothing: antialiased;
+        }
+
+        html[dir="rtl"] body {
+            font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
         }
 
         .minimal-card {
@@ -92,59 +97,65 @@
 </head>
 <body class="min-h-screen selection:bg-indigo-500 selection:text-white flex flex-col">
 
-    <!-- Header Navigation (Clean, Minimal, No Logo Box, No Discord in Header) -->
+    <!-- Header Navigation (Minimal, No Logo Box, Language Switcher included) -->
     <header class="sticky top-0 z-50 bg-[#0b0f19]/90 backdrop-blur-md border-b border-slate-800/60">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <!-- Brand Text Only (No Icon / No Box) -->
+            <!-- Brand Text Only -->
             <a href="#" class="font-extrabold text-xl tracking-tight text-white hover:text-indigo-400 transition-colors">
                 MOHMOS
             </a>
 
             <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-400">
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#experience" class="hover:text-white transition-colors">Experience</a>
-                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
-                <a href="#education" class="hover:text-white transition-colors">Education</a>
-                <a href="#connect" class="hover:text-white transition-colors">Connect</a>
+                <a href="#about" class="hover:text-white transition-colors" data-lang-en="About" data-lang-ar="عني">About</a>
+                <a href="#experience" class="hover:text-white transition-colors" data-lang-en="Experience" data-lang-ar="الخبرات">Experience</a>
+                <a href="#skills" class="hover:text-white transition-colors" data-lang-en="Skills" data-lang-ar="المهارات">Skills</a>
+                <a href="#education" class="hover:text-white transition-colors" data-lang-en="Education" data-lang-ar="التعليم">Education</a>
+                <a href="#connect" class="hover:text-white transition-colors" data-lang-en="Connect" data-lang-ar="التواصل">Connect</a>
             </nav>
 
-            <!-- Header Action Button (Clean Get in Touch link, NO Discord icon) -->
-            <div class="hidden sm:flex items-center">
-                <a href="#connect" class="px-4 py-1.5 rounded-lg bg-indigo-600/10 hover:bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold transition-all">
+            <!-- Language Switcher & Action Button -->
+            <div class="flex items-center gap-3">
+                <!-- Sleek Language Toggle Button -->
+                <button id="lang-toggle-btn" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-indigo-400 flex items-center gap-1.5 transition-all">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="lang-label">العربية</span>
+                </button>
+
+                <a href="#connect" class="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-indigo-600/10 hover:bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold transition-all" data-lang-en="Get in Touch" data-lang-ar="تواصل معي">
                     Get in Touch
                 </a>
-            </div>
 
-            <!-- Mobile Menu Toggle -->
-            <button id="mobile-toggle" class="md:hidden text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle navigation">
-                <i class="fa-solid fa-bars text-lg"></i>
-            </button>
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-toggle" class="md:hidden text-slate-400 hover:text-white focus:outline-none ml-1" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-[#0b0f19] px-6 py-4 space-y-3">
-            <a href="#about" class="block text-slate-300 hover:text-white text-sm font-medium py-1">About</a>
-            <a href="#experience" class="block text-slate-300 hover:text-white text-sm font-medium py-1">Experience</a>
-            <a href="#skills" class="block text-slate-300 hover:text-white text-sm font-medium py-1">Skills</a>
-            <a href="#education" class="block text-slate-300 hover:text-white text-sm font-medium py-1">Education</a>
-            <a href="#connect" class="block text-slate-300 hover:text-white text-sm font-medium py-1">Connect</a>
+            <a href="#about" class="block text-slate-300 hover:text-white text-sm font-medium py-1" data-lang-en="About" data-lang-ar="عني">About</a>
+            <a href="#experience" class="block text-slate-300 hover:text-white text-sm font-medium py-1" data-lang-en="Experience" data-lang-ar="الخبرات">Experience</a>
+            <a href="#skills" class="block text-slate-300 hover:text-white text-sm font-medium py-1" data-lang-en="Skills" data-lang-ar="المهارات">Skills</a>
+            <a href="#education" class="block text-slate-300 hover:text-white text-sm font-medium py-1" data-lang-en="Education" data-lang-ar="التعليم">Education</a>
+            <a href="#connect" class="block text-slate-300 hover:text-white text-sm font-medium py-1" data-lang-en="Connect" data-lang-ar="التواصل">Connect</a>
         </div>
     </header>
 
-    <!-- Main Container with Compact Spacing -->
+    <!-- Main Container -->
     <main class="flex-grow max-w-5xl mx-auto px-6 py-10 space-y-14">
 
         <!-- HERO SECTION -->
         <section id="hero" class="pt-2 pb-4 flex flex-col md:flex-row items-center justify-between gap-10">
             
             <!-- Left Info Stack -->
-            <div class="flex-1 space-y-5 text-left">
+            <div class="flex-1 space-y-5 text-left rtl:text-right">
                 
                 <!-- Status Badge -->
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md subtle-badge text-xs font-mono">
                     <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-                    <span>LitVM Ecosystem Protocol Lead</span>
+                    <span data-lang-en="LitVM Ecosystem Protocol Lead" data-lang-ar="قائد البروتوكول في منظومة LitVM">LitVM Ecosystem Protocol Lead</span>
                 </div>
 
                 <!-- Main Name & Title -->
@@ -153,24 +164,24 @@
                         MOHMOS
                     </h1>
                     <h2 class="text-base sm:text-lg font-medium text-slate-400 leading-snug">
-                        Protocol Lead <span class="text-indigo-400 font-semibold">@ Lit Clinic</span> & Discord Infrastructure Specialist
+                        <span data-lang-en="Protocol Lead" data-lang-ar="قائد البروتوكول">Protocol Lead</span> <span class="text-indigo-400 font-semibold">@ Lit Clinic</span> & <span data-lang-en="Discord Infrastructure Specialist" data-lang-ar="مختص بنية ديسكورد التحتية">Discord Infrastructure Specialist</span>
                     </h2>
                 </div>
 
-                <!-- Bio Copywriting -->
-                <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl">
-                    Architecting high-availability Discord server ecosystems, optimizing protocol operations, and leading Web3 community infrastructure. Pursuing a Computer Science degree to bridge system leadership with smart contract engineering.
+                <!-- Bio Copywriting (Accurate: No smart contract claims, no English voice AMA claims) -->
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl" data-lang-en="Specialized in building and optimizing Discord server infrastructure, managing community operations, and leading written protocol communications. Currently studying Computer Science to expand into blockchain architecture and smart contract engineering." data-lang-ar="مختص في بناء وتحسين البنية التحتية لسيرفرات ديسكورد، إدارة العمليات المجتمعية، وقيادة اتصالات البروتوكول الكتابية. أدرس حالياً علوم الحاسوب لتوسيع معرفتي في هندسة البلوكشين والعقود الذكية.">
+                    Specialized in building and optimizing Discord server infrastructure, managing community operations, and leading written protocol communications. Currently studying Computer Science to expand into blockchain architecture and smart contract engineering.
                 </p>
 
                 <!-- Action Buttons -->
                 <div class="flex flex-wrap items-center gap-3 pt-1">
                     <a href="#connect" class="px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-sm flex items-center gap-2">
-                        <span>Get in Touch</span>
-                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        <span data-lang-en="Get in Touch" data-lang-ar="تواصل معي">Get in Touch</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"></i>
                     </a>
                     <a href="#experience" class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2">
                         <i class="fa-solid fa-layer-group text-slate-400 text-[10px]"></i>
-                        <span>Explore Experience</span>
+                        <span data-lang-en="Explore Experience" data-lang-ar="استكشف الخبرات">Explore Experience</span>
                     </a>
                 </div>
 
@@ -178,15 +189,15 @@
                 <div class="pt-4 grid grid-cols-3 gap-4 border-t border-slate-800/60 max-w-md">
                     <div>
                         <div class="text-lg font-bold text-white font-mono">2022+</div>
-                        <div class="text-[11px] text-slate-500">Web3 Experience</div>
+                        <div class="text-[11px] text-slate-500" data-lang-en="Web3 & Guilds" data-lang-ar="خبرة وبناء مجتمعات">Web3 & Guilds</div>
                     </div>
                     <div>
                         <div class="text-lg font-bold text-indigo-400 font-mono">LitVM</div>
-                        <div class="text-[11px] text-slate-500">Protocol Ecosystem</div>
+                        <div class="text-[11px] text-slate-500" data-lang-en="Protocol Ecosystem" data-lang-ar="منظومة البروتوكول">Protocol Ecosystem</div>
                     </div>
                     <div>
-                        <div class="text-lg font-bold text-emerald-400 font-mono">B.Sc. CS</div>
-                        <div class="text-[11px] text-slate-500">Undergraduate</div>
+                        <div class="text-lg font-bold text-emerald-400 font-mono" data-lang-en="B.Sc. CS" data-lang-ar="طالب حاسوب">B.Sc. CS</div>
+                        <div class="text-[11px] text-slate-500" data-lang-en="CS Undergraduate" data-lang-ar="طالب علوم حاسوب">CS Undergraduate</div>
                     </div>
                 </div>
 
@@ -200,7 +211,7 @@
                     <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between px-2.5 py-1 rounded-md bg-[#0b0f19]/90 border border-slate-800 text-xs">
                         <span class="font-semibold text-slate-200">MOHMOS</span>
                         <span class="text-[10px] font-mono text-emerald-400 flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <span data-lang-en="Active" data-lang-ar="نشط">Active</span>
                         </span>
                     </div>
                 </div>
@@ -208,25 +219,31 @@
 
         </section>
 
-        <!-- ABOUT ME SECTION -->
+        <!-- ABOUT ME SECTION (Comprehensive detailed journey as requested) -->
         <section id="about" class="space-y-6">
             <div class="flex items-center gap-3">
                 <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white tracking-tight">About Me</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight" data-lang-en="About Me & My Journey" data-lang-ar="عني وعن مسيرتي">About Me & My Journey</h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <!-- Main Bio Card -->
                 <div class="md:col-span-2 minimal-card rounded-xl p-5 space-y-4 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <h4 class="text-base font-bold text-white">Background & Specialization</h4>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            With extensive experience in Web3 community engineering and Discord system architecture since 2022, I specialize in transforming complex operational demands into secure, seamless community environments.
+                    <div class="space-y-3 text-left rtl:text-right">
+                        <h4 class="text-base font-bold text-white" data-lang-en="My Web3 Journey & Leadership" data-lang-ar="مسيرتي وقيادتي في الـ Web3">My Web3 Journey & Leadership</h4>
+                        
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed" data-lang-en="I began my Web3 journey in 2022 with Bag Guild, helping build, organize, and manage the community and Discord operations from scratch over 3+ years. Following that, I contributed to OnChain, focusing on community organization, member support pipelines, and project coordination." data-lang-ar="بدأت مسيرتي في عالم الـ Web3 عام 2022 مع Bag Guild، حيث ساهمت في بناء وتنظيم وإدارة المجتمعات وعمليات ديسكورد من الصفر لأكثر من 3 سنوات. بعد ذلك، ساهمت مع OnChain بالتركيز على التنظيم المجتمعي، خطوط دعم المستخدمين، وتنسيق المشاريع.">
+                            I began my Web3 journey in 2022 with <strong class="text-slate-200">Bag Guild</strong>, helping build, organize, and manage the community and Discord operations from scratch over 3+ years. Following that, I contributed to <strong class="text-slate-200">OnChain</strong>, focusing on community organization, member support pipelines, and project coordination.
                         </p>
-                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                            As the <strong class="text-slate-200 font-semibold">Protocol Lead at Lit Clinic (LitVM Ecosystem)</strong>, I drive official protocol messaging, structure server security, and lead contributor workflows. My academic path in Computer Science focuses on software engineering and EVM smart contract development.
+                        
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed" data-lang-en="Currently, I serve as Protocol Lead at Lit Clinic (LitVM Ecosystem). In this role, I direct protocol communication, lead technical planning and product discussions, manage system design conversations, oversee Discord infrastructure, support the community, and onboard new members by breaking down complex concepts clearly." data-lang-ar="أعمل حالياً كـ قائد بروتوكول (Protocol Lead) في Lit Clinic (منظومة LitVM). أقود اتصالات البروتوكول، التخطيط التقني، مناقشات تصميم الأنظمة، إدارة ديسكورد، دعم المجتمع، وإعداد المستخدمين الجدد بتبسيط المفاهيم التقنية.">
+                            Currently, I serve as <strong class="text-indigo-400">Protocol Lead at Lit Clinic (LitVM Ecosystem)</strong>. In this role, I direct protocol communication, lead technical planning and product discussions, manage system design conversations, oversee Discord infrastructure, support the community, and onboard new members by breaking down complex concepts clearly.
+                        </p>
+                        
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed" data-lang-en="I am actively studying Computer Science to build a solid foundation for future smart contract and blockchain engineering, while focusing my active practical expertise on Discord infrastructure, server security, bot configuration, and operational workflows." data-lang-ar="أدرس حالياً علوم الحاسوب لبناء أساس متين لهندسة العقود الذكية والبلوكشين مستقبلاً، بينما ينصب تركيزي وخبرتي العملية الفعالة حالياً على البنية التحتية لديسكورد، أمان السيرفرات، إعداد البوتات، وإدارة العمليات.">
+                            I am actively studying Computer Science to build a solid foundation for future smart contract and blockchain engineering, while focusing my active practical expertise on Discord infrastructure, server security, bot configuration, and operational workflows.
                         </p>
                     </div>
 
@@ -234,41 +251,47 @@
                     <div class="pt-3 border-t border-slate-800/80 flex items-center gap-6">
                         <div class="flex items-center gap-2 text-xs text-slate-300">
                             <i class="fa-solid fa-language text-indigo-400"></i>
-                            <span><strong class="text-white">Arabic:</strong> Native</span>
+                            <span><strong class="text-white" data-lang-en="Arabic:" data-lang-ar="العربية:">Arabic:</strong> <span data-lang-en="Native" data-lang-ar="اللغة الأم">Native</span></span>
                         </div>
                         <div class="flex items-center gap-2 text-xs text-slate-300">
                             <i class="fa-solid fa-globe text-sky-400"></i>
-                            <span><strong class="text-white">English:</strong> Working Proficiency (A2-B1)</span>
+                            <span><strong class="text-white" data-lang-en="English:" data-lang-ar="الإنجليزية:">English:</strong> <span data-lang-en="Working Proficiency (A2-B1)" data-lang-ar="مستوى عملي (A2-B1)">Working Proficiency (A2-B1)</span></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Core Values Card -->
-                <div class="minimal-card rounded-xl p-5 space-y-3">
+                <!-- Core Values Card (Honesty & Communication) -->
+                <div class="minimal-card rounded-xl p-5 space-y-3 text-left rtl:text-right">
                     <h4 class="text-base font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-compass text-indigo-400 text-xs"></i> Core Principles
+                        <i class="fa-solid fa-compass text-indigo-400 text-xs"></i> <span data-lang-en="Core Values" data-lang-ar="القيم الجوهرية">Core Values</span>
                     </h4>
                     
                     <div class="space-y-2.5 text-xs">
                         <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
                             <div class="font-semibold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-shield-halved text-indigo-400 text-[10px]"></i> Integrity & Honesty
+                                <i class="fa-solid fa-shield-halved text-indigo-400 text-[10px]"></i> <span data-lang-en="Honesty & Transparency" data-lang-ar="الصدق والشفافية">Honesty & Transparency</span>
                             </div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">Transparent communication with protocols and team members.</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5" data-lang-en="Transparent communication. If a task falls outside my current experience, I state it honestly." data-lang-ar="تواصل شفاف. إذا كانت المهمة خارج نطاق خبرتي الحالية، أفصح عن ذلك بكل أمانة.">
+                                Transparent communication. If a task falls outside my current experience, I state it honestly.
+                            </div>
                         </div>
 
                         <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
                             <div class="font-semibold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-check-double text-emerald-400 text-[10px]"></i> Responsibility
+                                <i class="fa-solid fa-check-double text-emerald-400 text-[10px]"></i> <span data-lang-en="Practical Responsibility" data-lang-ar="المسؤولية العملية">Practical Responsibility</span>
                             </div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">Uncompromising security standards and server management.</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5" data-lang-en="Uncompromising security standards, permissions, and handling tasks practically." data-lang-ar="التزام تام بأمان السيرفرات، الصلاحيات، وإنجاز المهام بعملية.">
+                                Uncompromising security standards, permissions, and handling tasks practically.
+                            </div>
                         </div>
 
                         <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
                             <div class="font-semibold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-graduation-cap text-sky-400 text-[10px]"></i> Continuous Learning
+                                <i class="fa-solid fa-graduation-cap text-sky-400 text-[10px]"></i> <span data-lang-en="Continuous Learning" data-lang-ar="التعلم المستمر">Continuous Learning</span>
                             </div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">Mastering smart contract engineering and Web3 tech.</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5" data-lang-en="Constantly advancing CS fundamentals and mastering Web3 technologies." data-lang-ar="مواصلة دراسة علوم الحاسوب وتطوير المهارات التقنية باستمرار.">
+                                Constantly advancing CS fundamentals and mastering Web3 technologies.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -281,21 +304,21 @@
                 <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-briefcase"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white tracking-tight">Experience & Track Record</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight" data-lang-en="Experience & Roles" data-lang-ar="الخبرات والأدوار">Experience & Roles</h3>
             </div>
 
             <div class="space-y-3.5">
                 
                 <!-- 1. Lit Clinic Card -->
-                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-left rtl:text-right">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 p-1.5 flex-shrink-0">
                             <img src="assets/litclinic.png" alt="Lit Clinic Logo" class="w-full h-full object-contain">
                         </div>
                         <div class="space-y-0.5">
                             <div class="flex items-center gap-2">
-                                <h4 class="text-base font-bold text-white">Protocol Lead</h4>
-                                <span class="px-2 py-0.5 rounded subtle-badge text-[10px] font-mono">Present Role</span>
+                                <h4 class="text-base font-bold text-white" data-lang-en="Protocol Lead" data-lang-ar="قائد البروتوكول">Protocol Lead</h4>
+                                <span class="px-2 py-0.5 rounded subtle-badge text-[10px] font-mono" data-lang-en="Present Role" data-lang-ar="الدور الحالي">Present Role</span>
                             </div>
                             <p class="text-xs font-semibold text-indigo-400">Lit Clinic (LitVM Ecosystem)</p>
                             <p class="text-[11px] text-slate-500 font-mono">2026 - Present</p>
@@ -303,47 +326,47 @@
                     </div>
 
                     <ul class="text-xs text-slate-400 space-y-1 md:max-w-md list-disc list-inside">
-                        <li>Directing protocol communications and official ecosystem announcements.</li>
-                        <li>Managing complete Discord server infrastructure, roles, and automated security.</li>
-                        <li>Coordinating community support pipelines and developer support channels.</li>
+                        <li data-lang-en="Leading protocol discussions, technical planning, and product communication." data-lang-ar="قيادة مناقشات البروتوكول، التخطيط التقني، واتصالات المنتجات.">Leading protocol discussions, technical planning, and product communication.</li>
+                        <li data-lang-en="Managing Discord server infrastructure, role hierarchies, and automated security." data-lang-ar="إدارة البنية التحتية لديسكورد، الصلاحيات، والأمان التلقائي.">Managing Discord server infrastructure, role hierarchies, and automated security.</li>
+                        <li data-lang-en="Coordinating community support, user onboarding, and breaking down technical concepts simply." data-lang-ar="تنسيق دعم المجتمع، إعداد المستخدمين الجدد، وتبسيط المفاهيم التقنية.">Coordinating community support, user onboarding, and breaking down technical concepts simply.</li>
                     </ul>
                 </div>
 
                 <!-- 2. OnChain Outlaws Card -->
-                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-left rtl:text-right">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 p-1 flex-shrink-0 overflow-hidden">
                             <img src="assets/onchain.jpg" alt="OnChain Outlaws Logo" class="w-full h-full object-cover rounded">
                         </div>
                         <div class="space-y-0.5">
-                            <h4 class="text-base font-bold text-white">Core Contributor</h4>
+                            <h4 class="text-base font-bold text-white" data-lang-en="Core Contributor" data-lang-ar="مساهم رئيسي">Core Contributor</h4>
                             <p class="text-xs font-semibold text-slate-300">OnChain Outlaws</p>
-                            <p class="text-[11px] text-slate-500 font-mono">Web3 Guild & Community</p>
+                            <p class="text-[11px] text-slate-500 font-mono" data-lang-en="Web3 Community" data-lang-ar="مجتمع Web3">Web3 Community</p>
                         </div>
                     </div>
 
                     <ul class="text-xs text-slate-400 space-y-1 md:max-w-md list-disc list-inside">
-                        <li>Spearheading community organization, user onboarding, and member support workflows.</li>
-                        <li>Coordinating cross-functional project initiatives and interactive Web3 events.</li>
+                        <li data-lang-en="Spearheading community organization, member support pipelines, and user assistance." data-lang-ar="قيادة التنظيم المجتمعي، خطوط دعم الأعضاء، ومساعدة المستخدمين.">Spearheading community organization, member support pipelines, and user assistance.</li>
+                        <li data-lang-en="Coordinating cross-functional project initiatives and project activities." data-lang-ar="تنسيق مبادئ المشاريع والأنشطة المجتمعية.">Coordinating cross-functional project initiatives and project activities.</li>
                     </ul>
                 </div>
 
                 <!-- 3. Bag Guild Card -->
-                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-left rtl:text-right">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 p-1.5 flex-shrink-0">
                             <img src="assets/bag_guild.png" alt="Bag Guild Logo" class="w-full h-full object-contain">
                         </div>
                         <div class="space-y-0.5">
-                            <h4 class="text-base font-bold text-white">Contributor & Community Leader</h4>
+                            <h4 class="text-base font-bold text-white" data-lang-en="Contributor & Community Leader" data-lang-ar="مساهم وقائد مجتمعي">Contributor & Community Leader</h4>
                             <p class="text-xs font-semibold text-amber-400">Bag Guild</p>
                             <p class="text-[11px] text-slate-500 font-mono">2022 - 2025</p>
                         </div>
                     </div>
 
                     <ul class="text-xs text-slate-400 space-y-1 md:max-w-md list-disc list-inside">
-                        <li>Architected Discord infrastructure from scratch; configured automated moderation and ticket logs.</li>
-                        <li>Led community growth initiatives and team operational workflows over 3+ years.</li>
+                        <li data-lang-en="Built Discord infrastructure from scratch; configured auto-moderation and ticket logs." data-lang-ar="بناء البنية التحتية لديسكورد من الصفر، وإعداد نظام التذاكر والحماية التلقائية.">Built Discord infrastructure from scratch; configured auto-moderation and ticket logs.</li>
+                        <li data-lang-en="Organized and managed community operations over 3+ years." data-lang-ar="تنظيم وإدارة العمليات المجتمعية لأكثر من 3 سنوات.">Organized and managed community operations over 3+ years.</li>
                     </ul>
                 </div>
 
@@ -356,33 +379,33 @@
                 <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-code-branch"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white tracking-tight">Skills & Expertise</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight" data-lang-en="Skills & Expertise" data-lang-ar="المهارات والخبرات">Skills & Expertise</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left rtl:text-right">
                 
-                <!-- 1. Discord Infrastructure -->
+                <!-- 1. Discord Infrastructure (Core Practical Skill) -->
                 <div class="minimal-card rounded-xl p-5 space-y-3">
                     <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-800">
                         <i class="fa-solid fa-server text-indigo-400 text-sm"></i>
-                        <h4 class="text-sm font-bold text-white">Discord Infrastructure</h4>
+                        <h4 class="text-sm font-bold text-white" data-lang-en="Discord Infrastructure" data-lang-ar="البنية التحتية لديسكورد">Discord Infrastructure</h4>
                     </div>
 
                     <ul class="space-y-2 text-xs text-slate-300">
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Server Setup & Optimization
+                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> <span data-lang-en="Server Setup & Layout Optimization" data-lang-ar="إعداد وتحسين السيرفرات">Server Setup & Layout Optimization</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Role Hierarchy & Permissions
+                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> <span data-lang-en="Role Hierarchy & Permission Trees" data-lang-ar="إدارة الصلاحيات والأدوار">Role Hierarchy & Permission Trees</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Anti-Raid Security & Auto-Mod
+                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> <span data-lang-en="Anti-Raid Security & Auto-Mod" data-lang-ar="الحماية والحظر التلقائي">Anti-Raid Security & Auto-Mod</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Bot Config & Webhooks
+                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> <span data-lang-en="Bot Configuration & Webhooks" data-lang-ar="إعداد البوتات والـ Webhooks">Bot Configuration & Webhooks</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Ticket & Support Pipelines
+                            <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> <span data-lang-en="Ticket Systems & Support Pipelines" data-lang-ar="أنظمة التذاكر والدعم الفني">Ticket Systems & Support Pipelines</span>
                         </li>
                     </ul>
                 </div>
@@ -391,24 +414,24 @@
                 <div class="minimal-card rounded-xl p-5 space-y-3">
                     <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-800">
                         <i class="fa-solid fa-users text-sky-400 text-sm"></i>
-                        <h4 class="text-sm font-bold text-white">Community & Operations</h4>
+                        <h4 class="text-sm font-bold text-white" data-lang-en="Community & Operations" data-lang-ar="إدارة العمليات والمجتمع">Community & Operations</h4>
                     </div>
 
                     <ul class="space-y-2 text-xs text-slate-300">
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Community Growth & Strategy
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> <span data-lang-en="Written Protocol Communication" data-lang-ar="التواصل الكتابي للبروتوكول">Written Protocol Communication</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Web3 User Onboarding
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> <span data-lang-en="Web3 Member Onboarding & Support" data-lang-ar="إعداد ودعم الأعضاء الجدد">Web3 Member Onboarding & Support</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Escalation & User Support
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> <span data-lang-en="Community Organization & Strategy" data-lang-ar="التنظيم والإستراتيجية المجتمعية">Community Organization & Strategy</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Protocol Communication
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> <span data-lang-en="User Support & Problem Resolution" data-lang-ar="حل مشكلات المستخدمين">User Support & Problem Resolution</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Event & Voice AMA Hosting
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> <span data-lang-en="Simplifying Technical Concepts" data-lang-ar="تبسيط المفاهيم التقنية">Simplifying Technical Concepts</span>
                         </li>
                     </ul>
                 </div>
@@ -417,24 +440,24 @@
                 <div class="minimal-card rounded-xl p-5 space-y-3">
                     <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-800">
                         <i class="fa-solid fa-laptop-code text-emerald-400 text-sm"></i>
-                        <h4 class="text-sm font-bold text-white">Tech & Tools</h4>
+                        <h4 class="text-sm font-bold text-white" data-lang-en="Tech & Tools" data-lang-ar="الأدوات والتقنيات">Tech & Tools</h4>
                     </div>
 
                     <ul class="space-y-2 text-xs text-slate-300">
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> VS Code & GitHub Version Control
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> <span data-lang-en="VS Code & GitHub Version Control" data-lang-ar="VS Code وإدارة الأكواد بـ GitHub">VS Code & GitHub Version Control</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> AI Engineering Workflows
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> <span data-lang-en="AI Tools (ChatGPT, Gemini, Claude)" data-lang-ar="أدوات الذكاء الاصطناعي">AI Tools (ChatGPT, Gemini, Claude)</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Smart Contracts (Solidity Basics)
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> <span data-lang-en="CS Studies (Blockchain Fundamentals)" data-lang-ar="دراسة علوم الحاسوب للبلوكشين">CS Studies (Blockchain Fundamentals)</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Video Production (CapCut & Premiere)
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> <span data-lang-en="Video Editing (CapCut & Premiere)" data-lang-ar="مونتاج الفيديو (CapCut / Premiere)">Video Editing (CapCut & Premiere)</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Command Line Interface
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> <span data-lang-en="Command Line Interfaces" data-lang-ar="أساسيات السطر البرمجي">Command Line Interfaces</span>
                         </li>
                     </ul>
                 </div>
@@ -448,16 +471,16 @@
                 <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white tracking-tight">Education</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight" data-lang-en="Education" data-lang-ar="التعليم">Education</h3>
             </div>
 
-            <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-left rtl:text-right">
                 <div class="space-y-1">
-                    <span class="px-2 py-0.5 rounded subtle-badge text-[10px] font-mono">Undergraduate Degree</span>
-                    <h4 class="text-lg font-bold text-white">Bachelor's Degree in Computer Science</h4>
-                    <p class="text-xs text-slate-400">Focus: Software Engineering, Smart Contracts, and Web3 Architecture</p>
+                    <span class="px-2 py-0.5 rounded subtle-badge text-[10px] font-mono" data-lang-en="Undergraduate Degree" data-lang-ar="درجة البكالوريوس">Undergraduate Degree</span>
+                    <h4 class="text-lg font-bold text-white" data-lang-en="Bachelor's Degree in Computer Science" data-lang-ar="بكالوريوس علوم الحاسوب">Bachelor's Degree in Computer Science</h4>
+                    <p class="text-xs text-slate-400" data-lang-en="Focusing on Software Engineering, Computer Science Fundamentals, and Web3 Technologies" data-lang-ar="تركيز على هندسة البرمجيات، أساسيات علوم الحاسوب، وتقنيات الـ Web3">Focusing on Software Engineering, Computer Science Fundamentals, and Web3 Technologies</p>
                 </div>
-                <div class="px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs font-mono text-indigo-300">
+                <div class="px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs font-mono text-indigo-300" data-lang-en="In Progress" data-lang-ar="قيد الدراسة">
                     In Progress
                 </div>
             </div>
@@ -469,11 +492,11 @@
                 <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-link"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white tracking-tight">Socials & Connect</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight" data-lang-en="Socials & Connect" data-lang-ar="التواصل والروابط">Socials & Connect</h3>
             </div>
 
             <!-- 8 Real Working Social Platform Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-left rtl:text-right">
 
                 <!-- 1. Discord -->
                 <div class="minimal-card rounded-xl p-3.5 flex items-center justify-between">
@@ -502,7 +525,7 @@
                             <div class="text-xs font-semibold text-white">litclinic.xyz</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors rtl:rotate-90"></i>
                 </a>
 
                 <!-- 3. Linktree -->
@@ -516,7 +539,7 @@
                             <div class="text-xs font-semibold text-white">moh.mos</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors rtl:rotate-90"></i>
                 </a>
 
                 <!-- 4. GitHub -->
@@ -530,7 +553,7 @@
                             <div class="text-xs font-semibold text-white">Mohammed-Muostafa</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-white transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-white transition-colors rtl:rotate-90"></i>
                 </a>
 
                 <!-- 5. X / Twitter -->
@@ -544,7 +567,7 @@
                             <div class="text-xs font-semibold text-white">@mohmos</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-slate-200 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-slate-200 transition-colors rtl:rotate-90"></i>
                 </a>
 
                 <!-- 6. Telegram -->
@@ -558,7 +581,7 @@
                             <div class="text-xs font-semibold text-white">@MOH-MOS</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-blue-400 transition-colors rtl:rotate-90"></i>
                 </a>
 
                 <!-- 7. YouTube -->
@@ -572,7 +595,7 @@
                             <div class="text-xs font-semibold text-white">@MOH-MOS</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-rose-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-rose-400 transition-colors rtl:rotate-90"></i>
                 </a>
 
                 <!-- 8. Kick -->
@@ -586,7 +609,7 @@
                             <div class="text-xs font-semibold text-white">moh-mos</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors rtl:rotate-90"></i>
                 </a>
 
             </div>
@@ -600,11 +623,11 @@
             <div class="flex items-center gap-2">
                 <span class="font-semibold text-slate-300">MOHMOS</span>
                 <span>•</span>
-                <span>Lit Clinic Protocol Lead</span>
+                <span data-lang-en="Lit Clinic Protocol Lead" data-lang-ar="قائد بروتوكول Lit Clinic">Lit Clinic Protocol Lead</span>
             </div>
-            <div>© 2026 MOHMOS. All rights reserved.</div>
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-slate-300 transition-colors">
-                Back to Top <i class="fa-solid fa-arrow-up text-[10px] ml-1"></i>
+            <div data-lang-en="© 2026 MOHMOS. All rights reserved." data-lang-ar="© 2026 MOHMOS. جميع الحقوق محفوظة.">© 2026 MOHMOS. All rights reserved.</div>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-slate-300 transition-colors flex items-center gap-1">
+                <span data-lang-en="Back to Top" data-lang-ar="الرجوع للأعلى">Back to Top</span> <i class="fa-solid fa-arrow-up text-[10px]"></i>
             </button>
         </div>
     </footer>
@@ -613,12 +636,41 @@
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
         <div class="px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-700 shadow-xl flex items-center gap-3 text-white text-xs font-medium">
             <i class="fa-solid fa-check text-emerald-400"></i>
-            <span>Discord tag <strong class="text-indigo-400">mohmos</strong> copied to clipboard!</span>
+            <span id="toast-text">Discord tag <strong class="text-indigo-400">mohmos</strong> copied to clipboard!</span>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts (Language Switcher & UI logic) -->
     <script>
+        let currentLang = 'en';
+
+        // Toggle Language Function (Seamless EN <-> AR)
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            const isAr = currentLang === 'ar';
+
+            // Set HTML Dir and Lang
+            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang;
+
+            // Update Toggle Button Label
+            document.getElementById('lang-label').textContent = isAr ? 'English' : 'العربية';
+
+            // Translate elements with data-lang-en / data-lang-ar
+            document.querySelectorAll('[data-lang-en]').forEach(el => {
+                const text = isAr ? el.getAttribute('data-lang-ar') : el.getAttribute('data-lang-en');
+                if (text) {
+                    el.textContent = text;
+                }
+            });
+
+            // Update Toast Text State
+            const toastText = document.getElementById('toast-text');
+            toastText.innerHTML = isAr 
+                ? 'تم نسخ حساب ديسكورد <strong class="text-indigo-400">mohmos</strong> إلى الحافظة!'
+                : 'Discord tag <strong class="text-indigo-400">mohmos</strong> copied to clipboard!';
+        }
+
         // Mobile menu toggle
         const toggleBtn = document.getElementById('mobile-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
