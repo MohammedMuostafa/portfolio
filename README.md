@@ -6,7 +6,7 @@ Welcome to the official repository of my personal portfolio and Web3 professiona
 
 ## 🚀 About the Project
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a 100% **scroll-driven interactive timeline engine** where the mouse wheel directly controls 360-degree image rotations, panel entries, typewriter character progress, and scene transitions, alongside a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
+This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features a rebuilt scroll-driven Home section intro sequence, scroll-controlled typewriter animation, and a seamless **Arabic / English bilingual switcher** (`🌐 العربية / English`).
 
 ---
 
@@ -24,24 +24,18 @@ This portfolio showcases my professional journey, technical expertise, and activ
 
 ---
 
-## 🛠️ Tech Stack & Scroll-Driven Timeline Architecture
+## 🛠️ Rebuilt Home Section & Cinematic Flow Architecture
 
 * **Frontend:** Single-file HTML5 structure utilizing Tailwind CSS CDN for modern responsive layouts.
 * **Typography:** Google Fonts (**Plus Jakarta Sans** for English, **Cairo** for Arabic, and **JetBrains Mono** for numbers/code).
 * **Icons:** Font Awesome 6.5.1 CDN.
-* **100% Scroll-Driven Animation Mechanics:**
-  * **Zero Automatic Timers:** All `setTimeout` typing functions have been eliminated. The mouse wheel / scroll position acts as the master timeline slider (`totalProgress` 0.0 to 1.0).
-  * **Scroll-Driven Typewriter Engine:**
-    - Character progress computed via `charIndex = Math.floor(progress * fullText.length)`.
-    - **Scroll fast:** Text types fast.
-    - **Scroll slow:** Text types slowly.
-    - **Stop scrolling:** Typing freezes instantly at that exact character.
-    - **Scroll backward:** Text un-types character-by-character.
-  * **Stage 0 Intro Zoom:** Scroll progress `0.0` to `0.12` controls the 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.25)`) and transition to blackout.
-  * **Phase 1 Panel Entry:** Left image 360-degree rotation (`rotate(-360deg)` $\rightarrow$ `rotate(0deg)`) and Right panel slide are mapped to scene progress `0.0` to `0.22`.
-  * **Phase 2 Typewriter Phase:** Character progress mapped to scene progress `0.22` to `0.85`.
-  * **Phase 3 Fade Out:** Scene smoothly fades out to pure black before the next section enters (`0.85` to `1.0`).
-  * **Navbar Delay:** `#main-navbar` smoothly fades in *only* after Hero typewriter progress completes (`totalProgress > 0.25`).
+* **Rebuilt Home Section Sequence:**
+  * **Step 1 — Pure Black Screen:** Starts on 100% black screen (`#000000`) with no content, profile image, or navbar visible. Only displays a subtle **"Scroll Down"** indicator (`#intro-scroll-prompt`).
+  * **Step 2 — Scroll Triggered 3D Zoom:** Scrolling initiates the 3D Zoom In of **MOHMOS** (`scale(0.4)` $\rightarrow$ `scale(1.4)`).
+  * **Step 3 — Seamless Hero Reveal:** Before the name fully disappears (`p 0.35` to `0.55`), the profile image (360-degree rotation left) and information panel (slide right) enter together seamlessly.
+  * **Step 4 — Initial Text Hidden:** All typewriter targets (`.hero-type-target`) start 100% empty / hidden. Text is unreadable until typing begins.
+  * **Step 5 — Scroll-Controlled Typewriter:** Character progress (`p 0.55` to `0.85`) is 100% bound to scroll wheel movement. Scrolling forward types text; stopping scroll pauses typing instantly; scrolling back un-types text.
+  * **Step 6 — Navbar Reveal & Seamless Section Flow:** Navbar smoothly fades in ONLY after Hero typing completes (`p > 0.85`). Standard scrolling continues seamlessly to `#about`, `#journey`, `#experience`, `#skills`, and `#connect`.
 * **Localization:** Vanilla JavaScript bilingual switcher (`🌐 العربية / English`) supporting full RTL direction adjustment (`dir="rtl"`).
 * **Hosting:** Deployed via **GitHub Pages**.
 
