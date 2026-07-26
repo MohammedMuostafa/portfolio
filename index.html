@@ -45,15 +45,15 @@
                     },
                     colors: {
                         dark: {
-                            bg: '#050507',
-                            card: '#0d0d12',
-                            cardHover: '#13131a',
-                            border: '#1a1a24',
+                            bg: '#000000',
+                            card: '#0a0a0d',
+                            cardHover: '#121217',
+                            border: '#1a1a22',
                         },
                         redAccent: {
-                            DEFAULT: '#ef4444',
-                            hover: '#dc2626',
-                            glow: 'rgba(239, 68, 68, 0.35)',
+                            DEFAULT: '#ff1e1e',
+                            hover: '#e01212',
+                            glow: 'rgba(255, 30, 30, 0.4)',
                         }
                     }
                 }
@@ -63,7 +63,7 @@
 
     <style>
         body {
-            background-color: #050507;
+            background-color: #000000;
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -76,59 +76,82 @@
 
         /* Black, White, & Crimson Red Minimal Card System */
         .red-card {
-            background: #0d0d12;
-            border: 1px solid #1a1a24;
+            background: #0a0a0d;
+            border: 1px solid #1a1a22;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .red-card:hover {
-            border-color: rgba(239, 68, 68, 0.5);
-            box-shadow: 0 12px 35px -10px rgba(239, 68, 68, 0.25);
+            border-color: rgba(255, 30, 30, 0.5);
+            box-shadow: 0 12px 35px -10px rgba(255, 30, 30, 0.3);
             transform: translateY(-4px);
         }
 
         .red-badge {
-            background: rgba(239, 68, 68, 0.08);
-            border: 1px solid rgba(239, 68, 68, 0.25);
-            color: #f87171;
+            background: rgba(255, 30, 30, 0.08);
+            border: 1px solid rgba(255, 30, 30, 0.3);
+            color: #ff5555;
         }
 
-        /* Fixed Fullscreen Intro Name Zoom Overlay (Phase 1 & 2) */
-        #cinematic-intro-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            background: #050507;
+        /* 300vh Pinned Hero Track & Sticky Viewport */
+        .hero-scroll-track {
+            height: 320vh;
+            position: relative;
+        }
+
+        .hero-sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            background: #000000;
             display: flex;
             align-items: center;
-            justify-center;
-            pointer-events: none;
-            transition: opacity 0.6s ease-out;
+            justify-content: center;
         }
 
-        .cinematic-zoom-name {
-            font-size: clamp(3.5rem, 12vw, 9rem);
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            color: #ffffff;
-            text-shadow: 0 0 40px rgba(239, 68, 68, 0.4);
-            transform: scale(0.85);
-            opacity: 0;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out;
+        /* Stage 1: Dead Centered Zoom-In Name */
+        .stage1-zoom-container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            pointer-events: none;
             will-change: transform, opacity;
         }
 
-        .cinematic-zoom-name.active-zoom {
-            transform: scale(1.15);
-            opacity: 1;
+        .zoom-title-text {
+            font-size: clamp(4rem, 14vw, 11rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            text-shadow: 0 0 50px rgba(255, 30, 30, 0.6);
+            transform-origin: center center;
+            will-change: transform, opacity;
         }
 
-        .cinematic-zoom-name.docked-out {
-            transform: scale(1.6) translateY(-40px);
+        /* Stage 2: Split Hero Layout Container */
+        .stage2-split-container {
+            position: absolute;
+            inset: 0;
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 30;
             opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-out;
+            will-change: opacity, transform;
         }
 
-        /* 360-Degree Rotating Profile Photo Frame */
+        /* 360-Degree Continuous Rotating Orbit Ring & Floating Photo */
         .photo-360-container {
             position: relative;
             perspective: 1000px;
@@ -136,17 +159,17 @@
 
         .photo-360-orbit {
             position: absolute;
-            inset: -12px;
+            inset: -14px;
             border-radius: 50%;
-            border: 2px dashed rgba(239, 68, 68, 0.5);
+            border: 2px dashed rgba(255, 30, 30, 0.6);
             animation: spin360 14s linear infinite;
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 30px rgba(255, 30, 30, 0.3);
         }
 
         .photo-360-frame {
             position: relative;
-            box-shadow: 0 0 35px rgba(239, 68, 68, 0.35), inset 0 0 20px rgba(239, 68, 68, 0.2);
-            border: 2px solid rgba(239, 68, 68, 0.5);
+            box-shadow: 0 0 40px rgba(255, 30, 30, 0.4), inset 0 0 25px rgba(255, 30, 30, 0.25);
+            border: 2px solid rgba(255, 30, 30, 0.6);
             animation: floatUpDown 5s ease-in-out infinite;
         }
 
@@ -160,7 +183,7 @@
             50% { transform: translateY(-10px) rotate(1deg); }
         }
 
-        /* Scroll Reveal Engine */
+        /* Stage 3: Scroll Reveal Animations */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -185,7 +208,7 @@
             bottom: 0;
             left: 20px;
             width: 2px;
-            background: linear-gradient(to bottom, #ef4444, #1a1a24);
+            background: linear-gradient(to bottom, #ff1e1e, #1a1a22);
         }
 
         html[dir="rtl"] .timeline-line::before {
@@ -193,67 +216,28 @@
             right: 20px;
         }
 
-        /* Slide In Animations for Hero Photo Left & Text Right */
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        html[dir="rtl"] .slide-in-left {
-            transform: translateX(50px);
-        }
-
-        .slide-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        html[dir="rtl"] .slide-in-right {
-            transform: translateX(-50px);
-        }
-
-        .slide-in-left.active-slide,
-        .slide-in-right.active-slide {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #050507;
+            background: #000000;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1a1a24;
+            background: #1a1a22;
             border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #ef4444;
+            background: #ff1e1e;
         }
     </style>
 </head>
 
 <body class="min-h-screen selection:bg-red-600 selection:text-white flex flex-col">
 
-    <!-- PHASE 1 & 2: FULLSCREEN CINEMATIC INTRO ZOOM NAME OVERLAY -->
-    <div id="cinematic-intro-overlay" class="flex flex-col items-center justify-center">
-        <div id="intro-name" class="cinematic-zoom-name flex items-center gap-3">
-            <span data-lang-en="MOHMOS" data-lang-ar="محمد مصطفى">MOHMOS</span>
-            <span class="text-red-500 font-bold">.</span>
-        </div>
-        <div class="mt-6 flex items-center gap-2 text-xs text-zinc-500 font-mono animate-bounce">
-            <i class="fa-solid fa-arrow-down text-red-500"></i>
-            <span data-lang-en="SCROLL TO ENTER EXPERIENCE" data-lang-ar="قم بالسحب للأسفل للدخول">SCROLL TO ENTER EXPERIENCE</span>
-        </div>
-    </div>
-
     <!-- Header Navigation (Minimalist Black/Red Theme, No Top Logo Box, No Top Discord Icon) -->
-    <header class="sticky top-0 z-50 bg-[#050507]/90 backdrop-blur-md border-b border-zinc-900 opacity-90">
+    <header id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#000000]/90 backdrop-blur-md border-b border-zinc-900 opacity-0 transition-opacity duration-500">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <!-- Brand Text Only -->
+            <!-- Brand Name Only -->
             <a href="#" class="font-black text-xl tracking-tight text-white hover:text-red-500 transition-colors flex items-center gap-2">
                 <span>MOHMOS</span>
                 <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
@@ -293,7 +277,7 @@
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-900 bg-[#050507] px-6 py-4 space-y-3">
+        <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-900 bg-[#000000] px-6 py-4 space-y-3">
             <a href="#about" class="block text-zinc-300 hover:text-white text-sm font-medium py-1" data-lang-en="About" data-lang-ar="عني">About</a>
             <a href="#journey" class="block text-zinc-300 hover:text-white text-sm font-medium py-1" data-lang-en="Journey" data-lang-ar="المسيرة">Journey</a>
             <a href="#experience" class="block text-zinc-300 hover:text-white text-sm font-medium py-1" data-lang-en="Experience" data-lang-ar="الخبرات">Experience</a>
@@ -303,104 +287,128 @@
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-5xl mx-auto px-6 py-10 space-y-20">
+    <!-- STAGE 1 & 2: 320vh PINNED SCROLL-DRIVEN CINEMATIC HERO TRACK -->
+    <div id="hero-scroll-track" class="hero-scroll-track">
+        <div class="hero-sticky-viewport">
 
-        <!-- PHASE 2: HERO SPLIT LAYOUT (Photo Slide Left / Bio Slide Right) -->
-        <section id="hero" class="pt-8 pb-10 flex flex-col md:flex-row items-center justify-between gap-12">
-            
-            <!-- LEFT SIDE: 360-DEGREE ROTATING PROFILE PHOTO CONTAINER (Slides in from Left) -->
-            <div id="hero-photo-container" class="flex-shrink-0 photo-360-container slide-in-left">
-                <!-- 360 Rotating Dash Orbit Ring -->
-                <div class="photo-360-orbit"></div>
+            <!-- STAGE 1: DEAD CENTERED CINEMATIC ZOOM-IN NAME -->
+            <div id="stage1-container" class="stage1-zoom-container">
+                <div id="stage1-name" class="zoom-title-text flex items-center gap-2">
+                    <span data-lang-en="MOHMOS" data-lang-ar="محمد مصطفى">MOHMOS</span>
+                    <span class="text-red-500 font-bold">.</span>
+                </div>
 
-                <!-- Floating Photo Frame -->
-                <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden photo-360-frame bg-zinc-900 group">
-                    <img src="assets/avatar.png" alt="MOHMOS Profile Photo"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <!-- Animated Initial Scroll Indicator Prompt -->
+                <div id="scroll-prompt" class="mt-8 flex flex-col items-center gap-2 text-xs font-mono text-zinc-400">
+                    <span data-lang-en="Scroll Down to Begin Experience" data-lang-ar="اسكرول لأسفل لبدء التجربة">Scroll Down to Begin Experience</span>
+                    <div class="w-6 h-10 rounded-full border-2 border-red-500/60 p-1 flex justify-center items-start">
+                        <div class="w-1.5 h-3 rounded-full bg-red-500 animate-bounce"></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-red-500 text-xs animate-pulse"></i>
+                </div>
+            </div>
+
+            <!-- STAGE 2: HERO SPLIT LAYOUT (Photo Left 360 Spin / Bio Right) -->
+            <div id="stage2-split-hero" class="stage2-split-container">
+                <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
                     
-                    <!-- Dark Gradient Overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent opacity-75"></div>
+                    <!-- LEFT SIDE: 360-DEGREE ROTATING PROFILE PHOTO CONTAINER -->
+                    <div id="stage2-photo" class="flex-shrink-0 photo-360-container transition-all duration-700">
+                        <!-- 360 Rotating Dash Orbit Ring -->
+                        <div class="photo-360-orbit"></div>
 
-                    <!-- Live Active Status Badge -->
-                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#050507]/90 border border-red-500/40 text-xs backdrop-blur-md shadow-lg">
-                        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                        <span class="font-mono text-white text-[11px] tracking-wider font-bold">MOHMOS</span>
+                        <!-- Floating Photo Frame -->
+                        <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden photo-360-frame bg-zinc-900 group">
+                            <img src="assets/avatar.png" alt="MOHMOS Profile Photo"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            
+                            <!-- Dark Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-75"></div>
+
+                            <!-- Live Active Status Badge -->
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#000000]/90 border border-red-500/40 text-xs backdrop-blur-md shadow-lg">
+                                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                                <span class="font-mono text-white text-[11px] tracking-wider font-bold">MOHMOS</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- RIGHT SIDE: BIO & HEADLINE DETAILS -->
+                    <div id="stage2-text" class="flex-1 space-y-5 text-left rtl:text-right transition-all duration-700">
+                        
+                        <!-- Status Badge -->
+                        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md red-badge text-xs font-mono">
+                            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            <span data-lang-en="Protocol Lead @ Lit Clinic (LitVM Ecosystem)"
+                                data-lang-ar="قائد البروتوكول في Lit Clinic (منظومة LitVM)">Protocol Lead @ Lit Clinic (LitVM Ecosystem)</span>
+                        </div>
+
+                        <!-- Main Name & Title -->
+                        <div class="space-y-1.5">
+                            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white">
+                                MOHMOS
+                            </h1>
+                            <h2 class="text-base sm:text-xl font-semibold text-zinc-400 leading-snug">
+                                <span data-lang-en="Protocol Lead" data-lang-ar="قائد البروتوكول">Protocol Lead</span> <span
+                                    class="text-red-500 font-bold">@LitClinic</span> & <span
+                                    data-lang-en="Discord Infrastructure Specialist"
+                                    data-lang-ar="مختص بنية ديسكورد التحتية">Discord Infrastructure Specialist</span>
+                            </h2>
+                        </div>
+
+                        <!-- Bio Copywriting -->
+                        <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl"
+                            data-lang-en="Specialized in building and optimizing Discord server infrastructure, managing community operations, and leading written protocol communications. Currently studying Computer Science to expand into blockchain architecture and smart contract engineering."
+                            data-lang-ar="مختص في بناء وتحسين البنية التحتية لسيرفرات ديسكورد، إدارة العمليات المجتمعية، وقيادة اتصالات البروتوكول الكتابية. أدرس حالياً علوم الحاسوب لتوسيع معرفتي في هندسة البلوكشين والعقود الذكية.">
+                            Specialized in building and optimizing Discord server infrastructure, managing community operations,
+                            and leading written protocol communications. Currently studying Computer Science to expand into
+                            blockchain architecture and smart contract engineering.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center gap-3.5 pt-1">
+                            <a href="#connect"
+                                class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-all shadow-lg shadow-red-950/50 flex items-center gap-2">
+                                <span data-lang-en="Get in Touch" data-lang-ar="تواصل معي">Get in Touch</span>
+                                <i class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"></i>
+                            </a>
+                            <a href="#journey"
+                                class="px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-semibold text-xs transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-route text-red-500 text-xs"></i>
+                                <span data-lang-en="Explore Journey" data-lang-ar="استكشف المسيرة">Explore Journey</span>
+                            </a>
+                        </div>
+
+                        <!-- Stats Bar -->
+                        <div class="pt-4 grid grid-cols-3 gap-4 border-t border-zinc-900 max-w-md">
+                            <div>
+                                <div class="text-2xl font-black text-white font-mono">2022+</div>
+                                <div class="text-[11px] text-zinc-500" data-lang-en="Web3 & Guilds"
+                                    data-lang-ar="خبرة وبناء مجتمعات">Web3 & Guilds</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-black text-red-500 font-mono">LitVM</div>
+                                <div class="text-[11px] text-zinc-500" data-lang-en="Protocol Ecosystem"
+                                    data-lang-ar="منظومة البروتوكول">Protocol Ecosystem</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-black text-white font-mono" data-lang-en="B.Sc. CS"
+                                    data-lang-ar="طالب حاسوب">B.Sc. CS</div>
+                                <div class="text-[11px] text-zinc-500" data-lang-en="CS Undergraduate"
+                                    data-lang-ar="طالب علوم حاسوب">CS Undergraduate</div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
-            <!-- RIGHT SIDE: BIO & HEADLINE DETAILS (Slides in from Right) -->
-            <div id="hero-text-container" class="flex-1 space-y-6 text-left rtl:text-right slide-in-right">
-                
-                <!-- Status Badge -->
-                <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md red-badge text-xs font-mono">
-                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                    <span data-lang-en="Protocol Lead @ Lit Clinic (LitVM Ecosystem)"
-                        data-lang-ar="قائد البروتوكول في Lit Clinic (منظومة LitVM)">Protocol Lead @ Lit Clinic (LitVM Ecosystem)</span>
-                </div>
+        </div>
+    </div>
 
-                <!-- Main Name & Title -->
-                <div class="space-y-2">
-                    <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white">
-                        MOHMOS
-                    </h1>
-                    <h2 class="text-base sm:text-xl font-semibold text-zinc-400 leading-snug">
-                        <span data-lang-en="Protocol Lead" data-lang-ar="قائد البروتوكول">Protocol Lead</span> <span
-                            class="text-red-500 font-bold">@LitClinic</span> & <span
-                            data-lang-en="Discord Infrastructure Specialist"
-                            data-lang-ar="مختص بنية ديسكورد التحتية">Discord Infrastructure Specialist</span>
-                    </h2>
-                </div>
-
-                <!-- Bio Copywriting -->
-                <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl"
-                    data-lang-en="Specialized in building and optimizing Discord server infrastructure, managing community operations, and leading written protocol communications. Currently studying Computer Science to expand into blockchain architecture and smart contract engineering."
-                    data-lang-ar="مختص في بناء وتحسين البنية التحتية لسيرفرات ديسكورد، إدارة العمليات المجتمعية، وقيادة اتصالات البروتوكول الكتابية. أدرس حالياً علوم الحاسوب لتوسيع معرفتي في هندسة البلوكشين والعقود الذكية.">
-                    Specialized in building and optimizing Discord server infrastructure, managing community operations,
-                    and leading written protocol communications. Currently studying Computer Science to expand into
-                    blockchain architecture and smart contract engineering.
-                </p>
-
-                <!-- Action Buttons -->
-                <div class="flex flex-wrap items-center gap-3.5 pt-2">
-                    <a href="#connect"
-                        class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-all shadow-lg shadow-red-950/50 flex items-center gap-2">
-                        <span data-lang-en="Get in Touch" data-lang-ar="تواصل معي">Get in Touch</span>
-                        <i class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"></i>
-                    </a>
-                    <a href="#journey"
-                        class="px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-semibold text-xs transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-route text-red-500 text-xs"></i>
-                        <span data-lang-en="Explore Journey" data-lang-ar="استكشف المسيرة">Explore Journey</span>
-                    </a>
-                </div>
-
-                <!-- Stats Bar -->
-                <div class="pt-5 grid grid-cols-3 gap-4 border-t border-zinc-900 max-w-md">
-                    <div>
-                        <div class="text-2xl font-black text-white font-mono">2022+</div>
-                        <div class="text-[11px] text-zinc-500" data-lang-en="Web3 & Guilds"
-                            data-lang-ar="خبرة وبناء مجتمعات">Web3 & Guilds</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-black text-red-500 font-mono">LitVM</div>
-                        <div class="text-[11px] text-zinc-500" data-lang-en="Protocol Ecosystem"
-                            data-lang-ar="منظومة البروتوكول">Protocol Ecosystem</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-black text-white font-mono" data-lang-en="B.Sc. CS"
-                            data-lang-ar="طالب حاسوب">B.Sc. CS</div>
-                        <div class="text-[11px] text-zinc-500" data-lang-en="CS Undergraduate"
-                            data-lang-ar="طالب علوم حاسوب">CS Undergraduate</div>
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- PHASE 3: DEEP SCROLL STORYTELLING SECTIONS -->
+    <!-- STAGE 3: DEEP CONTINUOUS SCROLL CONTENT -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 py-12 space-y-20">
 
         <!-- ABOUT ME SECTION -->
         <section id="about" class="space-y-6 reveal">
@@ -505,7 +513,7 @@
 
                 <!-- Milestone 1: Bag Guild -->
                 <div class="relative reveal reveal-delay-1">
-                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#050507] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
                         1
                     </div>
                     <div class="red-card rounded-2xl p-5 md:p-6 space-y-3 text-left rtl:text-right">
@@ -531,7 +539,7 @@
 
                 <!-- Milestone 2: OnChain -->
                 <div class="relative reveal reveal-delay-2">
-                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#050507] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">
                         2
                     </div>
                     <div class="red-card rounded-2xl p-5 md:p-6 space-y-3 text-left rtl:text-right">
@@ -876,7 +884,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-900 bg-[#050507] py-8">
+    <footer class="border-t border-zinc-900 bg-[#000000] py-8">
         <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
             <div class="flex items-center gap-2">
                 <span class="font-bold text-white">MOHMOS</span>
@@ -898,7 +906,7 @@
         </div>
     </div>
 
-    <!-- Scripts (Cinematic Scroll Engine & Bilingual Switcher) -->
+    <!-- Scripts (300vh Pinned Scroll Progress Engine, Bilingual Toggle, & Copy Tag) -->
     <script>
         let currentLang = 'en';
 
@@ -948,52 +956,80 @@
             }, 3000);
         }
 
-        // 🎬 ADVANCED CINEMATIC SCROLL SEQUENCE ENGINE
+        // 🎬 300vh PINNED SCROLL-DRIVEN CINEMATIC PROGRESS ENGINE
         document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('hero-scroll-track');
+            const stage1Container = document.getElementById('stage1-container');
+            const stage1Name = document.getElementById('stage1-name');
+            const scrollPrompt = document.getElementById('scroll-prompt');
+            const stage2Split = document.getElementById('stage2-split-hero');
+            const mainNavbar = document.getElementById('main-navbar');
 
-            const introOverlay = document.getElementById('cinematic-intro-overlay');
-            const introName = document.getElementById('intro-name');
-            const photoContainer = document.getElementById('hero-photo-container');
-            const textContainer = document.getElementById('hero-text-container');
+            function updateScrollProgress() {
+                const trackRect = track.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const totalScrollableDistance = trackRect.height - windowHeight;
+                
+                // Calculate progress from 0.0 to 1.0
+                let progress = -trackRect.top / totalScrollableDistance;
+                progress = Math.max(0, Math.min(1, progress));
 
-            // Phase 1: Activate initial zoom-in entrance on page load
-            setTimeout(() => {
-                introName.classList.add('active-zoom');
-            }, 100);
+                // STAGE 1: Zoom Name directly toward viewer (progress 0.0 -> 0.45)
+                if (progress <= 0.45) {
+                    const zoomProgress = progress / 0.45; // 0.0 -> 1.0
+                    
+                    // Scale grows from 0.35 up to 2.4 directly toward user's view
+                    const scale = 0.35 + (zoomProgress * 2.05);
+                    const opacity = Math.min(1, zoomProgress * 2.5);
 
-            // Scroll Listener for Phase 1 (Zoom Name) & Phase 2 (Split Transition)
-            let introFinished = false;
+                    stage1Name.style.transform = `scale(${scale})`;
+                    stage1Name.style.opacity = opacity;
+                    stage1Container.style.opacity = '1';
+                    stage1Container.style.display = 'flex';
 
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-
-                if (!introFinished) {
-                    if (scrollY > 20) {
-                        // Phase 2: Fade out intro overlay and slide in Split Hero Layout
-                        introName.classList.remove('active-zoom');
-                        introName.classList.add('docked-out');
-                        introOverlay.style.opacity = '0';
-                        
-                        setTimeout(() => {
-                            introOverlay.style.display = 'none';
-                            photoContainer.classList.add('active-slide');
-                            textContainer.classList.add('active-slide');
-                        }, 400);
-
-                        introFinished = true;
+                    // Scroll prompt fades out on first scroll
+                    if (progress > 0.05) {
+                        scrollPrompt.style.opacity = Math.max(0, 1 - (progress * 15)).toString();
+                    } else {
+                        scrollPrompt.style.opacity = '1';
                     }
-                }
-            });
 
-            // Fallback trigger if user reloads mid-page
-            if (window.scrollY > 30) {
-                introOverlay.style.display = 'none';
-                photoContainer.classList.add('active-slide');
-                textContainer.classList.add('active-slide');
-                introFinished = true;
+                    // Stage 2 Split Layout hidden during initial zoom
+                    stage2Split.style.opacity = '0';
+                    stage2Split.style.pointerEvents = 'none';
+                    mainNavbar.style.opacity = '0';
+                }
+                // STAGE 2: Split Transition (progress 0.45 -> 1.0)
+                else {
+                    const transitionProgress = (progress - 0.45) / 0.55; // 0.0 -> 1.0
+
+                    // Stage 1 shrinks out & fades
+                    const fadeOutOpacity = Math.max(0, 1 - (transitionProgress * 3));
+                    stage1Name.style.opacity = fadeOutOpacity.toString();
+                    if (fadeOutOpacity <= 0) {
+                        stage1Container.style.display = 'none';
+                    } else {
+                        stage1Container.style.display = 'flex';
+                    }
+
+                    // Stage 2 Split Hero Layout smoothly fades & locks in
+                    const splitOpacity = Math.min(1, transitionProgress * 2.2);
+                    stage2Split.style.opacity = splitOpacity.toString();
+                    stage2Split.style.pointerEvents = 'auto';
+
+                    // Header Navbar fades in
+                    mainNavbar.style.opacity = Math.min(1, transitionProgress * 3).toString();
+                }
             }
 
-            // Phase 3: Deep Scroll Storytelling Observer
+            // Bind Scroll & Resize Listeners
+            window.addEventListener('scroll', updateScrollProgress, { passive: true });
+            window.addEventListener('resize', updateScrollProgress);
+            
+            // Initial Call
+            updateScrollProgress();
+
+            // STAGE 3: Deep Scroll Reveal Observer
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
