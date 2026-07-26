@@ -1,12 +1,9 @@
-/* ==========================================================================
-   COMPONENTS: AAA GAME CARDS, BADGES & PHOTO ORBIT
-   ========================================================================== */
-
-/* AAA Game Cards & Lighting */
 .red-card {
-    background: var(--card-bg);
+    min-width: 0;
+    background: linear-gradient(145deg, rgba(16, 16, 23, 0.94), rgba(5, 5, 8, 0.98));
     border: 1px solid var(--border-dark);
-    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    box-shadow: 0 18px 60px -42px rgba(255, 49, 49, 0.55);
+    transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
     position: relative;
     overflow: hidden;
 }
@@ -17,45 +14,59 @@
     top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 30, 30, 0.4), transparent);
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 240ms ease;
 }
 
-.red-card:hover {
-    border-color: rgba(255, 30, 30, 0.5);
-    box-shadow: 0 15px 40px -10px rgba(255, 30, 30, 0.3);
-    transform: translateY(-4px);
+@media (hover: hover) {
+    .red-card:hover {
+        border-color: rgba(255, 49, 49, 0.48);
+        box-shadow: 0 22px 55px -28px rgba(255, 49, 49, 0.36);
+        transform: translateY(-3px);
+    }
+
+    .red-card:hover::before { opacity: 1; }
 }
 
-.red-card:hover::before { opacity: 1; }
-
-/* Red Badge */
 .red-badge {
+    max-width: 100%;
     background: var(--red-badge-bg);
     border: 1px solid var(--red-badge-border);
     color: var(--red-badge-text);
 }
 
-/* 360-Degree Photo Orbit (Enlarged Immersive Focus) */
+.red-badge > span:last-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 .photo-360-container {
     position: relative;
     perspective: 1000px;
-    will-change: transform, opacity, filter;
 }
 
 .photo-360-orbit {
     position: absolute;
     inset: -16px;
     border-radius: 50%;
-    border: 2px dashed rgba(255, 30, 30, 0.6);
-    box-shadow: 0 0 35px rgba(255, 30, 30, 0.35);
-    animation: spin360 14s linear infinite;
+    border: 1px dashed rgba(255, 49, 49, 0.58);
+    box-shadow: 0 0 35px rgba(255, 49, 49, 0.22);
+    animation: spin360 22s linear infinite;
 }
 
 .photo-360-frame {
     position: relative;
-    box-shadow: 0 0 50px rgba(255, 30, 30, 0.45), inset 0 0 30px rgba(255, 30, 30, 0.3);
-    border: 2px solid rgba(255, 30, 30, 0.7);
-    animation: floatUpDown 5s ease-in-out infinite;
+    box-shadow: 0 0 50px rgba(255, 49, 49, 0.28), inset 0 0 30px rgba(255, 49, 49, 0.2);
+    border: 2px solid rgba(255, 49, 49, 0.7);
+    animation: floatUpDown 7s ease-in-out infinite;
+}
+
+.brand-signal {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: var(--red-accent);
+    box-shadow: 0 0 0 0 rgba(255, 49, 49, 0.45);
+    animation: signalPulse 2.4s ease-out infinite;
 }
 
 @keyframes spin360 {
@@ -65,5 +76,17 @@
 
 @keyframes floatUpDown {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(1deg); }
+    50% { transform: translateY(-6px) rotate(0.6deg); }
+}
+
+@keyframes signalPulse {
+    70% { box-shadow: 0 0 0 7px rgba(255, 49, 49, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 49, 49, 0); }
+}
+
+@media (max-width: 359px) {
+    .photo-360-frame {
+        width: 13rem !important;
+        height: 13rem !important;
+    }
 }

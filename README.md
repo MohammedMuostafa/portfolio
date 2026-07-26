@@ -1,81 +1,64 @@
-# MOHMOS — Personal Portfolio & Web3 Hub
+# MOHMOS Portfolio
 
-Welcome to the official repository of my personal portfolio and Web3 professional hub. This repository contains the complete source code for my live portfolio website: **[mohammedmuostafa.github.io/portfolio](https://mohammedmuostafa.github.io/portfolio/)**.
+The source for [Mohamed Mostafa's portfolio](https://mohammedmuostafa.github.io/portfolio/). It presents MOHMOS as a Computer Science student, Web3 builder, full-stack developer, content creator, and Co-Founder and Protocol Lead at Lit Clinic.
 
----
+The visual identity combines a pure black background, crimson accents, game-inspired cards, subtle ambient particles, and bilingual English and Arabic content. The site is progressively enhanced: all content remains readable without JavaScript, while supported browsers receive section reveals, active navigation, language persistence, and clipboard feedback.
 
-## 🚀 About the Project
+## Development
 
-This portfolio showcases my professional journey, technical expertise, and active contributions within the Web3 ecosystem and Discord infrastructure management. Built with a high-end **AAA Game Reveal Aesthetic** using a pure black background (`#000000`) and crimson red highlights (`#ff1e1e`), it features an Apple-grade interactive presentation powered by **Lenis inertial smooth scrolling**, **GSAP + ScrollTrigger timeline scrubbing**, **SplitType character parsing**, ambient aurora particle lighting, an intentional **Hero typography hierarchy**, universal text formatting, and a **sequential cascading finale animation** (`stagger: 0.28s`) upon experience completion.
+Requirements:
 
----
+- Node.js 20 or newer
+- npm 11
 
-## 👨‍💻 About Mohamed Mostafa (MOHMOS)
+Install and validate:
 
-> *"I am Mohamed Mostafa (MOHMOS), a 20 year old Computer Science student with a strong passion for Discord communities, blockchain technology, and the Web3 ecosystem."*
-
-* **Current Role:** Protocol Lead @ **Lit Clinic (LitVM Ecosystem)** — leading written protocol communication, technical planning, product discussions, system design conversations, and Discord infrastructure.
-* **Journey Milestones:**
-  * **Lit Clinic (2026–Present):** Protocol Lead & Discord Infrastructure Specialist.
-  * **OnChain Outlaws:** Core Contributor — community organization, member support pipelines, and project coordination.
-  * **Bag Guild (2022–2025):** Contributor & Community Leader — building, configuring, and managing Discord infrastructure, ticket support systems, anti-raid security, and moderation workflows.
-* **Core Expertise:** Discord Infrastructure (Server layout optimization, role hierarchy & permission trees, anti-raid security, bot configuration, webhooks, ticket support workflows), Community Operations, and Written Protocol Communication.
-* **Education & Goals:** Bachelor's Degree in Computer Science (Undergraduate — In Progress), focusing on software engineering, networking, algorithms, and decentralized systems. Long-term goal: **Blockchain Developer**.
-
----
-
-## 📂 Modular Architecture & Typography Refinements
-
+```bash
+npm install
+npm run lint
+npm run type-check
+npm run build
+npm test
 ```
+
+Run the production build locally:
+
+```bash
+npm run dev
+```
+
+The development server serves `dist/`. Source styles live in `css/`; PostCSS compiles Tailwind and the local design system into `styles.css`. The build also creates compressed WebP assets and copies only production files into `dist/`.
+
+## Structure
+
+```text
 portfolio/
-│
-├── index.html              # Clean semantic HTML markup & structured typography hierarchy
-├── assets/                 # Profile, guild & organization logos
-├── css/                    # Modular Design System Stylesheets
-│   ├── variables.css       # Design tokens, color variables & typography scale
-│   ├── layout.css          # Stage layout, text hierarchy rules & stack collapse
-│   ├── components.css      # AAA game cards, photo orbit & badge components
-│   ├── animations.css      # Keyframes, ambient aurora light & SplitType styles
-│   └── main.css            # Main CSS bundle importing all modules
-│
-├── js/                     # Modular JavaScript ES Subsystems
-│   ├── app.js              # Main ES module orchestrator
-│   ├── background.js       # Multi-layer particle canvas & ambient aurora engine
-│   ├── navigation.js       # Header navbar fade & mobile drawer controls
-│   ├── scroll.js           # Lenis smooth scroll, 1-sec pause & sequential cascade engine
-│   ├── typewriter.js       # SplitType character parser & typewriter state manager
-│   └── utils.js            # Language switcher & clipboard toast utilities
-│
-└── README.md               # Technical project documentation
+|-- .github/workflows/deploy.yml  # Validation and GitHub Pages deployment
+|-- assets/                       # Source and generated optimized images
+|-- css/                          # Design tokens, layout, components, animations
+|-- js/                           # Navigation, language, scroll, and canvas modules
+|-- scripts/                      # Deterministic image and site build scripts
+|-- tests/                        # Metadata, security, and asset smoke tests
+|-- index.html                    # Semantic single-page portfolio
+|-- robots.txt                    # Search crawler policy
+|-- sitemap.xml                   # Canonical site URL
+`-- site.webmanifest              # Install and theme metadata
 ```
 
-### 🌟 Typography Hierarchy System
+## Deployment
 
-1. **Hero Text Hierarchy:**
-   - `MOHMOS.` (Brand Title — Largest: `text-4xl sm:text-6xl font-black text-white`)
-   - `Mohamed Mostafa` (Full Name — Secondary: `text-xl sm:text-2xl font-extrabold text-zinc-200`)
-   - `Protocol Lead @ Lit Clinic` (Primary Role Highlight — Red Accent: `text-base sm:text-lg font-bold text-red-500`)
-   - `Discord Infrastructure Specialist` (Specialty Role: `text-sm sm:text-base font-semibold text-zinc-300`)
-   - `Computer Science Student` (Academic Background: `text-xs sm:text-sm font-mono text-zinc-400`)
-2. **Universal Paragraph & Card Alignment:** Standardized line height (`leading-relaxed`), paragraph widths (`max-w-xl`), equal card padding (`p-4.5 sm:p-6`), and responsive breakpoint scaling across mobile, tablet, laptop, and desktop viewports.
+Pushes to `main` trigger the GitHub Pages workflow. The workflow installs locked dependencies, runs linting and type checks, builds the production artifact, runs tests, and deploys `dist/` only after every check succeeds.
 
----
+## Profiles
 
-## 🌐 Connect & Social Platforms
+- Discord: `mohmos`
+- Lit Clinic: [litclinic.xyz](https://litclinic.xyz)
+- Linktree: [moh.mos](https://linktr.ee/moh.mos)
+- GitHub: [MohammedMuostafa](https://github.com/MohammedMuostafa)
+- X: [@mohmos](https://x.com/mohmos)
+- YouTube: [@MOH-MOS](https://www.youtube.com/@MOH-MOS)
+- Kick: [moh-mos](https://kick.com/moh-mos)
 
-| Platform | Handle / URL | Link |
-| :--- | :--- | :--- |
-| **Discord** | `mohmos` | 1-Click Copy in Portfolio |
-| **Lit Clinic Website** | `litclinic.xyz` | [Visit Site](https://litclinic.xyz) |
-| **Linktree** | `moh.mos` | [View Linktree](https://linktree.com/moh.mos) |
-| **GitHub** | `MohammedMuostafa` | [View GitHub](https://github.com/MohammedMuostafa) |
-| **X (Twitter)** | `@mohmos` | [Follow on X](https://x.com/mohmos) |
-| **Telegram** | `@MOH-MOS` | [Message on Telegram](https://t.me/MOH-MOS) |
-| **YouTube** | `@MOH-MOS` | [Subscribe on YouTube](https://www.youtube.com/@MOH-MOS) |
-| **Kick** | `moh-mos` | [Watch on Kick](https://kick.com/moh-mos) |
+## Copyright
 
----
-
-## 📄 License & Attribution
-
-© 2026 **Mohamed Mostafa (MOHMOS)**. All rights reserved. Source code hosted open-source on [GitHub](https://github.com/MohammedMuostafa/portfolio).
+Copyright 2026 Mohamed Mostafa (MOHMOS). All rights reserved. The source is publicly visible but is not licensed for reuse.

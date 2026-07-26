@@ -1,10 +1,24 @@
-/* ==========================================================================
-   UTILS MODULE: LANGUAGE SWITCHER, CLIPBOARD & TOAST HELPERS
-   ========================================================================== */
+let currentLang = 'en';
+let toastTimer = 0;
 
-export let currentLang = 'en';
+export function initUtilities() {
+    const languageButton = document.getElementById('lang-toggle-btn');
+    const copyButton = document.getElementById('copy-discord');
+    const year = document.querySelector('[data-current-year]');
 
-export function toggleLanguage(onLanguageChangedCallback) {
+    if (year) year.textContent = String(new Date().getFullYear());
+
+    languageButton?.addEventListener('click', toggleLanguage);
+    copyButton?.addEventListener('click', copyDiscordTag);
+
+    try {
+        if (localStorage.getItem('portfolio-language') === 'ar') toggleLanguage();
+    } catch {
+        // Storage can be unavailable in privacy-restricted browsing contexts.
+    }
+}
+
+function toggleLanguage() {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     const isAr = currentLang === 'ar';
 
@@ -16,38 +30,64 @@ export function toggleLanguage(onLanguageChangedCallback) {
         langLabel.textContent = isAr ? 'English' : 'العربية';
     }
 
-    document.querySelectorAll('[data-lang-en]').forEach(el => {
-        if (!el.classList.contains('split-type-target')) {
-            const text = isAr ? el.getAttribute('data-lang-ar') : el.getAttribute('data-lang-en');
-            if (text) el.textContent = text;
-        } else {
-            const text = isAr ? el.getAttribute('data-lang-ar') : el.getAttribute('data-lang-en');
-            if (text) {
-                el.textContent = text;
-            }
-        }
+    document.querySelectorAll('[data-lang-en]').forEach((element) => {
+        const text = element.getAttribute(isAr ? 'data-lang-ar' : 'data-lang-en');
+        if (text) element.textContent = text;
     });
 
-    const toastText = document.getElementById('toast-text');
-    if (toastText) {
-        toastText.innerHTML = isAr 
-            ? 'تم نسخ حساب ديسكورد <strong class="text-red-400">mohmos</strong> إلى الحافظة!'
-            : 'Discord tag <strong class="text-red-400">mohmos</strong> copied to clipboard!';
-    }
-
-    if (onLanguageChangedCallback) {
-        onLanguageChangedCallback(currentLang);
+    try {
+        localStorage.setItem('portfolio-language', currentLang);
+    } catch {
+        // The selected language still applies for the current page view.
     }
 }
 
-export function copyDiscordTag() {
-    navigator.clipboard.writeText('mohmos');
+async function copyDiscordTag() {
+    const didCopy = await writeClipboard('mohmos');
+    showToast(didCopy);
+}
+
+/** @param {string} value */
+async function writeClipboard(value) {
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+            return true;
+        }
+        return copyWithFallback(value);
+    } catch {
+        return copyWithFallback(value);
+    }
+}
+
+/** @param {string} value */
+function copyWithFallback(value) {
+    const textArea = document.createElement('textarea');
+    textArea.value = value;
+    textArea.setAttribute('readonly', '');
+    textArea.className = 'clipboard-fallback';
+    document.body.append(textArea);
+    textArea.select();
+    const didCopy = document.execCommand('copy');
+    textArea.remove();
+    return didCopy;
+}
+
+/** @param {boolean} didCopy */
+function showToast(didCopy) {
     const toast = document.getElementById('toast');
-    if (!toast) return;
+    const toastText = document.getElementById('toast-text');
+    if (!toast || !toastText) return;
+
+    const isAr = currentLang === 'ar';
+    toastText.textContent = didCopy
+        ? (isAr ? 'تم نسخ حساب ديسكورد mohmos.' : 'Discord username mohmos copied.')
+        : (isAr ? 'تعذر النسخ. حساب ديسكورد هو mohmos.' : 'Could not copy. The Discord username is mohmos.');
 
     toast.classList.remove('translate-y-20', 'opacity-0');
     toast.classList.add('translate-y-0', 'opacity-100');
-    setTimeout(() => {
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-20', 'opacity-0');
     }, 3000);

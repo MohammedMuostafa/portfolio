@@ -1,11 +1,17 @@
 {
   "name": "mohmos-web3-portfolio",
-  "version": "1.0.0",
-  "description": "Modern Web3 & Discord Infrastructure Specialist Portfolio for MOHMOS",
-  "main": "index.html",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portfolio for Mohamed Mostafa, Web3 builder, full-stack developer, content creator, and Lit Clinic protocol lead.",
+  "type": "module",
   "scripts": {
-    "dev": "npx serve .",
-    "start": "npx serve ."
+    "build": "npm run optimize:images && postcss css/main.css -o styles.css && node scripts/build-site.js",
+    "dev": "npm run build && node scripts/server.js",
+    "lint": "eslint js scripts tests eslint.config.js && html-validate index.html",
+    "optimize:images": "node scripts/optimize-images.js",
+    "start": "node scripts/server.js",
+    "test": "node --test",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [
     "web3",
@@ -15,6 +21,24 @@
     "discord-infrastructure",
     "blockchain-developer"
   ],
-  "author": "MOHMOS",
-  "license": "MIT"
+  "author": "Mohamed Mostafa (MOHMOS)",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "npm@11.16.0",
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.10.2",
+    "autoprefixer": "10.4.20",
+    "eslint": "10.8.0",
+    "globals": "15.14.0",
+    "html-validate": "11.5.6",
+    "postcss": "8.5.23",
+    "postcss-cli": "11.0.0",
+    "postcss-import": "16.1.0",
+    "sharp": "0.35.3",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.2"
+  }
 }

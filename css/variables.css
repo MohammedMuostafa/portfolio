@@ -1,31 +1,19 @@
-/* ==========================================================================
-   CSS VARIABLES & TYPOGRAPHY DESIGN TOKENS
-   ========================================================================== */
-
 :root {
     --bg-black: #000000;
     --card-bg: #08080c;
     --card-hover-bg: #101017;
-    --border-dark: #181822;
-    --red-accent: #ff1e1e;
-    --red-hover: #e01212;
-    --red-glow: rgba(255, 30, 30, 0.4);
-    --red-badge-bg: rgba(255, 30, 30, 0.08);
-    --red-badge-border: rgba(255, 30, 30, 0.3);
-    --red-badge-text: #ff5555;
+    --border-dark: #24242e;
+    --red-accent: #ff3131;
+    --red-hover: #ff4d4d;
+    --red-glow: rgba(255, 49, 49, 0.24);
+    --red-badge-bg: rgba(255, 49, 49, 0.09);
+    --red-badge-border: rgba(255, 49, 49, 0.32);
+    --red-badge-text: #ff6b6b;
 
     --font-sans: 'Plus Jakarta Sans', 'Cairo', sans-serif;
     --font-arabic: 'Cairo', 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Typographic Hierarchy Tokens */
-    --h1-size: clamp(2.25rem, 5vw, 3.75rem);
-    --h2-size: clamp(1.25rem, 3vw, 1.875rem);
-    --h3-size: clamp(1.125rem, 2.5vw, 1.5rem);
-    --body-size: clamp(0.8125rem, 1.5vw, 0.9375rem);
-    --small-size: clamp(0.75rem, 1.2vw, 0.8125rem);
-
-    --lh-tight: 1.15;
-    --lh-normal: 1.45;
-    --lh-relaxed: 1.65;
+    --section-space: clamp(4.5rem, 9vw, 7.5rem);
+    --content-width: 64rem;
 }

@@ -1,0 +1,11 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "attr-quotes": ["error", { "style": "double" }],
+    "doctype-style": ["error", { "style": "lowercase" }],
+    "long-title": "off",
+    "no-inline-style": "error",
+    "void-style": ["error", { "style": "selfclosing" }],
+    "wcag/h63": "off"
+  }
+}

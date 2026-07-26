@@ -1,587 +1,1322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOHMOS | Protocol Lead & Discord Infrastructure Specialist</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description"
-        content="Official portfolio of Mohamed Mostafa (MOHMOS) - Protocol Lead at Lit Clinic (LitVM Ecosystem), Discord Infrastructure Specialist, and Computer Science Student.">
-    <meta name="keywords"
-        content="MOHMOS, Mohamed Mostafa, Lit Clinic, LitVM, Web3, Discord Infrastructure, Protocol Lead, OnChain Outlaws, Bag Guild, Smart Contracts, Blockchain Developer">
-    <meta name="author" content="Mohamed Mostafa (MOHMOS)">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="MOHMOS | Protocol Lead & Discord Infrastructure Specialist">
-    <meta property="og:description"
-        content="Web3 community architecture, Discord infrastructure, and Computer Science student.">
-    <meta property="og:image" content="assets/avatar.png">
-    <meta property="og:type" content="website">
-
-    <!-- Google Fonts: Plus Jakarta Sans, Cairo (for Arabic), & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOHMOS | Web3 Builder &amp; Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Mohamed Mostafa (MOHMOS), a Computer Science student, Web3 builder, full-stack developer, content creator, and Co-Founder and Protocol Lead at Lit Clinic."
+    />
+    <meta name="author" content="Mohamed Mostafa (MOHMOS)" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+      rel="canonical"
+      href="https://mohammedmuostafa.github.io/portfolio/"
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="site.webmanifest" />
 
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta
+      property="og:title"
+      content="MOHMOS | Web3 Builder & Full-Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="Computer Science student, Web3 builder, full-stack developer, content creator, and Co-Founder and Protocol Lead at Lit Clinic."
+    />
+    <meta
+      property="og:image"
+      content="https://mohammedmuostafa.github.io/portfolio/assets/optimized/avatar.webp"
+    />
+    <meta property="og:image:width" content="630" />
+    <meta property="og:image:height" content="572" />
+    <meta
+      property="og:image:alt"
+      content="Portrait of Mohamed Mostafa, known as MOHMOS"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://mohammedmuostafa.github.io/portfolio/"
+    />
+    <meta property="og:site_name" content="MOHMOS Portfolio" />
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
-                        arabic: ['Cairo', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        dark: {
-                            bg: '#000000',
-                            card: '#08080c',
-                            cardHover: '#101017',
-                            border: '#181822',
-                        },
-                        redAccent: {
-                            DEFAULT: '#ff1e1e',
-                            hover: '#e01212',
-                            glow: 'rgba(255, 30, 30, 0.4)',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="MOHMOS | Web3 Builder & Full-Stack Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Mohamed Mostafa: Web3 builder, full-stack developer, content creator, and Lit Clinic protocol lead."
+    />
+    <meta
+      name="twitter:image"
+      content="https://mohammedmuostafa.github.io/portfolio/assets/optimized/avatar.webp"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Portrait of Mohamed Mostafa, known as MOHMOS"
+    />
 
-    <!-- Modular CSS Entry Bundle -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="preload"
+      href="assets/optimized/avatar.webp"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+    />
 
-    <!-- Third-Party Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/split-type"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-    <!-- Main ES Module Application Script -->
+    <link rel="stylesheet" href="styles.css" />
     <script type="module" src="js/app.js"></script>
-</head>
 
-<body class="min-h-screen selection:bg-red-600 selection:text-white flex flex-col relative bg-black">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mohamed Mostafa",
+        "alternateName": "MOHMOS",
+        "url": "https://mohammedmuostafa.github.io/portfolio/",
+        "image": "https://mohammedmuostafa.github.io/portfolio/assets/optimized/avatar.webp",
+        "jobTitle": "Co-Founder and Protocol Lead at Lit Clinic",
+        "description": "Computer Science student, Web3 builder, full-stack developer, content creator, and Discord infrastructure specialist.",
+        "sameAs": [
+          "https://github.com/MohammedMuostafa",
+          "https://x.com/mohmos",
+          "https://www.youtube.com/@MOH-MOS",
+          "https://linktr.ee/moh.mos"
+        ]
+      }
+    </script>
+  </head>
+
+  <body
+    class="min-h-screen selection:bg-red-600 selection:text-white flex flex-col relative bg-black"
+  >
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <!-- Ambient Aurora Glow & Particle Canvas Overlay -->
-    <div class="ambient-aurora"></div>
-    <canvas id="particle-canvas"></canvas>
+    <div class="ambient-aurora" aria-hidden="true"></div>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-    <!-- Header Navigation (Reveals after Hero sequence finishes) -->
-    <header id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#000000]/90 backdrop-blur-md border-b border-zinc-900 opacity-0 transition-opacity duration-700 pointer-events-none">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <button onclick="scrollToProgress(0.08)" class="font-black text-xl tracking-tight text-white hover:text-red-500 transition-colors flex items-center gap-2">
-                <span>MOHMOS</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
-            </button>
+    <header
+      id="main-navbar"
+      class="fixed top-0 left-0 right-0 z-50 bg-[#000000]/90 backdrop-blur-md border-b border-zinc-900"
+    >
+      <div
+        class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <a
+          href="#home"
+          class="font-black text-xl tracking-tight text-white hover:text-red-500 transition-colors flex items-center gap-2"
+          aria-label="MOHMOS home"
+        >
+          <span>MOHMOS</span>
+          <span class="brand-signal" aria-hidden="true"></span>
+        </a>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-400">
-                <button onclick="scrollToProgress(0.08)" class="hover:text-white transition-colors" data-lang-en="Home" data-lang-ar="الرئيسية">Home</button>
-                <button onclick="scrollToProgress(0.24)" class="hover:text-white transition-colors" data-lang-en="About Me" data-lang-ar="عني">About Me</button>
-                <button onclick="scrollToProgress(0.41)" class="hover:text-white transition-colors" data-lang-en="Journey" data-lang-ar="المسيرة">Journey</button>
-                <button onclick="scrollToProgress(0.58)" class="hover:text-white transition-colors" data-lang-en="Experience" data-lang-ar="الخبرات">Experience</button>
-                <button onclick="scrollToProgress(0.75)" class="hover:text-white transition-colors" data-lang-en="Skills" data-lang-ar="المهارات">Skills</button>
-                <button onclick="scrollToProgress(0.92)" class="hover:text-white transition-colors" data-lang-en="Connect" data-lang-ar="التواصل">Connect</button>
-            </nav>
+        <!-- Desktop Nav Links -->
+        <nav
+          class="hidden lg:flex items-center gap-7 text-sm font-medium text-zinc-400"
+          aria-label="Primary navigation"
+        >
+          <a
+            href="#home"
+            data-nav-link
+            class="nav-link"
+            data-lang-en="Home"
+            data-lang-ar="الرئيسية"
+            >Home</a
+          >
+          <a
+            href="#about"
+            data-nav-link
+            class="nav-link"
+            data-lang-en="About"
+            data-lang-ar="عني"
+            >About</a
+          >
+          <a
+            href="#projects"
+            data-nav-link
+            class="nav-link"
+            data-lang-en="Projects"
+            data-lang-ar="المشاريع"
+            >Projects</a
+          >
+          <a
+            href="#experience"
+            data-nav-link
+            class="nav-link"
+            data-lang-en="Experience"
+            data-lang-ar="الخبرات"
+            >Experience</a
+          >
+          <a
+            href="#skills"
+            data-nav-link
+            class="nav-link"
+            data-lang-en="Skills"
+            data-lang-ar="المهارات"
+            >Skills</a
+          >
+          <a
+            href="#contact"
+            data-nav-link
+            class="nav-link"
+            data-lang-en="Connect"
+            data-lang-ar="التواصل"
+            >Connect</a
+          >
+        </nav>
 
-            <!-- Language Switcher & Action Button -->
-            <div class="flex items-center gap-3">
-                <button id="lang-toggle-btn" onclick="toggleLanguage()"
-                    class="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs font-semibold text-red-400 flex items-center gap-1.5 transition-all">
-                    <i class="fa-solid fa-globe"></i>
-                    <span id="lang-label">العربية</span>
-                </button>
+        <!-- Language Switcher & Action Button -->
+        <div class="flex items-center gap-3">
+          <button
+            id="lang-toggle-btn"
+            type="button"
+            aria-label="Switch language"
+            class="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs font-semibold text-red-400 flex items-center gap-1.5 transition-all"
+          >
+            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+            <span id="lang-label">العربية</span>
+          </button>
 
-                <button onclick="scrollToProgress(0.92)"
-                    class="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-red-600/10 hover:bg-red-600/20 border border-red-500/30 text-red-400 text-xs font-semibold transition-all"
-                    data-lang-en="Get in Touch" data-lang-ar="تواصل معي">
-                    Get in Touch
-                </button>
+          <a
+            href="#contact"
+            class="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-red-600/10 hover:bg-red-600/20 border border-red-500/30 text-red-400 text-xs font-semibold transition-all"
+            data-lang-en="Get in Touch"
+            data-lang-ar="تواصل معي"
+          >
+            Get in Touch
+          </a>
 
-                <button id="mobile-toggle" class="md:hidden text-zinc-400 hover:text-white focus:outline-none ml-1"
-                    aria-label="Toggle navigation">
-                    <i class="fa-solid fa-bars text-lg"></i>
-                </button>
-            </div>
+          <button
+            id="mobile-toggle"
+            type="button"
+            class="lg:hidden text-zinc-400 hover:text-white ml-1"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <i class="fa-solid fa-bars text-lg" aria-hidden="true"></i>
+          </button>
         </div>
+      </div>
 
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-900 bg-[#000000] px-6 py-4 space-y-3">
-            <button onclick="scrollToProgress(0.08); closeMobileMenu()" class="block text-zinc-300 hover:text-white text-sm font-medium py-1 text-left w-full" data-lang-en="Home" data-lang-ar="الرئيسية">Home</button>
-            <button onclick="scrollToProgress(0.24); closeMobileMenu()" class="block text-zinc-300 hover:text-white text-sm font-medium py-1 text-left w-full" data-lang-en="About Me" data-lang-ar="عني">About Me</button>
-            <button onclick="scrollToProgress(0.41); closeMobileMenu()" class="block text-zinc-300 hover:text-white text-sm font-medium py-1 text-left w-full" data-lang-en="Journey" data-lang-ar="المسيرة">Journey</button>
-            <button onclick="scrollToProgress(0.58); closeMobileMenu()" class="block text-zinc-300 hover:text-white text-sm font-medium py-1 text-left w-full" data-lang-en="Experience" data-lang-ar="الخبرات">Experience</button>
-            <button onclick="scrollToProgress(0.75); closeMobileMenu()" class="block text-zinc-300 hover:text-white text-sm font-medium py-1 text-left w-full" data-lang-en="Skills" data-lang-ar="المهارات">Skills</button>
-            <button onclick="scrollToProgress(0.92); closeMobileMenu()" class="block text-zinc-300 hover:text-white text-sm font-medium py-1 text-left w-full" data-lang-en="Connect" data-lang-ar="التواصل">Connect</button>
-        </div>
+      <!-- Mobile Navigation Menu -->
+      <nav
+        id="mobile-menu"
+        class="lg:hidden border-b border-zinc-900 bg-[#000000] px-6 py-4 space-y-1"
+        aria-label="Mobile navigation"
+        hidden
+      >
+        <a
+          href="#home"
+          class="mobile-nav-link"
+          data-lang-en="Home"
+          data-lang-ar="الرئيسية"
+          >Home</a
+        >
+        <a
+          href="#about"
+          class="mobile-nav-link"
+          data-lang-en="About"
+          data-lang-ar="عني"
+          >About</a
+        >
+        <a
+          href="#projects"
+          class="mobile-nav-link"
+          data-lang-en="Projects"
+          data-lang-ar="المشاريع"
+          >Projects</a
+        >
+        <a
+          href="#experience"
+          class="mobile-nav-link"
+          data-lang-en="Experience"
+          data-lang-ar="الخبرات"
+          >Experience</a
+        >
+        <a
+          href="#skills"
+          class="mobile-nav-link"
+          data-lang-en="Skills"
+          data-lang-ar="المهارات"
+          >Skills</a
+        >
+        <a
+          href="#contact"
+          class="mobile-nav-link"
+          data-lang-en="Connect"
+          data-lang-ar="التواصل"
+          >Connect</a
+        >
+      </nav>
     </header>
 
-    <!-- 1600vh GSAP MASTER SCROLL TRACK & STICKY STAGE -->
-    <div id="gsap-scroll-track">
-        <div id="gsap-sticky-stage">
+    <main id="main-content">
+      <section
+        id="home"
+        class="scene-stage-wrapper hero-section"
+        data-reveal-section
+        aria-labelledby="hero-title"
+      >
+        <div
+          class="flex flex-col-reverse md:flex-row items-center justify-between gap-12 w-full"
+        >
+          <div class="flex-shrink-0 photo-360-container scene-visual-left">
+            <div class="photo-360-orbit" aria-hidden="true"></div>
+            <div
+              class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden photo-360-frame bg-zinc-900 group"
+            >
+              <img
+                src="assets/optimized/avatar.webp"
+                alt="Mohamed Mostafa, known as MOHMOS"
+                width="630"
+                height="572"
+                decoding="async"
+                fetchpriority="high"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-80"
+                aria-hidden="true"
+              ></div>
+              <div
+                class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#000000]/90 border border-red-500/40 text-xs backdrop-blur-md shadow-lg"
+              >
+                <span
+                  class="w-2 h-2 rounded-full bg-red-500"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  class="font-mono text-white text-[11px] tracking-wider font-bold"
+                  >MOHMOS</span
+                >
+              </div>
+            </div>
+          </div>
 
-            <!-- INTRO OVERLAY (Pure Black -> Scroll Prompt -> MOHMOS 3D Zoom) -->
-            <div id="intro-name-overlay">
-                <div id="intro-name" class="intro-title flex items-center gap-2">
-                    <span>MOHMOS</span>
-                    <span class="text-red-500 font-bold">.</span>
-                </div>
-                <div id="intro-scroll-prompt" class="mt-8 flex flex-col items-center gap-2 text-xs font-mono text-zinc-400">
-                    <span data-lang-en="Scroll Down to Begin Experience" data-lang-ar="اسكرول لأسفل لبدء التجربة">Scroll Down to Begin Experience</span>
-                    <div class="w-6 h-10 rounded-full border-2 border-red-500/60 p-1 flex justify-center items-start">
-                        <div class="w-1.5 h-3 rounded-full bg-red-500 animate-bounce"></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-red-500 text-xs animate-pulse"></i>
-                </div>
+          <!-- REFINED HERO TEXT HIERARCHY (Requirement 1) -->
+          <div
+            class="flex-1 space-y-3.5 text-left rtl:text-right scene-content-right"
+          >
+            <div
+              class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md red-badge text-xs font-mono"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-red-500 animate-pulse"
+              ></span>
+              <span
+                class="split-type-target"
+                data-lang-en="Protocol Lead @ Lit Clinic (LitVM Ecosystem)"
+                data-lang-ar="قائد البروتوكول في Lit Clinic (منظومة LitVM)"
+                >Protocol Lead @ Lit Clinic (LitVM Ecosystem)</span
+              >
             </div>
 
-            <!-- SCENE 1: HERO REVEAL (Stage 1) -->
-            <div id="scene-0" class="scene-stage-wrapper">
-                <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12 w-full">
-                    
-                    <div class="flex-shrink-0 photo-360-container scene-visual-left">
-                        <div class="photo-360-orbit"></div>
-                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden photo-360-frame bg-zinc-900 group">
-                            <img src="assets/avatar.png" alt="Mohamed Mostafa (MOHMOS) Profile Photo"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-80"></div>
-                            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#000000]/90 border border-red-500/40 text-xs backdrop-blur-md shadow-lg">
-                                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                                <span class="font-mono text-white text-[11px] tracking-wider font-bold">MOHMOS</span>
-                            </div>
-                        </div>
-                    </div>
+            <h1
+              id="hero-title"
+              class="text-4xl sm:text-6xl font-black tracking-tight text-white"
+            >
+              MOHMOS<span class="text-red-500 font-bold">.</span>
+            </h1>
 
-                    <!-- REFINED HERO TEXT HIERARCHY (Requirement 1) -->
-                    <div class="flex-1 space-y-3.5 text-left rtl:text-right scene-content-right">
-                        
-                        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md red-badge text-xs font-mono">
-                            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                            <span class="split-type-target" data-lang-en="Protocol Lead @ Lit Clinic (LitVM Ecosystem)"
-                                data-lang-ar="قائد البروتوكول في Lit Clinic (منظومة LitVM)">Protocol Lead @ Lit Clinic (LitVM Ecosystem)</span>
-                        </div>
+            <h2
+              class="text-xl sm:text-2xl font-extrabold text-zinc-200 tracking-tight split-type-target"
+              data-lang-en="Mohamed Mostafa"
+              data-lang-ar="محمد مصطفى"
+            >
+              Mohamed Mostafa
+            </h2>
 
-                        <!-- 1. MOHMOS (Largest Brand Title) -->
-                        <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white split-type-target">
-                            MOHMOS<span class="text-red-500 font-bold">.</span>
-                        </h1>
-
-                        <!-- 2. Mohamed Mostafa (Full Name - Secondary) -->
-                        <h2 class="text-xl sm:text-2xl font-extrabold text-zinc-200 tracking-tight split-type-target"
-                            data-lang-en="Mohamed Mostafa" data-lang-ar="محمد مصطفى">
-                            Mohamed Mostafa
-                        </h2>
-
-                        <!-- 3. Roles Stack (Protocol Lead -> Discord Specialist -> CS Student) -->
-                        <div class="space-y-1 pt-0.5">
-                            <div class="text-base sm:text-lg font-bold text-red-500 split-type-target"
-                                data-lang-en="Protocol Lead @ Lit Clinic" data-lang-ar="قائد البروتوكول في Lit Clinic">
-                                Protocol Lead @ Lit Clinic
-                            </div>
-                            <div class="text-sm sm:text-base font-semibold text-zinc-300 split-type-target"
-                                data-lang-en="Discord Infrastructure Specialist" data-lang-ar="مختص بنية ديسكورد التحتية">
-                                Discord Infrastructure Specialist
-                            </div>
-                            <div class="text-xs sm:text-sm font-mono text-zinc-400 split-type-target"
-                                data-lang-en="Computer Science Student (20 Years Old)" data-lang-ar="طالب علوم حاسوب (20 سنة)">
-                                Computer Science Student (20 Years Old)
-                            </div>
-                        </div>
-
-                        <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed max-w-xl font-normal pt-1 split-type-target"
-                            data-lang-en="Passionate about Discord communities and the Web3 ecosystem. Specializing in professional server architecture, permission tree design, auto-moderation workflows, and leading written protocol communication."
-                            data-lang-ar="شغوف بمجتمعات ديسكورد وعالم الـ Web3. أختص في هندسة السيرفرات الاحترافية، تصميم الصلاحيات، الحماية التلقائية، وقيادة الاتصالات الكتابية للبروتوكول.">
-                            Passionate about Discord communities and the Web3 ecosystem. Specializing in professional server architecture, permission tree design, auto-moderation workflows, and leading written protocol communication.
-                        </p>
-
-                        <div class="flex flex-wrap items-center gap-3 pt-2">
-                            <button onclick="scrollToProgress(0.24)"
-                                class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-all shadow-lg shadow-red-950/50 flex items-center gap-2">
-                                <span data-lang-en="Read Full Story" data-lang-ar="اقرأ القصة الكاملة">Read Full Story</span>
-                                <i class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"></i>
-                            </button>
-                            <button onclick="scrollToProgress(0.92)"
-                                class="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-semibold text-xs transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-paper-plane text-red-500 text-xs"></i>
-                                <span data-lang-en="Get in Touch" data-lang-ar="تواصل معي">Get in Touch</span>
-                            </button>
-                        </div>
-
-                        <div class="pt-3 grid grid-cols-3 gap-4 border-t border-zinc-900 max-w-md">
-                            <div>
-                                <div class="text-xl font-black text-white font-mono">20</div>
-                                <div class="text-[10px] text-zinc-500" data-lang-en="20 Years Old" data-lang-ar="العمر 20 سنة">20 Years Old</div>
-                            </div>
-                            <div>
-                                <div class="text-xl font-black text-red-500 font-mono">2022+</div>
-                                <div class="text-[10px] text-zinc-500" data-lang-en="Web3 & Guilds" data-lang-ar="خبرة Web3">Web3 & Guilds</div>
-                            </div>
-                            <div>
-                                <div class="text-xl font-black text-white font-mono" data-lang-en="B.Sc. CS" data-lang-ar="طالب حاسوب">B.Sc. CS</div>
-                                <div class="text-[10px] text-zinc-500" data-lang-en="CS Student" data-lang-ar="طالب علوم حاسوب">CS Student</div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="space-y-1 pt-0.5">
+              <div
+                class="text-base sm:text-lg font-bold text-red-500 split-type-target"
+                data-lang-en="Co-Founder &amp; Protocol Lead @ Lit Clinic"
+                data-lang-ar="شريك مؤسس وقائد البروتوكول في Lit Clinic"
+              >
+                Co-Founder &amp; Protocol Lead @ Lit Clinic
+              </div>
+              <div
+                class="text-sm sm:text-base font-semibold text-zinc-300 split-type-target"
+                data-lang-en="Web3 Builder &amp; Full-Stack Developer"
+                data-lang-ar="مطوّر Web3 ومطوّر Full-Stack"
+              >
+                Web3 Builder &amp; Full-Stack Developer
+              </div>
+              <div
+                class="text-xs sm:text-sm font-mono text-zinc-400 split-type-target"
+                data-lang-en="Computer Science Student &amp; Content Creator"
+                data-lang-ar="طالب علوم حاسوب وصانع محتوى"
+              >
+                Computer Science Student &amp; Content Creator
+              </div>
             </div>
 
-            <!-- SCENE 2: ABOUT ME (Stage 2) -->
-            <div id="scene-1" class="scene-stage-wrapper">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
-                    
-                    <div class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]">
-                        <div class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40">
-                            <i class="fa-solid fa-user-astronaut"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-white tracking-tight split-type-target" data-lang-en="About Me" data-lang-ar="عني">About Me</h3>
-                        <p class="text-xs text-zinc-400 max-w-xs split-type-target" data-lang-en="Background, Web3 journey, expertise, and core principles" data-lang-ar="الخلفية، مسيرة الـ Web3، الخبرات والمبادئ">Background, Web3 journey, expertise, and core principles</p>
-                    </div>
+            <p
+              class="text-zinc-300 text-xs sm:text-sm leading-relaxed max-w-xl font-normal pt-1 split-type-target"
+              data-lang-en="Passionate about Discord communities and the Web3 ecosystem. Specializing in professional server architecture, permission tree design, auto-moderation workflows, and leading written protocol communication."
+              data-lang-ar="شغوف بمجتمعات ديسكورد وعالم الـ Web3. أختص في هندسة السيرفرات الاحترافية، تصميم الصلاحيات، الحماية التلقائية، وقيادة الاتصالات الكتابية للبروتوكول."
+            >
+              Passionate about Discord communities and the Web3 ecosystem.
+              Specializing in professional server architecture, permission tree
+              design, auto-moderation workflows, and leading written protocol
+              communication.
+            </p>
 
-                    <div class="md:col-span-2 red-card rounded-2xl p-6 space-y-3 scene-content-right">
-                        <div class="space-y-3 text-left rtl:text-right">
-                            
-                            <h3 class="text-2xl font-black text-white tracking-tight split-type-target" data-lang-en="Biography & Goals" data-lang-ar="السيرة والاهداف">Biography & Goals</h3>
-                            <div class="text-xs font-semibold text-red-400 font-mono split-type-target" data-lang-en="Computer Science Student & Protocol Lead" data-lang-ar="طالب علوم حاسوب وقائد بروتوكول">Computer Science Student & Protocol Lead</div>
-
-                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
-                                data-lang-en="I am Mohamed Mostafa (MOHMOS), a 20 year old Computer Science student with a strong passion for Discord communities, blockchain technology, and the Web3 ecosystem."
-                                data-lang-ar="أنا محمد مصطفى (MOHMOS)، طالب علوم حاسوب يبلغ من العمر 20 عاماً، شغوف بمجتمعات ديسكورد، تقنيات البلوكشين، وعالم الـ Web3.">
-                                I am Mohamed Mostafa (MOHMOS), a 20 year old Computer Science student with a strong passion for Discord communities, blockchain technology, and the Web3 ecosystem.
-                            </p>
-
-                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
-                                data-lang-en="My Web3 journey began in 2022 with Bag Guild, where I helped build and manage the community. I later contributed to OnChain before joining the LitVM ecosystem as a Protocol Lead. Today, I continue supporting the community through Lit Clinic, helping bridge technical concepts between the product, the team, and the community while improving communication and user experience."
-                                data-lang-ar="بدأت رحلتي في الـ Web3 عام 2022 مع Bag Guild، حيث ساهمت في بناء وإدارة المجتمع. ساهمت لاحقاً مع OnChain قبل الانضمام إلى منظومة LitVM كـ Protocol Lead. اليوم، أواصل دعم المجتمع من خلال Lit Clinic، حيث أساعد في ربط المفاهيم التقنية بين المنتج والفريق والمجتمع مع تحسين التواصل وتجربة المستخدم.">
-                                My Web3 journey began in 2022 with Bag Guild, where I helped build and manage the community. I later contributed to OnChain before joining the LitVM ecosystem as a Protocol Lead. Today, I continue supporting the community through Lit Clinic, helping bridge technical concepts between the product, the team, and the community while improving communication and user experience.
-                            </p>
-
-                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
-                                data-lang-en="My expertise focuses on building and managing professional Discord servers, organizing roles and permissions, configuring bots, improving community operations, and supporting blockchain communities with scalable and well structured server infrastructure."
-                                data-lang-ar="تركز خبرتي على بناء وإدارة سيرفرات ديسكورد الاحترافية، تنظيم الأدوار والصلاحيات، ضبط البوتات، تحسين العمليات المجتمعية، ودعم مجتمعات البلوكشين ببنية تحتية قابلة للتوسع ومنظمة جيداً.">
-                                My expertise focuses on building and managing professional Discord servers, organizing roles and permissions, configuring bots, improving community operations, and supporting blockchain communities with scalable and well structured server infrastructure.
-                            </p>
-
-                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
-                                data-lang-en="Alongside my practical experience, I am currently pursuing a Bachelor's degree in Computer Science while expanding my knowledge of blockchain technology, decentralized systems, and Web3 development. My long term goal is to become a Blockchain Developer by combining academic knowledge with real world experience gained from Web3 projects."
-                                data-lang-ar="إلى جانب خبرتي العملية، أدرس حالياً للحصول على درجة البكالوريوس في علوم الحاسوب مع توسيع معرفتي بتقنيات البلوكشين، الأنظمة اللامركزية، وتطوير Web3. هدفي على المدى الطويل هو أن أصبح طور بلوكشين (Blockchain Developer) من خلال دمج المعرفة الأكاديمية مع الخبرة العملية المكتسبة من مشاريع Web3.">
-                                Alongside my practical experience, I am currently pursuing a Bachelor's degree in Computer Science while expanding my knowledge of blockchain technology, decentralized systems, and Web3 development. My long term goal is to become a Blockchain Developer by combining academic knowledge with real world experience gained from Web3 projects.
-                            </p>
-
-                            <p class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
-                                data-lang-en="I believe that honesty, responsibility, and continuous learning are the foundation of professional growth. If a task is outside my current expertise, I communicate that openly instead of making promises I cannot keep. I enjoy learning new technologies, solving challenging problems, working effectively under pressure, and building practical solutions that create value for both teams and communities."
-                                data-lang-ar="أؤمن بأن الصدق والمسؤولية والتعلم المستمر هي أساس النمو المهني. إذا كانت المهمة خارج نطاق خبرتي الحالية، أفصح عن ذلك بأمانة بدلاً من إعطاء وعود لا أستطيع الوفاء بها. أستمتع بتعلم التقنيات الجديدة، حل المشكلات التنافسية، العمل بكفاءة تحت الضغط، وبناء حلول عملية تخلق قيمة حقيقية للفرق والمجتمعات.">
-                                I believe that honesty, responsibility, and continuous learning are the foundation of professional growth. If a task is outside my current expertise, I communicate that openly instead of making promises I cannot keep. I enjoy learning new technologies, solving challenging problems, working effectively under pressure, and building practical solutions that create value for both teams and communities.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href="#about"
+                class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-all shadow-lg shadow-red-950/50 flex items-center gap-2"
+              >
+                <span
+                  data-lang-en="Read Full Story"
+                  data-lang-ar="اقرأ القصة الكاملة"
+                  >Read Full Story</span
+                >
+                <i
+                  class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"
+                  aria-hidden="true"
+                ></i>
+              </a>
+              <a
+                href="#contact"
+                class="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-semibold text-xs transition-all flex items-center gap-2"
+              >
+                <i
+                  class="fa-solid fa-paper-plane text-red-500 text-xs"
+                  aria-hidden="true"
+                ></i>
+                <span data-lang-en="Get in Touch" data-lang-ar="تواصل معي"
+                  >Get in Touch</span
+                >
+              </a>
             </div>
 
-            <!-- SCENE 3: STORYTELLING TIMELINE (Stage 3) -->
-            <div id="scene-2" class="scene-stage-wrapper">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
-                    
-                    <div class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]">
-                        <div class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40">
-                            <i class="fa-solid fa-timeline"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-white tracking-tight split-type-target" data-lang-en="Storytelling Journey" data-lang-ar="مسيرتي التطورية">Storytelling Journey</h3>
-                        <p class="text-xs text-zinc-400 max-w-xs split-type-target" data-lang-en="Chronological milestone scenes from 2022 to Present Role" data-lang-ar="المحطات الزمانية المتتالية من 2022 إلى اليوم">Chronological milestone scenes from 2022 to Present Role</p>
-                    </div>
-
-                    <div class="md:col-span-2 relative pl-6 md:pl-8 timeline-line space-y-3.5 scene-content-right">
-                        
-                        <div class="relative">
-                            <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">1</div>
-                            <div class="red-card rounded-2xl p-4.5 space-y-1.5 text-left rtl:text-right">
-                                <div class="flex items-center justify-between border-b border-zinc-900 pb-1.5">
-                                    <div class="flex items-center gap-3">
-                                        <img src="assets/bag_guild.png" alt="Bag Guild" class="w-7 h-7 object-contain">
-                                        <h4 class="text-xs font-extrabold text-white split-type-target" data-lang-en="Bag Guild — Community Origins" data-lang-ar="Bag Guild — بداية المسيرة">Bag Guild — Community Origins</h4>
-                                    </div>
-                                    <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-mono text-zinc-400">2022 - 2025</span>
-                                </div>
-                                <p class="text-xs text-zinc-300 leading-relaxed split-type-target"
-                                    data-lang-en="Began my Web3 journey in 2022 with Bag Guild. Helped build and manage the community from scratch, setting up Discord server layout, role permissions, anti-raid protection, and ticket support operations."
-                                    data-lang-ar="بدأت رحلتي في الـ Web3 عام 2022 مع Bag Guild. ساهمت في بناء وإدارة المجتمع من الصفر، إعداد سيرفر ديسكورد، تنظيم الصلاحيات، حماية السيرفر، وأنظمة التذاكر.">
-                                    Began my Web3 journey in 2022 with Bag Guild. Helped build and manage the community from scratch, setting up Discord server layout, role permissions, anti-raid protection, and ticket support operations.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="relative">
-                            <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold">2</div>
-                            <div class="red-card rounded-2xl p-4.5 space-y-1.5 text-left rtl:text-right">
-                                <div class="flex items-center justify-between border-b border-zinc-900 pb-1.5">
-                                    <div class="flex items-center gap-3">
-                                        <img src="assets/onchain.jpg" alt="OnChain Outlaws" class="w-7 h-7 object-cover rounded-lg">
-                                        <h4 class="text-xs font-extrabold text-white split-type-target" data-lang-en="OnChain Outlaws — Support & Operations" data-lang-ar="OnChain Outlaws — الدعم والتنظيم">OnChain Outlaws — Support & Operations</h4>
-                                    </div>
-                                    <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-mono text-zinc-400" data-lang-en="Web3 Org" data-lang-ar="مؤسسة Web3">Web3 Org</span>
-                                </div>
-                                <p class="text-xs text-zinc-300 leading-relaxed split-type-target"
-                                    data-lang-en="Contributed to OnChain focusing on community organization, user support pipelines, coordinating project activities, and resolving complex technical user inquiries."
-                                    data-lang-ar="ساهمت مع OnChain بالتركيز على التنظيم المجتمعي، إعداد خطوط دعم الأعضاء، تنسيق أنشطة المشاريع، وحل المشكلات الفنية للمستخدمين.">
-                                    Contributed to OnChain focusing on community organization, user support pipelines, coordinating project activities, and resolving complex technical user inquiries.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="relative">
-                            <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-red-600 border-2 border-red-400 flex items-center justify-center text-[10px] text-white font-bold animate-pulse">3</div>
-                            <div class="red-card rounded-2xl p-4.5 space-y-1.5 text-left rtl:text-right border-red-500/40">
-                                <div class="flex items-center justify-between border-b border-zinc-900 pb-1.5">
-                                    <div class="flex items-center gap-3">
-                                        <img src="assets/litclinic.png" alt="Lit Clinic" class="w-7 h-7 object-contain">
-                                        <h4 class="text-xs font-extrabold text-white split-type-target" data-lang-en="Lit Clinic (LitVM Ecosystem)" data-lang-ar="Lit Clinic (منظومة LitVM)">Lit Clinic (LitVM Ecosystem)</h4>
-                                    </div>
-                                    <span class="px-2 py-0.5 rounded red-badge text-[10px] font-mono">2026 - Present</span>
-                                </div>
-                                <p class="text-xs text-zinc-300 leading-relaxed split-type-target"
-                                    data-lang-en="Serving as Protocol Lead at Lit Clinic in the LitVM ecosystem. Helping bridge technical concepts between the product, the team, and the community while leading written protocol communication, technical planning, and full Discord infrastructure."
-                                    data-lang-ar="أعمل كـ Protocol Lead في Lit Clinic ضمن منظومة LitVM. أساعد في ربط المفاهيم التقنية بين المنتج والفريق والمجتمع، وقيادة الاتصالات الكتابية للبروتوكول والتخطيط التقني وإدارة ديسكورد بالكامل.">
-                                    Serving as Protocol Lead at Lit Clinic in the LitVM ecosystem. Helping bridge technical concepts between the product, the team, and the community while leading written protocol communication, technical planning, and full Discord infrastructure.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
+            <div
+              class="pt-3 grid grid-cols-3 gap-4 border-t border-zinc-900 max-w-md"
+            >
+              <div>
+                <div class="text-xl font-black text-white font-mono">CS</div>
+                <div
+                  class="text-[10px] text-zinc-400"
+                  data-lang-en="Undergraduate"
+                  data-lang-ar="طالب جامعي"
+                >
+                  Undergraduate
                 </div>
-            </div>
-
-            <!-- SCENE 4: CORE ROLES (Stage 4) -->
-            <div id="scene-3" class="scene-stage-wrapper">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
-                    
-                    <div class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]">
-                        <div class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40">
-                            <i class="fa-solid fa-briefcase"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-white tracking-tight split-type-target" data-lang-en="Core Roles" data-lang-ar="الأدوار الرئيسية">Core Roles</h3>
-                        <p class="text-xs text-zinc-400 max-w-xs split-type-target" data-lang-en="Protocol communication, Discord architecture, and onboarding" data-lang-ar="اتصالات البروتوكول، هندسة ديسكورد، ودعم الأعضاء">Protocol communication, Discord architecture, and onboarding</p>
-                    </div>
-
-                    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left rtl:text-right scene-content-right">
-                        
-                        <div class="red-card rounded-2xl p-4.5 space-y-2">
-                            <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
-                                <i class="fa-solid fa-comments text-red-500 text-xs"></i>
-                                <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Protocol Comm" data-lang-ar="اتصالات البروتوكول">Protocol Comm</h4>
-                            </div>
-                            <p class="text-[11px] text-zinc-300 leading-relaxed split-type-target" data-lang-en="Directing written protocol communications, documentation, product updates, technical announcements, and bridging concepts between developers and users." data-lang-ar="قيادة الاتصالات الكتابية للبروتوكول، التوثيق، تحديثات المنتجات، وتوضيح المفاهيم التقنية بين المطورين والمستخدمين.">
-                                Directing written protocol communications, documentation, product updates, technical announcements, and bridging concepts between developers and users.
-                            </p>
-                        </div>
-
-                        <div class="red-card rounded-2xl p-4.5 space-y-2">
-                            <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
-                                <i class="fa-solid fa-server text-red-500 text-xs"></i>
-                                <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Discord Arch" data-lang-ar="هندسة ديسكورد">Discord Arch</h4>
-                            </div>
-                            <p class="text-[11px] text-zinc-300 leading-relaxed split-type-target" data-lang-en="Designing permission trees, role hierarchies, webhooks, anti-raid security, bot configuration, and automated support ticket workflows." data-lang-ar="تصميم هيكلية الصلاحيات، الأدوار، الـ Webhooks، الحماية التلقائية ضد الـ Raids، وإعداد أنظمة التذاكر الفنية.">
-                                Designing permission trees, role hierarchies, webhooks, anti-raid security, bot configuration, and automated support ticket workflows.
-                            </p>
-                        </div>
-
-                        <div class="red-card rounded-2xl p-4.5 space-y-2">
-                            <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
-                                <i class="fa-solid fa-users text-red-500 text-xs"></i>
-                                <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="User Onboarding" data-lang-ar="إعداد ودعم الأعضاء">User Onboarding</h4>
-                            </div>
-                            <p class="text-[11px] text-zinc-300 leading-relaxed split-type-target" data-lang-en="Building community onboarding pipelines, troubleshooting user technical issues, and supporting Web3 projects with scalable infrastructure." data-lang-ar="بناء مسارات انضمام الأعضاء الجدد، حل المشكلات الفنية للمستخدمين، ودعم مشاريع Web3 ببنية تحتية قابلة للتوسع.">
-                                Building community onboarding pipelines, troubleshooting user technical issues, and supporting Web3 projects with scalable infrastructure.
-                            </p>
-                        </div>
-
-                    </div>
-
+              </div>
+              <div>
+                <div class="text-xl font-black text-red-500 font-mono">
+                  2022+
                 </div>
-            </div>
-
-            <!-- SCENE 5: SKILLS MATRIX (Stage 5) -->
-            <div id="scene-4" class="scene-stage-wrapper">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
-                    
-                    <div class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]">
-                        <div class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40">
-                            <i class="fa-solid fa-code-branch"></i>
-                        </div>
-                        <h3 class="text-xl font-black text-white tracking-tight split-type-target" data-lang-en="Skills Matrix" data-lang-ar="المهارات التقنية">Skills Matrix</h3>
-                        <p class="text-xs text-zinc-400 max-w-xs split-type-target" data-lang-en="Discord infrastructure, operations, and CS developer tools" data-lang-ar="البنية التحتية لديسكورد، إدارة العمليات، وأدوات البرمجة">Discord infrastructure, operations, and CS developer tools</p>
-                    </div>
-
-                    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left rtl:text-right scene-content-right">
-                        
-                        <div class="red-card rounded-2xl p-4.5 space-y-2.5">
-                            <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
-                                <i class="fa-solid fa-server text-red-500 text-xs"></i>
-                                <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Discord Infra" data-lang-ar="بنية ديسكورد">Discord Infra</h4>
-                            </div>
-                            <ul class="space-y-1.5 text-[11px] text-zinc-300">
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Server Layout" data-lang-ar="تنسيق السيرفرات">Server Layout</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Role Permissions" data-lang-ar="إدارة الصلاحيات">Role Permissions</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Anti-Raid Security" data-lang-ar="الحماية والحظر">Anti-Raid Security</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Bots & Webhooks" data-lang-ar="البوتات والـ Webhooks">Bots & Webhooks</span></li>
-                            </ul>
-                        </div>
-
-                        <div class="red-card rounded-2xl p-4.5 space-y-2.5">
-                            <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
-                                <i class="fa-solid fa-users-gear text-red-500 text-xs"></i>
-                                <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="Operations" data-lang-ar="العمليات">Operations</h4>
-                            </div>
-                            <ul class="space-y-1.5 text-[11px] text-zinc-300">
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Written Protocol" data-lang-ar="التواصل الكتابي">Written Protocol</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Web3 Onboarding" data-lang-ar="إعداد الأعضاء">Web3 Onboarding</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Tech Translation" data-lang-ar="تبسيط المفاهيم">Tech Translation</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Scope Honesty" data-lang-ar="الصدق والشفافية">Scope Honesty</span></li>
-                            </ul>
-                        </div>
-
-                        <div class="red-card rounded-2xl p-4.5 space-y-2.5">
-                            <div class="flex items-center gap-2 pb-1.5 border-b border-zinc-900">
-                                <i class="fa-solid fa-laptop-code text-red-500 text-xs"></i>
-                                <h4 class="text-xs font-bold text-white split-type-target" data-lang-en="CS & Tools" data-lang-ar="علوم الحاسوب">CS & Tools</h4>
-                            </div>
-                            <ul class="space-y-1.5 text-[11px] text-zinc-300">
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="CS Degree Basis" data-lang-ar="دراسة علوم الحاسوب">CS Degree Basis</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="Blockchain Systems" data-lang-ar="أنظمة البلوكشين">Blockchain Systems</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="VS Code & Git" data-lang-ar="VS Code و Git">VS Code & Git</span></li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-red-500 text-[9px]"></i> <span class="split-type-target" data-lang-en="AI & Media Tools" data-lang-ar="الذكاء الاصطناعي">AI & Media Tools</span></li>
-                            </ul>
-                        </div>
-
-                    </div>
-
+                <div
+                  class="text-[10px] text-zinc-400"
+                  data-lang-en="Web3 Journey"
+                  data-lang-ar="مسيرة Web3"
+                >
+                  Web3 Journey
                 </div>
-            </div>
-
-            <!-- SCENE 6: SOCIALS & CONNECT (Stage 6) -->
-            <div id="scene-5" class="scene-stage-wrapper">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
-                    
-                    <div class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]">
-                        <div class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40">
-                            <i class="fa-solid fa-link"></i>
-                        </div>
-                        <h3 class="text-lg font-black text-white tracking-tight split-type-target" data-lang-en="Socials & Connect" data-lang-ar="التواصل والروابط">Socials & Connect</h3>
-                        <p class="text-[11px] text-zinc-400 max-w-xs split-type-target" data-lang-en="8 working platform links & 1-click Discord copy" data-lang-ar="8 روابط تعمل وميزة نسخ حساب ديسكورد بضغطة واحدة">8 working platform links & 1-click Discord copy</p>
-                    </div>
-
-                    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left rtl:text-right scene-content-right">
-
-                        <div class="red-card rounded-xl p-3 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-brands fa-discord"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">Discord</div><div class="text-xs font-bold text-white split-type-target">mohmos</div></div>
-                            </div>
-                            <button onclick="copyDiscordTag()" class="p-1 text-zinc-400 hover:text-red-500 transition-colors"><i class="fa-regular fa-copy text-xs"></i></button>
-                        </div>
-
-                        <a href="https://litclinic.xyz" target="_blank" rel="noopener noreferrer" class="red-card rounded-xl p-3 flex items-center justify-between group">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-solid fa-globe"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">Lit Clinic</div><div class="text-xs font-bold text-white split-type-target">litclinic.xyz</div></div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"></i>
-                        </a>
-
-                        <a href="https://linktree.com/moh.mos" target="_blank" rel="noopener noreferrer" class="red-card rounded-xl p-3 flex items-center justify-between group">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-solid fa-tree"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">Linktree</div><div class="text-xs font-bold text-white split-type-target">moh.mos</div></div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"></i>
-                        </a>
-
-                        <a href="https://github.com/MohammedMuostafa" target="_blank" rel="noopener noreferrer" class="red-card rounded-xl p-3 flex items-center justify-between group">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-brands fa-github"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">GitHub</div><div class="text-xs font-bold text-white split-type-target">MohammedMuostafa</div></div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"></i>
-                        </a>
-
-                        <a href="https://x.com/mohmos" target="_blank" rel="noopener noreferrer" class="red-card rounded-xl p-3 flex items-center justify-between group">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-brands fa-x-twitter"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">X (Twitter)</div><div class="text-xs font-bold text-white split-type-target">@mohmos</div></div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"></i>
-                        </a>
-
-                        <a href="https://t.me/MOH-MOS" target="_blank" rel="noopener noreferrer" class="red-card rounded-xl p-3 flex items-center justify-between group">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-brands fa-telegram"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">Telegram</div><div class="text-xs font-bold text-white split-type-target">@MOH-MOS</div></div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"></i>
-                        </a>
-
-                        <a href="https://www.youtube.com/@MOH-MOS" target="_blank" rel="noopener noreferrer" class="red-card rounded-xl p-3 flex items-center justify-between group">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-brands fa-youtube"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">YouTube</div><div class="text-xs font-bold text-white split-type-target">@MOH-MOS</div></div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"></i>
-                        </a>
-
-                        <a href="https://kick.com/moh-mos" target="_blank" rel="noopener noreferrer" class="red-card rounded-xl p-3 flex items-center justify-between group">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"><i class="fa-solid fa-video"></i></div>
-                                <div><div class="text-[9px] text-zinc-500">Kick</div><div class="text-xs font-bold text-white split-type-target">moh-mos</div></div>
-                            </div>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"></i>
-                        </a>
-
-                    </div>
-
+              </div>
+              <div>
+                <div class="text-xl font-black text-white font-mono">BUILD</div>
+                <div
+                  class="text-[10px] text-zinc-400"
+                  data-lang-en="Web &amp; Community"
+                  data-lang-ar="الويب والمجتمع"
+                >
+                  Web &amp; Community
                 </div>
+              </div>
             </div>
-
+          </div>
         </div>
-    </div>
+      </section>
+
+      <section
+        id="about"
+        class="scene-stage-wrapper"
+        data-reveal-section
+        aria-labelledby="about-title"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
+          <div
+            class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]"
+          >
+            <div
+              class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40"
+            >
+              <i class="fa-solid fa-user-astronaut" aria-hidden="true"></i>
+            </div>
+            <h2
+              id="about-title"
+              class="text-xl font-black text-white tracking-tight split-type-target"
+              data-lang-en="About Me"
+              data-lang-ar="عني"
+            >
+              About Me
+            </h2>
+            <p
+              class="text-xs text-zinc-400 max-w-xs split-type-target"
+              data-lang-en="Background, Web3 journey, expertise, and core principles"
+              data-lang-ar="الخلفية، مسيرة الـ Web3، الخبرات والمبادئ"
+            >
+              Background, Web3 journey, expertise, and core principles
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-2 red-card rounded-2xl p-6 space-y-3 scene-content-right"
+          >
+            <div class="space-y-3 text-left rtl:text-right">
+              <h3
+                class="text-2xl font-black text-white tracking-tight split-type-target"
+                data-lang-en="Biography &amp; Goals"
+                data-lang-ar="السيرة والأهداف"
+              >
+                Biography &amp; Goals
+              </h3>
+              <div
+                class="text-xs font-semibold text-red-400 font-mono split-type-target"
+                data-lang-en="Computer Science Student &amp; Protocol Lead"
+                data-lang-ar="طالب علوم حاسوب وقائد بروتوكول"
+              >
+                Computer Science Student &amp; Protocol Lead
+              </div>
+
+              <p
+                class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
+                data-lang-en="I am Mohamed Mostafa (MOHMOS), a Computer Science student, Web3 builder, full-stack developer, and content creator with a strong passion for blockchain technology, gaming, and onchain communities."
+                data-lang-ar="أنا محمد مصطفى (MOHMOS)، طالب علوم حاسوب ومطوّر Web3 وFull-Stack وصانع محتوى، شغوف بتقنيات البلوكشين والألعاب والمجتمعات على السلسلة."
+              >
+                I am Mohamed Mostafa (MOHMOS), a Computer Science student, Web3
+                builder, full-stack developer, and content creator with a strong
+                passion for blockchain technology, gaming, and onchain
+                communities.
+              </p>
+
+              <p
+                class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
+                data-lang-en="My Web3 journey began in 2022 with Bag Guild, where I helped build and manage the community. I later contributed to OnChain before co-founding Lit Clinic in the LitVM ecosystem. Today, I serve as Protocol Lead, helping bridge technical concepts between the product, team, and community while improving communication and user experience."
+                data-lang-ar="بدأت رحلتي في Web3 عام 2022 مع Bag Guild، حيث ساهمت في بناء المجتمع وإدارته. ساهمت لاحقاً مع OnChain قبل المشاركة في تأسيس Lit Clinic ضمن منظومة LitVM. أعمل اليوم قائداً للبروتوكول، وأساعد في ربط المفاهيم التقنية بين المنتج والفريق والمجتمع مع تحسين التواصل وتجربة المستخدم."
+              >
+                My Web3 journey began in 2022 with Bag Guild, where I helped
+                build and manage the community. I later contributed to OnChain
+                before co-founding Lit Clinic in the LitVM ecosystem. Today, I
+                serve as Protocol Lead, helping bridge technical concepts
+                between the product, team, and community while improving
+                communication and user experience.
+              </p>
+
+              <p
+                class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
+                data-lang-en="My expertise focuses on building and managing professional Discord servers, organizing roles and permissions, configuring bots, improving community operations, and supporting blockchain communities with scalable and well structured server infrastructure."
+                data-lang-ar="تركز خبرتي على بناء وإدارة سيرفرات ديسكورد الاحترافية، تنظيم الأدوار والصلاحيات، ضبط البوتات، تحسين العمليات المجتمعية، ودعم مجتمعات البلوكشين ببنية تحتية قابلة للتوسع ومنظمة جيداً."
+              >
+                My expertise focuses on building and managing professional
+                Discord servers, organizing roles and permissions, configuring
+                bots, improving community operations, and supporting blockchain
+                communities with scalable and well structured server
+                infrastructure.
+              </p>
+
+              <p
+                class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
+                data-lang-en="Alongside my practical experience, I am currently pursuing a Bachelor's degree in Computer Science while expanding my knowledge of blockchain technology, decentralized systems, and Web3 development. My long term goal is to become a Blockchain Developer by combining academic knowledge with real world experience gained from Web3 projects."
+                data-lang-ar="إلى جانب خبرتي العملية، أدرس حالياً للحصول على درجة البكالوريوس في علوم الحاسوب مع توسيع معرفتي بتقنيات البلوكشين والأنظمة اللامركزية وتطوير Web3. هدفي على المدى الطويل هو أن أصبح مطوّر بلوكشين (Blockchain Developer) من خلال دمج المعرفة الأكاديمية مع الخبرة العملية المكتسبة من مشاريع Web3."
+              >
+                Alongside my practical experience, I am currently pursuing a
+                Bachelor's degree in Computer Science while expanding my
+                knowledge of blockchain technology, decentralized systems, and
+                Web3 development. My long term goal is to become a Blockchain
+                Developer by combining academic knowledge with real world
+                experience gained from Web3 projects.
+              </p>
+
+              <p
+                class="text-zinc-200 text-xs sm:text-sm leading-relaxed font-normal split-type-target"
+                data-lang-en="I believe that honesty, responsibility, and continuous learning are the foundation of professional growth. If a task is outside my current expertise, I communicate that openly instead of making promises I cannot keep. I enjoy learning new technologies, solving challenging problems, working effectively under pressure, and building practical solutions that create value for both teams and communities."
+                data-lang-ar="أؤمن بأن الصدق والمسؤولية والتعلم المستمر هي أساس النمو المهني. إذا كانت المهمة خارج نطاق خبرتي الحالية، أفصح عن ذلك بأمانة بدلاً من إعطاء وعود لا أستطيع الوفاء بها. أستمتع بتعلم التقنيات الجديدة وحل المشكلات الصعبة والعمل بكفاءة تحت الضغط وبناء حلول عملية تخلق قيمة حقيقية للفرق والمجتمعات."
+              >
+                I believe that honesty, responsibility, and continuous learning
+                are the foundation of professional growth. If a task is outside
+                my current expertise, I communicate that openly instead of
+                making promises I cannot keep. I enjoy learning new
+                technologies, solving challenging problems, working effectively
+                under pressure, and building practical solutions that create
+                value for both teams and communities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="projects"
+        class="scene-stage-wrapper"
+        data-reveal-section
+        aria-labelledby="projects-title"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
+          <div
+            class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]"
+          >
+            <div
+              class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40"
+            >
+              <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+            </div>
+            <h2
+              id="projects-title"
+              class="text-xl font-black text-white tracking-tight split-type-target"
+              data-lang-en="Projects &amp; Communities"
+              data-lang-ar="المشاريع والمجتمعات"
+            >
+              Projects &amp; Communities
+            </h2>
+            <p
+              class="text-xs text-zinc-400 max-w-xs split-type-target"
+              data-lang-en="Web3 communities and products I have helped build since 2022"
+              data-lang-ar="مجتمعات ومنتجات Web3 التي ساهمت في بنائها منذ 2022"
+            >
+              Web3 communities and products I have helped build since 2022
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-2 relative pl-6 md:pl-8 timeline-line space-y-3.5 scene-content-right"
+          >
+            <div class="relative">
+              <div
+                class="timeline-marker absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold"
+              >
+                1
+              </div>
+              <div
+                class="red-card rounded-2xl p-5 space-y-1.5 text-left rtl:text-right"
+              >
+                <div
+                  class="flex items-center justify-between border-b border-zinc-900 pb-1.5"
+                >
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/optimized/bag-guild.webp"
+                      alt=""
+                      width="112"
+                      height="112"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-7 h-7 object-contain"
+                    />
+                    <h3
+                      class="text-xs font-extrabold text-white split-type-target"
+                      data-lang-en="Bag Guild — Community Origins"
+                      data-lang-ar="Bag Guild — بداية المسيرة"
+                    >
+                      Bag Guild — Community Origins
+                    </h3>
+                  </div>
+                  <span
+                    class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-mono text-zinc-400"
+                    >2022 - 2025</span
+                  >
+                </div>
+                <p
+                  class="text-xs text-zinc-300 leading-relaxed split-type-target"
+                  data-lang-en="Began my Web3 journey in 2022 with Bag Guild. Helped build and manage the community from scratch, setting up Discord server layout, role permissions, anti-raid protection, and ticket support operations."
+                  data-lang-ar="بدأت رحلتي في الـ Web3 عام 2022 مع Bag Guild. ساهمت في بناء وإدارة المجتمع من الصفر، إعداد سيرفر ديسكورد، تنظيم الصلاحيات، حماية السيرفر، وأنظمة التذاكر."
+                >
+                  Began my Web3 journey in 2022 with Bag Guild. Helped build and
+                  manage the community from scratch, setting up Discord server
+                  layout, role permissions, anti-raid protection, and ticket
+                  support operations.
+                </p>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div
+                class="timeline-marker absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-[#000000] border-2 border-red-500 flex items-center justify-center text-[10px] text-red-500 font-bold"
+              >
+                2
+              </div>
+              <div
+                class="red-card rounded-2xl p-5 space-y-1.5 text-left rtl:text-right"
+              >
+                <div
+                  class="flex items-center justify-between border-b border-zinc-900 pb-1.5"
+                >
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/optimized/onchain.webp"
+                      alt=""
+                      width="112"
+                      height="112"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-7 h-7 object-cover rounded-lg"
+                    />
+                    <h3
+                      class="text-xs font-extrabold text-white split-type-target"
+                      data-lang-en="OnChain Outlaws — Support &amp; Operations"
+                      data-lang-ar="OnChain Outlaws — الدعم والتنظيم"
+                    >
+                      OnChain Outlaws — Support &amp; Operations
+                    </h3>
+                  </div>
+                  <span
+                    class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-mono text-zinc-400"
+                    data-lang-en="Web3 Org"
+                    data-lang-ar="مؤسسة Web3"
+                    >Web3 Org</span
+                  >
+                </div>
+                <p
+                  class="text-xs text-zinc-300 leading-relaxed split-type-target"
+                  data-lang-en="Contributed to OnChain focusing on community organization, user support pipelines, coordinating project activities, and resolving complex technical user inquiries."
+                  data-lang-ar="ساهمت مع OnChain بالتركيز على التنظيم المجتمعي، إعداد خطوط دعم الأعضاء، تنسيق أنشطة المشاريع، وحل المشكلات الفنية للمستخدمين."
+                >
+                  Contributed to OnChain focusing on community organization,
+                  user support pipelines, coordinating project activities, and
+                  resolving complex technical user inquiries.
+                </p>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div
+                class="timeline-marker absolute -left-[31px] md:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-red-600 border-2 border-red-400 flex items-center justify-center text-[10px] text-white font-bold animate-pulse"
+              >
+                3
+              </div>
+              <div
+                class="red-card rounded-2xl p-5 space-y-1.5 text-left rtl:text-right border-red-500/40"
+              >
+                <div
+                  class="flex items-center justify-between border-b border-zinc-900 pb-1.5"
+                >
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/optimized/litclinic.webp"
+                      alt=""
+                      width="112"
+                      height="112"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-7 h-7 object-contain"
+                    />
+                    <h3
+                      class="text-xs font-extrabold text-white split-type-target"
+                      data-lang-en="Lit Clinic (LitVM Ecosystem)"
+                      data-lang-ar="Lit Clinic (منظومة LitVM)"
+                    >
+                      Lit Clinic (LitVM Ecosystem)
+                    </h3>
+                  </div>
+                  <span
+                    class="px-2 py-0.5 rounded red-badge text-[10px] font-mono"
+                    >2026 - Present</span
+                  >
+                </div>
+                <p
+                  class="text-xs text-zinc-300 leading-relaxed split-type-target"
+                  data-lang-en="Co-Founder and Protocol Lead at Lit Clinic in the LitVM ecosystem. I help bridge technical concepts between the product, team, and community while leading written protocol communication, technical planning, and Discord infrastructure."
+                  data-lang-ar="شريك مؤسس وقائد البروتوكول في Lit Clinic ضمن منظومة LitVM. أساعد في ربط المفاهيم التقنية بين المنتج والفريق والمجتمع، وأقود الاتصالات الكتابية للبروتوكول والتخطيط التقني وبنية ديسكورد التحتية."
+                >
+                  Co-Founder and Protocol Lead at Lit Clinic in the LitVM
+                  ecosystem. I help bridge technical concepts between the
+                  product, team, and community while leading written protocol
+                  communication, technical planning, and Discord infrastructure.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="experience"
+        class="scene-stage-wrapper"
+        data-reveal-section
+        aria-labelledby="experience-title"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
+          <div
+            class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]"
+          >
+            <div
+              class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40"
+            >
+              <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            </div>
+            <h2
+              id="experience-title"
+              class="text-xl font-black text-white tracking-tight split-type-target"
+              data-lang-en="Core Experience"
+              data-lang-ar="الخبرات الرئيسية"
+            >
+              Core Experience
+            </h2>
+            <p
+              class="text-xs text-zinc-400 max-w-xs split-type-target"
+              data-lang-en="Protocol communication, Discord architecture, and onboarding"
+              data-lang-ar="اتصالات البروتوكول، هندسة ديسكورد، ودعم الأعضاء"
+            >
+              Protocol communication, Discord architecture, and onboarding
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left rtl:text-right scene-content-right"
+          >
+            <div class="red-card rounded-2xl p-5 space-y-2">
+              <div
+                class="flex items-center gap-2 pb-1.5 border-b border-zinc-900"
+              >
+                <i class="fa-solid fa-comments text-red-500 text-xs"></i>
+                <h3
+                  class="text-xs font-bold text-white split-type-target"
+                  data-lang-en="Protocol Communication"
+                  data-lang-ar="اتصالات البروتوكول"
+                >
+                  Protocol Communication
+                </h3>
+              </div>
+              <p
+                class="text-[11px] text-zinc-300 leading-relaxed split-type-target"
+                data-lang-en="Directing written protocol communications, documentation, product updates, technical announcements, and bridging concepts between developers and users."
+                data-lang-ar="قيادة الاتصالات الكتابية للبروتوكول، التوثيق، تحديثات المنتجات، وتوضيح المفاهيم التقنية بين المطورين والمستخدمين."
+              >
+                Directing written protocol communications, documentation,
+                product updates, technical announcements, and bridging concepts
+                between developers and users.
+              </p>
+            </div>
+
+            <div class="red-card rounded-2xl p-5 space-y-2">
+              <div
+                class="flex items-center gap-2 pb-1.5 border-b border-zinc-900"
+              >
+                <i class="fa-solid fa-server text-red-500 text-xs"></i>
+                <h3
+                  class="text-xs font-bold text-white split-type-target"
+                  data-lang-en="Discord Architecture"
+                  data-lang-ar="هندسة ديسكورد"
+                >
+                  Discord Architecture
+                </h3>
+              </div>
+              <p
+                class="text-[11px] text-zinc-300 leading-relaxed split-type-target"
+                data-lang-en="Designing permission trees, role hierarchies, webhooks, anti-raid security, bot configuration, and automated support ticket workflows."
+                data-lang-ar="تصميم هيكلية الصلاحيات، الأدوار، الـ Webhooks، الحماية التلقائية ضد الـ Raids، وإعداد أنظمة التذاكر الفنية."
+              >
+                Designing permission trees, role hierarchies, webhooks,
+                anti-raid security, bot configuration, and automated support
+                ticket workflows.
+              </p>
+            </div>
+
+            <div class="red-card rounded-2xl p-5 space-y-2">
+              <div
+                class="flex items-center gap-2 pb-1.5 border-b border-zinc-900"
+              >
+                <i class="fa-solid fa-users text-red-500 text-xs"></i>
+                <h3
+                  class="text-xs font-bold text-white split-type-target"
+                  data-lang-en="User Onboarding"
+                  data-lang-ar="إعداد ودعم الأعضاء"
+                >
+                  User Onboarding
+                </h3>
+              </div>
+              <p
+                class="text-[11px] text-zinc-300 leading-relaxed split-type-target"
+                data-lang-en="Building community onboarding pipelines, troubleshooting user technical issues, and supporting Web3 projects with scalable infrastructure."
+                data-lang-ar="بناء مسارات انضمام الأعضاء الجدد، حل المشكلات الفنية للمستخدمين، ودعم مشاريع Web3 ببنية تحتية قابلة للتوسع."
+              >
+                Building community onboarding pipelines, troubleshooting user
+                technical issues, and supporting Web3 projects with scalable
+                infrastructure.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="skills"
+        class="scene-stage-wrapper"
+        data-reveal-section
+        aria-labelledby="skills-title"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
+          <div
+            class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]"
+          >
+            <div
+              class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40"
+            >
+              <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            </div>
+            <h2
+              id="skills-title"
+              class="text-xl font-black text-white tracking-tight split-type-target"
+              data-lang-en="Skills Matrix"
+              data-lang-ar="المهارات التقنية"
+            >
+              Skills Matrix
+            </h2>
+            <p
+              class="text-xs text-zinc-400 max-w-xs split-type-target"
+              data-lang-en="Development, Discord infrastructure, operations, and creator tools"
+              data-lang-ar="التطوير وبنية ديسكورد والعمليات وأدوات صناعة المحتوى"
+            >
+              Development, Discord infrastructure, operations, and creator tools
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left rtl:text-right scene-content-right"
+          >
+            <div class="red-card rounded-2xl p-5 space-y-2.5">
+              <div
+                class="flex items-center gap-2 pb-1.5 border-b border-zinc-900"
+              >
+                <i class="fa-solid fa-server text-red-500 text-xs"></i>
+                <h3
+                  class="text-xs font-bold text-white split-type-target"
+                  data-lang-en="Discord Infrastructure"
+                  data-lang-ar="بنية ديسكورد"
+                >
+                  Discord Infrastructure
+                </h3>
+              </div>
+              <ul class="space-y-1.5 text-[11px] text-zinc-300">
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Server Layout"
+                    data-lang-ar="تنسيق السيرفرات"
+                    >Server Layout</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Role Permissions"
+                    data-lang-ar="إدارة الصلاحيات"
+                    >Role Permissions</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Anti-Raid Security"
+                    data-lang-ar="الحماية والحظر"
+                    >Anti-Raid Security</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Bots &amp; Webhooks"
+                    data-lang-ar="البوتات والـ Webhooks"
+                    >Bots &amp; Webhooks</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="red-card rounded-2xl p-5 space-y-2.5">
+              <div
+                class="flex items-center gap-2 pb-1.5 border-b border-zinc-900"
+              >
+                <i class="fa-solid fa-users-gear text-red-500 text-xs"></i>
+                <h3
+                  class="text-xs font-bold text-white split-type-target"
+                  data-lang-en="Operations"
+                  data-lang-ar="العمليات"
+                >
+                  Operations
+                </h3>
+              </div>
+              <ul class="space-y-1.5 text-[11px] text-zinc-300">
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Written Protocol"
+                    data-lang-ar="التواصل الكتابي"
+                    >Written Protocol</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Web3 Onboarding"
+                    data-lang-ar="إعداد الأعضاء"
+                    >Web3 Onboarding</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Tech Translation"
+                    data-lang-ar="تبسيط المفاهيم"
+                    >Tech Translation</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Scope Honesty"
+                    data-lang-ar="الصدق والشفافية"
+                    >Scope Honesty</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="red-card rounded-2xl p-5 space-y-2.5">
+              <div
+                class="flex items-center gap-2 pb-1.5 border-b border-zinc-900"
+              >
+                <i class="fa-solid fa-laptop-code text-red-500 text-xs"></i>
+                <h3
+                  class="text-xs font-bold text-white split-type-target"
+                  data-lang-en="Development"
+                  data-lang-ar="التطوير"
+                >
+                  Development
+                </h3>
+              </div>
+              <ul class="space-y-1.5 text-[11px] text-zinc-300">
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Full-Stack Development"
+                    data-lang-ar="تطوير Full-Stack"
+                    >Full-Stack Development</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Blockchain Systems"
+                    data-lang-ar="أنظمة البلوكشين"
+                    >Blockchain Systems</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="VS Code &amp; Git"
+                    data-lang-ar="VS Code و Git"
+                    >VS Code &amp; Git</span
+                  >
+                </li>
+                <li class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-check text-red-500 text-[9px]"></i>
+                  <span
+                    class="split-type-target"
+                    data-lang-en="Content &amp; Media Tools"
+                    data-lang-ar="أدوات المحتوى والإعلام"
+                    >Content &amp; Media Tools</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="scene-stage-wrapper"
+        data-reveal-section
+        aria-labelledby="contact-title"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full">
+          <div
+            class="red-card rounded-2xl p-6 text-center space-y-4 scene-visual-left flex flex-col items-center justify-center min-h-[280px]"
+          >
+            <div
+              class="w-20 h-20 rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 flex items-center justify-center text-3xl shadow-lg shadow-red-950/40"
+            >
+              <i class="fa-solid fa-link" aria-hidden="true"></i>
+            </div>
+            <h2
+              id="contact-title"
+              class="text-lg font-black text-white tracking-tight split-type-target"
+              data-lang-en="Socials &amp; Connect"
+              data-lang-ar="التواصل والروابط"
+            >
+              Socials &amp; Connect
+            </h2>
+            <p
+              class="text-[11px] text-zinc-400 max-w-xs split-type-target"
+              data-lang-en="Direct links to my work, content, and communities"
+              data-lang-ar="روابط مباشرة لأعمالي ومحتواي ومجتمعاتي"
+            >
+              Direct links to my work, content, and communities
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-left rtl:text-right scene-content-right"
+          >
+            <div
+              class="red-card rounded-xl p-3 flex items-center justify-between"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"
+                >
+                  <i class="fa-brands fa-discord" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <div class="text-[10px] text-zinc-400">Discord</div>
+                  <div class="text-xs font-bold text-white split-type-target">
+                    mohmos
+                  </div>
+                </div>
+              </div>
+              <button
+                id="copy-discord"
+                type="button"
+                aria-label="Copy Discord username mohmos"
+                class="p-2 text-zinc-400 hover:text-red-500 transition-colors"
+              >
+                <i class="fa-regular fa-copy text-xs" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <a
+              href="https://litclinic.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="red-card rounded-xl p-3 flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"
+                >
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <div>
+                  <div class="text-[9px] text-zinc-500">Lit Clinic</div>
+                  <div class="text-xs font-bold text-white split-type-target">
+                    litclinic.xyz
+                  </div>
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"
+              ></i>
+            </a>
+
+            <a
+              href="https://linktr.ee/moh.mos"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="red-card rounded-xl p-3 flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"
+                >
+                  <i class="fa-solid fa-tree"></i>
+                </div>
+                <div>
+                  <div class="text-[9px] text-zinc-500">Linktree</div>
+                  <div class="text-xs font-bold text-white split-type-target">
+                    moh.mos
+                  </div>
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"
+              ></i>
+            </a>
+
+            <a
+              href="https://github.com/MohammedMuostafa"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="red-card rounded-xl p-3 flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"
+                >
+                  <i class="fa-brands fa-github"></i>
+                </div>
+                <div>
+                  <div class="text-[9px] text-zinc-500">GitHub</div>
+                  <div class="text-xs font-bold text-white split-type-target">
+                    MohammedMuostafa
+                  </div>
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"
+              ></i>
+            </a>
+
+            <a
+              href="https://x.com/mohmos"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="red-card rounded-xl p-3 flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"
+                >
+                  <i class="fa-brands fa-x-twitter"></i>
+                </div>
+                <div>
+                  <div class="text-[9px] text-zinc-500">X (Twitter)</div>
+                  <div class="text-xs font-bold text-white split-type-target">
+                    @mohmos
+                  </div>
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"
+              ></i>
+            </a>
+
+            <a
+              href="https://www.youtube.com/@MOH-MOS"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="red-card rounded-xl p-3 flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"
+                >
+                  <i class="fa-brands fa-youtube"></i>
+                </div>
+                <div>
+                  <div class="text-[9px] text-zinc-500">YouTube</div>
+                  <div class="text-xs font-bold text-white split-type-target">
+                    @MOH-MOS
+                  </div>
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"
+              ></i>
+            </a>
+
+            <a
+              href="https://kick.com/moh-mos"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="red-card rounded-xl p-3 flex items-center justify-between group"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-red-600/10 text-red-500 border border-red-500/20 flex items-center justify-center text-xs"
+                >
+                  <i class="fa-solid fa-video"></i>
+                </div>
+                <div>
+                  <div class="text-[9px] text-zinc-500">Kick</div>
+                  <div class="text-xs font-bold text-white split-type-target">
+                    moh-mos
+                  </div>
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-[9px] text-zinc-600 group-hover:text-red-500 transition-colors rtl:rotate-90"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer class="border-t border-zinc-900 bg-[#000000] py-6 z-30 relative">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-            <div class="flex items-center gap-2">
-                <span class="font-bold text-white">MOHMOS</span>
-                <span>•</span>
-                <span data-lang-en="Protocol Lead @ Lit Clinic" data-lang-ar="قائد بروتوكول Lit Clinic">Protocol Lead @ Lit Clinic</span>
-            </div>
-            <div data-lang-en="© 2026 Mohamed Mostafa (MOHMOS). All rights reserved." data-lang-ar="© 2026 محمد مصطفى (MOHMOS). جميع الحقوق محفوظة.">© 2026 Mohamed Mostafa (MOHMOS). All rights reserved.</div>
-            <button onclick="scrollToProgress(0.08)" class="hover:text-red-500 transition-colors flex items-center gap-1">
-                <span data-lang-en="Back to Top" data-lang-ar="الرجوع للأعلى">Back to Top</span> <i class="fa-solid fa-arrow-up text-[10px]"></i>
-            </button>
+      <div
+        class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400"
+      >
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-white">MOHMOS</span>
+          <span>•</span>
+          <span
+            data-lang-en="Co-Founder &amp; Protocol Lead @ Lit Clinic"
+            data-lang-ar="شريك مؤسس وقائد بروتوكول Lit Clinic"
+            >Co-Founder &amp; Protocol Lead @ Lit Clinic</span
+          >
         </div>
+        <div>
+          © <span data-current-year>2026</span>
+          <span
+            data-lang-en="Mohamed Mostafa (MOHMOS). All rights reserved."
+            data-lang-ar="محمد مصطفى (MOHMOS). جميع الحقوق محفوظة."
+            >Mohamed Mostafa (MOHMOS). All rights reserved.</span
+          >
+        </div>
+        <a
+          href="#home"
+          class="hover:text-red-500 transition-colors flex items-center gap-1"
+        >
+          <span data-lang-en="Back to Top" data-lang-ar="الرجوع للأعلى"
+            >Back to Top</span
+          >
+          <i class="fa-solid fa-arrow-up text-[10px]" aria-hidden="true"></i>
+        </a>
+      </div>
     </footer>
 
     <!-- Toast Notification Container -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="px-4 py-3 rounded-xl bg-zinc-900 border border-red-500/40 shadow-2xl shadow-red-950/50 flex items-center gap-3 text-white text-xs font-medium">
-            <i class="fa-solid fa-circle-check text-red-500"></i>
-            <span id="toast-text">Discord tag <strong class="text-red-400">mohmos</strong> copied to clipboard!</span>
-        </div>
+    <div
+      id="toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none"
+    >
+      <div
+        class="px-4 py-3 rounded-xl bg-zinc-900 border border-red-500/40 shadow-2xl shadow-red-950/50 flex items-center gap-3 text-white text-xs font-medium"
+      >
+        <i class="fa-solid fa-circle-check text-red-500" aria-hidden="true"></i>
+        <span id="toast-text">Discord username mohmos copied.</span>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
