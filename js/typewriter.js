@@ -15,7 +15,19 @@ export function reSplitTypeAll() {
     document.querySelectorAll('.split-type-target').forEach(el => {
         const instance = splitTypeInstances.get(el);
         if (instance) {
-            instance.split({ types: 'chars' });
+            instance.revert();
         }
+
+        const isAr = document.documentElement.lang === 'ar';
+        const text = isAr 
+            ? (el.getAttribute('data-lang-ar') || el.textContent)
+            : (el.getAttribute('data-lang-en') || el.textContent);
+            
+        if (text) {
+            el.textContent = text;
+        }
+
+        const newInstance = new SplitType(el, { types: 'chars' });
+        splitTypeInstances.set(el, newInstance);
     });
 }
