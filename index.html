@@ -6,20 +6,22 @@
     <title>MOHMOS | Protocol Lead & Discord Infrastructure Specialist</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Personal portfolio of MOHMOS - Protocol Lead at Lit Clinic (LitVM Ecosystem), Discord Infrastructure Specialist, and Computer Science Student.">
+    <meta name="description" content="Official portfolio of MOHMOS - Protocol Lead at Lit Clinic (LitVM Ecosystem), Discord Infrastructure Specialist, and Computer Science Student.">
+    <meta name="keywords" content="MOHMOS, Lit Clinic, LitVM, Web3, Discord Infrastructure, Protocol Lead, OnChain Outlaws, Bag Guild, Smart Contracts, Blockchain Developer">
     <meta name="author" content="MOHMOS">
 
     <!-- Open Graph -->
     <meta property="og:title" content="MOHMOS | Protocol Lead & Discord Infrastructure Specialist">
     <meta property="og:description" content="Web3 community architecture, Discord infrastructure, and smart contract development.">
     <meta property="og:image" content="assets/avatar.png">
+    <meta property="og:type" content="website">
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome CDN for Crisp Icons -->
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Tailwind CSS CDN -->
@@ -29,7 +31,7 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
@@ -51,25 +53,25 @@
         body {
             background-color: #0b0f19;
             color: #f8fafc;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
         .minimal-card {
             background: #111827;
             border: 1px solid #1e293b;
-            transition: all 0.25s ease-in-out;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .minimal-card:hover {
             border-color: #334155;
-            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.08);
+            box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.12);
             transform: translateY(-2px);
         }
 
         .subtle-badge {
             background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.25);
             color: #818cf8;
         }
 
@@ -90,19 +92,16 @@
 </head>
 <body class="min-h-screen selection:bg-indigo-500 selection:text-white flex flex-col">
 
-    <!-- Header Navigation -->
+    <!-- Header Navigation (Clean, Minimal, No Logo Box, No Discord in Header) -->
     <header class="sticky top-0 z-50 bg-[#0b0f19]/90 backdrop-blur-md border-b border-slate-800/60">
-        <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-9 h-9 rounded-lg bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 font-bold font-mono text-base group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                    M
-                </div>
-                <span class="font-bold text-lg tracking-tight text-white group-hover:text-indigo-400 transition-colors">MOHMOS</span>
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Brand Text Only (No Icon / No Box) -->
+            <a href="#" class="font-extrabold text-xl tracking-tight text-white hover:text-indigo-400 transition-colors">
+                MOHMOS
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-400">
                 <a href="#about" class="hover:text-white transition-colors">About</a>
                 <a href="#experience" class="hover:text-white transition-colors">Experience</a>
                 <a href="#skills" class="hover:text-white transition-colors">Skills</a>
@@ -110,17 +109,16 @@
                 <a href="#connect" class="hover:text-white transition-colors">Connect</a>
             </nav>
 
-            <!-- Quick Action -->
-            <div class="hidden sm:flex items-center gap-4">
-                <button onclick="copyDiscordTag()" class="px-4 py-2 rounded-lg bg-indigo-600/10 hover:bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold flex items-center gap-2 transition-all">
-                    <i class="fa-brands fa-discord"></i>
-                    <span>Discord: mohmos</span>
-                </button>
+            <!-- Header Action Button (Clean Get in Touch link, NO Discord icon) -->
+            <div class="hidden sm:flex items-center">
+                <a href="#connect" class="px-4 py-1.5 rounded-lg bg-indigo-600/10 hover:bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold transition-all">
+                    Get in Touch
+                </a>
             </div>
 
             <!-- Mobile Menu Toggle -->
             <button id="mobile-toggle" class="md:hidden text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle navigation">
-                <i class="fa-solid fa-bars text-xl"></i>
+                <i class="fa-solid fa-bars text-lg"></i>
             </button>
         </div>
 
@@ -131,82 +129,77 @@
             <a href="#skills" class="block text-slate-300 hover:text-white text-sm font-medium py-1">Skills</a>
             <a href="#education" class="block text-slate-300 hover:text-white text-sm font-medium py-1">Education</a>
             <a href="#connect" class="block text-slate-300 hover:text-white text-sm font-medium py-1">Connect</a>
-            <div class="pt-2">
-                <button onclick="copyDiscordTag()" class="w-full py-2 rounded-lg bg-indigo-600/20 text-indigo-300 text-xs font-semibold flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-discord"></i> Copy Discord (mohmos)
-                </button>
-            </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-5xl mx-auto px-6 py-16 space-y-24">
+    <!-- Main Container with Compact Spacing -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 py-10 space-y-14">
 
         <!-- HERO SECTION -->
-        <section id="hero" class="pt-4 pb-8 flex flex-col md:flex-row items-center justify-between gap-12">
+        <section id="hero" class="pt-2 pb-4 flex flex-col md:flex-row items-center justify-between gap-10">
             
             <!-- Left Info Stack -->
-            <div class="flex-1 space-y-6 text-left">
+            <div class="flex-1 space-y-5 text-left">
                 
                 <!-- Status Badge -->
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md subtle-badge text-xs font-mono">
-                    <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
                     <span>LitVM Ecosystem Protocol Lead</span>
                 </div>
 
                 <!-- Main Name & Title -->
-                <div class="space-y-3">
-                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+                <div class="space-y-2">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
                         MOHMOS
                     </h1>
-                    <h2 class="text-lg sm:text-xl font-medium text-slate-400 leading-snug">
+                    <h2 class="text-base sm:text-lg font-medium text-slate-400 leading-snug">
                         Protocol Lead <span class="text-indigo-400 font-semibold">@ Lit Clinic</span> & Discord Infrastructure Specialist
                     </h2>
                 </div>
 
-                <!-- Short Bio -->
-                <p class="text-slate-400 text-base leading-relaxed max-w-2xl">
-                    Dedicated to Web3 community architecture, Discord infrastructure engineering, and system design. Currently pursuing a Computer Science degree to build the future of decentralized protocols as a Blockchain Developer.
+                <!-- Bio Copywriting -->
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+                    Architecting high-availability Discord server ecosystems, optimizing protocol operations, and leading Web3 community infrastructure. Pursuing a Computer Science degree to bridge system leadership with smart contract engineering.
                 </p>
 
                 <!-- Action Buttons -->
-                <div class="flex flex-wrap items-center gap-4 pt-2">
-                    <a href="#connect" class="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-sm flex items-center gap-2">
+                <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <a href="#connect" class="px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-sm flex items-center gap-2">
                         <span>Get in Touch</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
-                    <a href="#experience" class="px-6 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium text-sm transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-layer-group text-slate-400 text-xs"></i>
+                    <a href="#experience" class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-slate-400 text-[10px]"></i>
                         <span>Explore Experience</span>
                     </a>
                 </div>
 
-                <!-- Quick Stats Bar -->
-                <div class="pt-6 grid grid-cols-3 gap-6 border-t border-slate-800/60 max-w-lg">
+                <!-- Stats Bar -->
+                <div class="pt-4 grid grid-cols-3 gap-4 border-t border-slate-800/60 max-w-md">
                     <div>
-                        <div class="text-xl font-bold text-white font-mono">2022+</div>
-                        <div class="text-xs text-slate-500">Web3 Experience</div>
+                        <div class="text-lg font-bold text-white font-mono">2022+</div>
+                        <div class="text-[11px] text-slate-500">Web3 Experience</div>
                     </div>
                     <div>
-                        <div class="text-xl font-bold text-indigo-400 font-mono">LitVM</div>
-                        <div class="text-xs text-slate-500">Protocol Ecosystem</div>
+                        <div class="text-lg font-bold text-indigo-400 font-mono">LitVM</div>
+                        <div class="text-[11px] text-slate-500">Protocol Ecosystem</div>
                     </div>
                     <div>
-                        <div class="text-xl font-bold text-emerald-400 font-mono">B.Sc. CS</div>
-                        <div class="text-xs text-slate-500">Undergraduate</div>
+                        <div class="text-lg font-bold text-emerald-400 font-mono">B.Sc. CS</div>
+                        <div class="text-[11px] text-slate-500">Undergraduate</div>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Right Avatar Frame -->
+            <!-- Avatar Frame -->
             <div class="flex-shrink-0">
-                <div class="relative w-48 h-48 sm:w-60 sm:h-60 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-xl group">
+                <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-lg group">
                     <img src="assets/avatar.png" alt="MOHMOS Profile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f19]/80 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-1.5 rounded-md bg-[#0b0f19]/90 border border-slate-800 text-xs">
-                        <span class="font-medium text-slate-200">MOHMOS</span>
-                        <span class="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
+                    <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between px-2.5 py-1 rounded-md bg-[#0b0f19]/90 border border-slate-800 text-xs">
+                        <span class="font-semibold text-slate-200">MOHMOS</span>
+                        <span class="text-[10px] font-mono text-emerald-400 flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active
                         </span>
                     </div>
@@ -216,29 +209,29 @@
         </section>
 
         <!-- ABOUT ME SECTION -->
-        <section id="about" class="space-y-8">
+        <section id="about" class="space-y-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+                <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white tracking-tight">About Me</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight">About Me</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <!-- Main Bio Card -->
-                <div class="md:col-span-2 minimal-card rounded-xl p-6 space-y-4 flex flex-col justify-between">
+                <div class="md:col-span-2 minimal-card rounded-xl p-5 space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
-                        <h4 class="text-lg font-semibold text-white">Background & Passion</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            I am deeply passionate about Web3 communities and system infrastructure. Since 2022, I have focused on engineering secure Discord servers, optimizing community operations, and leading protocol communications.
+                        <h4 class="text-base font-bold text-white">Background & Specialization</h4>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                            With extensive experience in Web3 community engineering and Discord system architecture since 2022, I specialize in transforming complex operational demands into secure, seamless community environments.
                         </p>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Currently serving as <strong class="text-slate-200 font-semibold">Protocol Lead at Lit Clinic (LitVM Ecosystem)</strong>, I combine operational leadership with technical problem-solving. My goal is to transition into a full-stack Blockchain Developer as I finish my Computer Science degree.
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                            As the <strong class="text-slate-200 font-semibold">Protocol Lead at Lit Clinic (LitVM Ecosystem)</strong>, I drive official protocol messaging, structure server security, and lead contributor workflows. My academic path in Computer Science focuses on software engineering and EVM smart contract development.
                         </p>
                     </div>
 
                     <!-- Languages -->
-                    <div class="pt-4 border-t border-slate-800/80 flex items-center gap-6">
+                    <div class="pt-3 border-t border-slate-800/80 flex items-center gap-6">
                         <div class="flex items-center gap-2 text-xs text-slate-300">
                             <i class="fa-solid fa-language text-indigo-400"></i>
                             <span><strong class="text-white">Arabic:</strong> Native</span>
@@ -251,31 +244,31 @@
                 </div>
 
                 <!-- Core Values Card -->
-                <div class="minimal-card rounded-xl p-6 space-y-4">
-                    <h4 class="text-lg font-semibold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-compass text-indigo-400 text-sm"></i> Core Values
+                <div class="minimal-card rounded-xl p-5 space-y-3">
+                    <h4 class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-indigo-400 text-xs"></i> Core Principles
                     </h4>
                     
-                    <div class="space-y-3 text-sm">
-                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-                            <div class="font-medium text-white flex items-center gap-2">
-                                <i class="fa-solid fa-shield-halved text-indigo-400 text-xs"></i> Honesty
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
+                            <div class="font-semibold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved text-indigo-400 text-[10px]"></i> Integrity & Honesty
                             </div>
-                            <div class="text-xs text-slate-400 mt-1">Transparent communication with protocols and teams.</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">Transparent communication with protocols and team members.</div>
                         </div>
 
-                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-                            <div class="font-medium text-white flex items-center gap-2">
-                                <i class="fa-solid fa-check-double text-emerald-400 text-xs"></i> Responsibility
+                        <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
+                            <div class="font-semibold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-check-double text-emerald-400 text-[10px]"></i> Responsibility
                             </div>
-                            <div class="text-xs text-slate-400 mt-1">Uncompromising security and operational integrity.</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">Uncompromising security standards and server management.</div>
                         </div>
 
-                        <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-                            <div class="font-medium text-white flex items-center gap-2">
-                                <i class="fa-solid fa-graduation-cap text-sky-400 text-xs"></i> Continuous Learning
+                        <div class="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800">
+                            <div class="font-semibold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-graduation-cap text-sky-400 text-[10px]"></i> Continuous Learning
                             </div>
-                            <div class="text-xs text-slate-400 mt-1">Constantly mastering smart contracts and Web3 tech.</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">Mastering smart contract engineering and Web3 tech.</div>
                         </div>
                     </div>
                 </div>
@@ -283,49 +276,49 @@
         </section>
 
         <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="space-y-8">
+        <section id="experience" class="space-y-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+                <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-briefcase"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white tracking-tight">Experience & Roles</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight">Experience & Track Record</h3>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-3.5">
                 
                 <!-- 1. Lit Clinic Card -->
-                <div class="minimal-card rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-lg bg-slate-900 border border-slate-800 p-2 flex-shrink-0">
+                        <div class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 p-1.5 flex-shrink-0">
                             <img src="assets/litclinic.png" alt="Lit Clinic Logo" class="w-full h-full object-contain">
                         </div>
-                        <div class="space-y-1">
+                        <div class="space-y-0.5">
                             <div class="flex items-center gap-2">
-                                <h4 class="text-lg font-bold text-white">Protocol Lead</h4>
+                                <h4 class="text-base font-bold text-white">Protocol Lead</h4>
                                 <span class="px-2 py-0.5 rounded subtle-badge text-[10px] font-mono">Present Role</span>
                             </div>
-                            <p class="text-sm font-medium text-indigo-400">Lit Clinic (LitVM Ecosystem)</p>
-                            <p class="text-xs text-slate-500 font-mono">2026 - Present</p>
+                            <p class="text-xs font-semibold text-indigo-400">Lit Clinic (LitVM Ecosystem)</p>
+                            <p class="text-[11px] text-slate-500 font-mono">2026 - Present</p>
                         </div>
                     </div>
 
                     <ul class="text-xs text-slate-400 space-y-1 md:max-w-md list-disc list-inside">
                         <li>Directing protocol communications and official ecosystem announcements.</li>
-                        <li>Managing total Discord server infrastructure, roles, and automated security.</li>
-                        <li>Coordinating community support and developer engagement channels.</li>
+                        <li>Managing complete Discord server infrastructure, roles, and automated security.</li>
+                        <li>Coordinating community support pipelines and developer support channels.</li>
                     </ul>
                 </div>
 
                 <!-- 2. OnChain Outlaws Card -->
-                <div class="minimal-card rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-lg bg-slate-900 border border-slate-800 p-1 flex-shrink-0 overflow-hidden">
+                        <div class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 p-1 flex-shrink-0 overflow-hidden">
                             <img src="assets/onchain.jpg" alt="OnChain Outlaws Logo" class="w-full h-full object-cover rounded">
                         </div>
-                        <div class="space-y-1">
-                            <h4 class="text-lg font-bold text-white">Core Contributor</h4>
-                            <p class="text-sm font-medium text-slate-300">OnChain Outlaws</p>
-                            <p class="text-xs text-slate-500 font-mono">Web3 Ecosystem</p>
+                        <div class="space-y-0.5">
+                            <h4 class="text-base font-bold text-white">Core Contributor</h4>
+                            <p class="text-xs font-semibold text-slate-300">OnChain Outlaws</p>
+                            <p class="text-[11px] text-slate-500 font-mono">Web3 Guild & Community</p>
                         </div>
                     </div>
 
@@ -336,21 +329,21 @@
                 </div>
 
                 <!-- 3. Bag Guild Card -->
-                <div class="minimal-card rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
                     <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-lg bg-slate-900 border border-slate-800 p-2 flex-shrink-0">
+                        <div class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 p-1.5 flex-shrink-0">
                             <img src="assets/bag_guild.png" alt="Bag Guild Logo" class="w-full h-full object-contain">
                         </div>
-                        <div class="space-y-1">
-                            <h4 class="text-lg font-bold text-white">Contributor & Community Leader</h4>
-                            <p class="text-sm font-medium text-amber-400">Bag Guild</p>
-                            <p class="text-xs text-slate-500 font-mono">2022 - 2025</p>
+                        <div class="space-y-0.5">
+                            <h4 class="text-base font-bold text-white">Contributor & Community Leader</h4>
+                            <p class="text-xs font-semibold text-amber-400">Bag Guild</p>
+                            <p class="text-[11px] text-slate-500 font-mono">2022 - 2025</p>
                         </div>
                     </div>
 
                     <ul class="text-xs text-slate-400 space-y-1 md:max-w-md list-disc list-inside">
-                        <li>Built Discord infrastructure from scratch; configured automated moderation and ticket logs.</li>
-                        <li>Led community growth initiatives and operational team workflows over 3+ years.</li>
+                        <li>Architected Discord infrastructure from scratch; configured automated moderation and ticket logs.</li>
+                        <li>Led community growth initiatives and team operational workflows over 3+ years.</li>
                     </ul>
                 </div>
 
@@ -358,24 +351,24 @@
         </section>
 
         <!-- SKILLS MATRIX SECTION -->
-        <section id="skills" class="space-y-8">
+        <section id="skills" class="space-y-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+                <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-code-branch"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white tracking-tight">Skills & Capabilities</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight">Skills & Expertise</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 
                 <!-- 1. Discord Infrastructure -->
-                <div class="minimal-card rounded-xl p-6 space-y-4">
-                    <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
-                        <i class="fa-solid fa-server text-indigo-400 text-lg"></i>
-                        <h4 class="text-base font-bold text-white">Discord Infrastructure</h4>
+                <div class="minimal-card rounded-xl p-5 space-y-3">
+                    <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-800">
+                        <i class="fa-solid fa-server text-indigo-400 text-sm"></i>
+                        <h4 class="text-sm font-bold text-white">Discord Infrastructure</h4>
                     </div>
 
-                    <ul class="space-y-2.5 text-xs text-slate-300">
+                    <ul class="space-y-2 text-xs text-slate-300">
                         <li class="flex items-center gap-2">
                             <i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Server Setup & Optimization
                         </li>
@@ -395,21 +388,21 @@
                 </div>
 
                 <!-- 2. Community & Operations -->
-                <div class="minimal-card rounded-xl p-6 space-y-4">
-                    <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
-                        <i class="fa-solid fa-users text-sky-400 text-lg"></i>
-                        <h4 class="text-base font-bold text-white">Community & Operations</h4>
+                <div class="minimal-card rounded-xl p-5 space-y-3">
+                    <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-800">
+                        <i class="fa-solid fa-users text-sky-400 text-sm"></i>
+                        <h4 class="text-sm font-bold text-white">Community & Operations</h4>
                     </div>
 
-                    <ul class="space-y-2.5 text-xs text-slate-300">
+                    <ul class="space-y-2 text-xs text-slate-300">
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Community Management & Growth
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Community Growth & Strategy
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Web3 Member Onboarding
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Web3 User Onboarding
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> User Support & Problem Solving
+                            <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Escalation & User Support
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fa-solid fa-check text-sky-400 text-[10px]"></i> Protocol Communication
@@ -421,27 +414,27 @@
                 </div>
 
                 <!-- 3. Tech & Tools -->
-                <div class="minimal-card rounded-xl p-6 space-y-4">
-                    <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
-                        <i class="fa-solid fa-laptop-code text-emerald-400 text-lg"></i>
-                        <h4 class="text-base font-bold text-white">Tech & Tools</h4>
+                <div class="minimal-card rounded-xl p-5 space-y-3">
+                    <div class="flex items-center gap-2.5 pb-2.5 border-b border-slate-800">
+                        <i class="fa-solid fa-laptop-code text-emerald-400 text-sm"></i>
+                        <h4 class="text-sm font-bold text-white">Tech & Tools</h4>
                     </div>
 
-                    <ul class="space-y-2.5 text-xs text-slate-300">
+                    <ul class="space-y-2 text-xs text-slate-300">
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> VS Code & Git / GitHub
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> VS Code & GitHub Version Control
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> AI Tools (ChatGPT, Gemini, Claude)
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> AI Engineering Workflows
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Smart Contract Basics (Solidity)
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Smart Contracts (Solidity Basics)
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Video Editing (CapCut & Premiere)
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Video Production (CapCut & Premiere)
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Command Line Interfaces
+                            <i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Command Line Interface
                         </li>
                     </ul>
                 </div>
@@ -450,19 +443,19 @@
         </section>
 
         <!-- EDUCATION SECTION -->
-        <section id="education" class="space-y-8">
+        <section id="education" class="space-y-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+                <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white tracking-tight">Education</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight">Education</h3>
             </div>
 
-            <div class="minimal-card rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                <div class="space-y-2">
-                    <span class="px-2.5 py-0.5 rounded subtle-badge text-[11px] font-mono">Undergraduate Degree</span>
-                    <h4 class="text-xl font-bold text-white">Bachelor's Degree in Computer Science</h4>
-                    <p class="text-sm text-slate-400">Specialization: Software Engineering, Smart Contracts, and Web3 Systems</p>
+            <div class="minimal-card rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                <div class="space-y-1">
+                    <span class="px-2 py-0.5 rounded subtle-badge text-[10px] font-mono">Undergraduate Degree</span>
+                    <h4 class="text-lg font-bold text-white">Bachelor's Degree in Computer Science</h4>
+                    <p class="text-xs text-slate-400">Focus: Software Engineering, Smart Contracts, and Web3 Architecture</p>
                 </div>
                 <div class="px-3 py-1 rounded bg-slate-900 border border-slate-800 text-xs font-mono text-indigo-300">
                     In Progress
@@ -470,130 +463,130 @@
             </div>
         </section>
 
-        <!-- SOCIALS & CONNECT SECTION -->
-        <section id="connect" class="space-y-8">
+        <!-- SOCIALS & CONNECT SECTION (Exact Real URLs for All Platforms) -->
+        <section id="connect" class="space-y-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+                <div class="w-7 h-7 rounded-lg bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
                     <i class="fa-solid fa-link"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-white tracking-tight">Socials & Connect</h3>
+                <h3 class="text-xl font-bold text-white tracking-tight">Socials & Connect</h3>
             </div>
 
-            <!-- 8 Platform Grid with Crisp Font Awesome Icons -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- 8 Real Working Social Platform Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
 
                 <!-- 1. Discord -->
-                <div class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <div class="minimal-card rounded-xl p-3.5 flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-base">
                             <i class="fa-brands fa-discord"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">Discord</div>
-                            <div class="text-sm font-semibold text-white">mohmos</div>
+                            <div class="text-[11px] text-slate-400">Discord</div>
+                            <div class="text-xs font-semibold text-white">mohmos</div>
                         </div>
                     </div>
-                    <button onclick="copyDiscordTag()" class="p-2 text-slate-400 hover:text-indigo-400 transition-colors" title="Copy Tag">
-                        <i class="fa-regular fa-copy"></i>
+                    <button onclick="copyDiscordTag()" class="p-1.5 text-slate-400 hover:text-indigo-400 transition-colors" title="Copy Tag">
+                        <i class="fa-regular fa-copy text-xs"></i>
                     </button>
                 </div>
 
                 <!-- 2. Lit Clinic Website -->
-                <a href="https://litclinic.xyz" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <a href="https://litclinic.xyz" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-3.5 flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-sky-600/20 text-sky-400 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-sky-600/20 text-sky-400 flex items-center justify-center text-base">
                             <i class="fa-solid fa-globe"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">Lit Clinic</div>
-                            <div class="text-sm font-semibold text-white">litclinic.xyz</div>
+                            <div class="text-[11px] text-slate-400">Lit Clinic</div>
+                            <div class="text-xs font-semibold text-white">litclinic.xyz</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-sky-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-sky-400 transition-colors"></i>
                 </a>
 
                 <!-- 3. Linktree -->
-                <a href="https://linktr.ee/moh.mos" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <a href="https://linktree.com/moh.mos" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-3.5 flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-base">
                             <i class="fa-solid fa-tree"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">Linktree</div>
-                            <div class="text-sm font-semibold text-white">moh.mos</div>
+                            <div class="text-[11px] text-slate-400">Linktree</div>
+                            <div class="text-xs font-semibold text-white">moh.mos</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
                 </a>
 
                 <!-- 4. GitHub -->
-                <a href="https://github.com/MohammedMuostafa" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <a href="https://github.com/Mohammed-Muostafa" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-3.5 flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-slate-800 text-slate-200 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-slate-800 text-slate-200 flex items-center justify-center text-base">
                             <i class="fa-brands fa-github"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">GitHub</div>
-                            <div class="text-sm font-semibold text-white">Mohammed Muostafa</div>
+                            <div class="text-[11px] text-slate-400">GitHub</div>
+                            <div class="text-xs font-semibold text-white">Mohammed-Muostafa</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-white transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-white transition-colors"></i>
                 </a>
 
                 <!-- 5. X / Twitter -->
-                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <a href="https://x.com/mohmos" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-3.5 flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center text-base">
                             <i class="fa-brands fa-x-twitter"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">X (Twitter)</div>
-                            <div class="text-sm font-semibold text-white">@mohmos base</div>
+                            <div class="text-[11px] text-slate-400">X (Twitter)</div>
+                            <div class="text-xs font-semibold text-white">@mohmos</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-slate-200 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-slate-200 transition-colors"></i>
                 </a>
 
                 <!-- 6. Telegram -->
-                <a href="https://t.me/MOH-MOS" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <a href="https://t.me/MOH-MOS" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-3.5 flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-base">
                             <i class="fa-brands fa-telegram"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">Telegram</div>
-                            <div class="text-sm font-semibold text-white">@MOH-MOS</div>
+                            <div class="text-[11px] text-slate-400">Telegram</div>
+                            <div class="text-xs font-semibold text-white">@MOH-MOS</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-blue-400 transition-colors"></i>
                 </a>
 
                 <!-- 7. YouTube -->
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <a href="https://www.youtube.com/@MOH-MOS" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-3.5 flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-rose-600/20 text-rose-400 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-rose-600/20 text-rose-400 flex items-center justify-center text-base">
                             <i class="fa-brands fa-youtube"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">YouTube</div>
-                            <div class="text-sm font-semibold text-white">MOHMOS base</div>
+                            <div class="text-[11px] text-slate-400">YouTube</div>
+                            <div class="text-xs font-semibold text-white">@MOH-MOS</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-rose-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-rose-400 transition-colors"></i>
                 </a>
 
                 <!-- 8. Kick -->
-                <a href="https://kick.com" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-4 flex items-center justify-between group">
+                <a href="https://kick.com/moh-mos" target="_blank" rel="noopener noreferrer" class="minimal-card rounded-xl p-3.5 flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-base">
                             <i class="fa-solid fa-video"></i>
                         </div>
                         <div>
-                            <div class="text-xs text-slate-400">Kick</div>
-                            <div class="text-sm font-semibold text-white">moh-mos</div>
+                            <div class="text-[11px] text-slate-400">Kick</div>
+                            <div class="text-xs font-semibold text-white">moh-mos</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
                 </a>
 
             </div>
@@ -602,7 +595,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/80 bg-[#0b0f19] py-8">
+    <footer class="border-t border-slate-800/80 bg-[#0b0f19] py-6">
         <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             <div class="flex items-center gap-2">
                 <span class="font-semibold text-slate-300">MOHMOS</span>
@@ -618,7 +611,7 @@
 
     <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 shadow-xl flex items-center gap-3 text-white text-xs font-medium">
+        <div class="px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-700 shadow-xl flex items-center gap-3 text-white text-xs font-medium">
             <i class="fa-solid fa-check text-emerald-400"></i>
             <span>Discord tag <strong class="text-indigo-400">mohmos</strong> copied to clipboard!</span>
         </div>
