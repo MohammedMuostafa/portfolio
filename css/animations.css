@@ -26,6 +26,10 @@
     animation: scanShift 10s linear infinite;
 }
 
+.profile-float {
+    animation: avatarFloat 6.5s ease-in-out infinite;
+}
+
 .scroll-cue svg {
     animation: scrollCue 1.8s ease-in-out infinite;
 }
@@ -55,6 +59,11 @@
     to { transform: translateY(10%); }
 }
 
+@keyframes avatarFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-0.55rem) scale(1.008); }
+}
+
 @keyframes scrollCue {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(0.3rem); }
@@ -76,6 +85,21 @@
 
     .motion-pending [data-reveal] {
         opacity: 1;
+    }
+
+    .intro-overlay {
+        display: none !important;
+    }
+
+    .profile-tilt,
+    .surface-card {
+        transform: none !important;
+    }
+
+    .title-rotator > span {
+        filter: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 
     #network-canvas {

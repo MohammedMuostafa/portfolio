@@ -1,6 +1,6 @@
 # MOHMOS Portfolio
 
-Bilingual English/Arabic portfolio for MOHMOS, Protocol Lead at Lit Clinic in the LitVM ecosystem and Discord Infrastructure Specialist.
+Bilingual English/Arabic portfolio for MOHMOS, Protocol Lead in the LitVM Ecosystem, Web3 Builder, Developer, and Discord Server Builder.
 
 Live website: [mohammedmuostafa.github.io/portfolio](https://mohammedmuostafa.github.io/portfolio/)
 
@@ -17,7 +17,7 @@ The site presents the CV-verified profile in this order:
 7. Languages & Personal Information
 8. Contact & Socials
 
-The page uses native scrolling, lightweight GSAP section reveals, and a reduced-motion-aware canvas background. English and Arabic share one semantic document with runtime metadata, direction, and accessibility-label updates.
+The page uses native scrolling, a short cinematic intro, coordinated GSAP scene choreography, pointer-responsive cards and avatar motion, and a reduced-motion-aware canvas background that reacts to pointer, scroll velocity, and active sections. English and Arabic share one semantic document with runtime metadata, direction, and accessibility-label updates.
 
 ## Contact & Socials
 

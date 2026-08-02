@@ -2,7 +2,7 @@
   "name": "mohmos-web3-portfolio",
   "version": "2.0.0",
   "private": true,
-  "description": "Portfolio for MOHMOS, Protocol Lead at Lit Clinic in the LitVM ecosystem and Discord Infrastructure Specialist.",
+  "description": "Portfolio for MOHMOS, Protocol Lead in the LitVM Ecosystem, Web3 Builder, Developer, and Discord Server Builder.",
   "type": "module",
   "scripts": {
     "build": "npm run optimize:images && npm run build:icons && postcss css/main.css -o styles.css && node scripts/build-site.js",
@@ -20,7 +20,7 @@
     "lit-clinic",
     "litvm",
     "discord-infrastructure",
-    "community-support"
+    "web3-builder"
   ],
   "author": "MOHMOS",
   "license": "UNLICENSED",

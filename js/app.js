@@ -1,4 +1,7 @@
 import { initNetworkBackground } from './background.js';
+import { initHero } from './hero.js';
+import { initInteractions } from './interactions.js';
+import { initIntro } from './intro.js';
 import { initNavigation } from './navigation.js';
 import { initScrollExperience } from './scroll.js';
 import { initUtilities } from './utils.js';
@@ -12,11 +15,16 @@ function initialize() {
     initialized = true;
 
     window.portfolioIcons?.create();
+    const utilitiesCleanup = initUtilities();
+    const intro = initIntro();
     cleanups = [
-        initUtilities(),
+        utilitiesCleanup,
         initNavigation(),
         initNetworkBackground(),
         initScrollExperience(),
+        initInteractions(),
+        initHero(intro.finished),
+        intro.cleanup,
     ];
 }
 

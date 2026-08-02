@@ -11,6 +11,8 @@
     --line-strong: rgba(255, 255, 255, 0.18);
     --accent: #ff3d42;
     --accent-soft: #ff777b;
+    --accent-action: #d92f39;
+    --accent-action-hover: #c92330;
     --accent-wash: rgba(255, 61, 66, 0.1);
     --cyan: #8ee7ff;
     --violet: #9f8cff;
@@ -27,6 +29,10 @@
     --radius-md: 1rem;
     --radius-lg: 1.5rem;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --bg-x: 0px;
+    --bg-y: 0px;
+    --bg-scroll: 0px;
+    --bg-accent: 0.55;
 }
 
 *,
@@ -151,6 +157,13 @@ html[dir='rtl'] h3 {
     display: inline-block;
     unicode-bidi: plaintext;
     word-spacing: 0.12em;
+}
+
+.brand-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 .sr-only {

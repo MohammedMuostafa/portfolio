@@ -13,6 +13,15 @@ html[dir='rtl'] .card-label {
     letter-spacing: 0;
 }
 
+.text-reveal-unit {
+    display: inline-block;
+}
+
+.text-reveal-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
 .eyebrow {
     width: fit-content;
     max-width: 100%;
@@ -85,14 +94,14 @@ html[dir='rtl'] .card-label {
 
 .button-primary {
     color: #ffffff;
-    border-color: var(--accent);
-    background: var(--accent);
+    border-color: var(--accent-action);
+    background: var(--accent-action);
     box-shadow: 0 1rem 2.5rem -1.6rem rgba(255, 61, 66, 0.8);
 }
 
 .button-primary:hover {
-    border-color: #ff5e62;
-    background: #ff5156;
+    border-color: var(--accent-action-hover);
+    background: var(--accent-action-hover);
 }
 
 .button-secondary {
@@ -107,7 +116,13 @@ html[dir='rtl'] .card-label {
 }
 
 .surface-card {
+    --card-lift: 0px;
+    --card-rx: 0deg;
+    --card-ry: 0deg;
+    --spot-x: 50%;
+    --spot-y: 50%;
     position: relative;
+    isolation: isolate;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background:
@@ -116,16 +131,22 @@ html[dir='rtl'] .card-label {
     box-shadow: 0 2rem 5rem -4rem rgba(0, 0, 0, 0.85);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
+    transform: perspective(1000px) translateY(var(--card-lift)) rotateX(var(--card-rx)) rotateY(var(--card-ry));
+    transform-style: preserve-3d;
+    transition: transform 180ms var(--ease-out);
 }
 
 .surface-card::before {
     position: absolute;
     inset: -1px;
-    z-index: -1;
+    z-index: 0;
     border-radius: inherit;
     content: '';
     opacity: 0;
-    background: linear-gradient(120deg, rgba(255, 61, 66, 0.25), transparent 35%, rgba(142, 231, 255, 0.15));
+    background:
+        radial-gradient(circle at var(--spot-x) var(--spot-y), rgba(255, 255, 255, 0.12), transparent 34%),
+        linear-gradient(120deg, rgba(255, 61, 66, 0.25), transparent 35%, rgba(142, 231, 255, 0.15));
+    pointer-events: none;
     transition: opacity 260ms ease;
 }
 
@@ -299,6 +320,18 @@ html[dir='rtl'] .card-label {
     background: linear-gradient(var(--accent), var(--line) 55%, transparent);
 }
 
+.timeline-progress {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(0.42rem - 0.5px);
+    z-index: 1;
+    width: 2px;
+    background: linear-gradient(var(--accent), var(--accent-soft));
+    box-shadow: 0 0 1rem rgba(255, 61, 66, 0.42);
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
 .experience-entry {
     position: relative;
     padding-block: 0 4rem;
@@ -316,6 +349,7 @@ html[dir='rtl'] .card-label {
     position: absolute;
     inset-block-start: 0.2rem;
     inset-inline-start: 0;
+    z-index: 2;
     width: 0.9rem;
     height: 0.9rem;
     border: 1px solid var(--accent);
@@ -570,10 +604,11 @@ button.contact-card {
     appearance: none;
 }
 
-.contact-card:hover {
-    border-color: rgba(255, 61, 66, 0.36);
+.contact-card:hover,
+.contact-card:focus-visible {
+    --card-lift: -3px;
+    border-color: color-mix(in srgb, var(--brand-color) 35%, var(--line));
     background: var(--surface-raised);
-    transform: translateY(-2px);
 }
 
 .contact-icon {
@@ -585,11 +620,29 @@ button.contact-card {
     place-items: center;
     color: var(--accent-soft);
     background: var(--accent-wash);
+    transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 240ms var(--ease-out);
+}
+
+.contact-icon svg,
+.contact-icon img {
+    width: 1.15rem;
+    height: 1.15rem;
 }
 
 .contact-icon svg {
-    width: 1.15rem;
-    height: 1.15rem;
+    fill: currentColor;
+}
+
+.contact-icon img {
+    object-fit: contain;
+}
+
+.contact-card:hover .contact-icon,
+.contact-card:focus-visible .contact-icon {
+    color: var(--brand-color);
+    border-color: color-mix(in srgb, var(--brand-color) 42%, transparent);
+    background: color-mix(in srgb, var(--brand-color) 9%, transparent);
+    transform: translateY(-2px) scale(1.06) rotate(-2deg);
 }
 
 .contact-card small,
