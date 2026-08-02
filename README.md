@@ -4,8 +4,6 @@ Bilingual English/Arabic portfolio for MOHMOS, Protocol Lead at Lit Clinic in th
 
 Live website: [mohammedmuostafa.github.io/portfolio](https://mohammedmuostafa.github.io/portfolio/)
 
-<img width="1911" height="1115" alt="image" src="https://github.com/user-attachments/assets/c0191ab4-48c7-498a-8571-9b6bdbfade35" />
-
 ## Content
 
 The site presents the CV-verified profile in this order:
