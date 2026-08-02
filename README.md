@@ -19,24 +19,6 @@ The site presents the CV-verified profile in this order:
 
 The page uses native scrolling, lightweight GSAP section reveals, and a reduced-motion-aware canvas background. English and Arabic share one semantic document with runtime metadata, direction, and accessibility-label updates.
 
-## Development
-
-```bash
-npm install
-npm run dev
-```
-
-The local server exposes both `/` and `/portfolio/` so GitHub Pages subpath behavior can be checked before deployment.
-
-## Validation
-
-```bash
-npm run lint
-npm run type-check
-npm test
-npm run build
-```
-
 ## Contact & Socials
 
 - [Lit Clinic](https://litclinic.xyz)
