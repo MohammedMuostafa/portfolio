@@ -1,12 +1,36 @@
 # MOHMOS Portfolio
 
-Bilingual English/Arabic portfolio for MOHMOS, Protocol Lead in the LitVM Ecosystem, Web3 Builder, Developer, and Discord Server Builder.
+[![Validate and deploy portfolio](https://github.com/MohammedMuostafa/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/MohammedMuostafa/portfolio/actions/workflows/deploy.yml)
 
-Live website: [mohammedmuostafa.github.io/portfolio](https://mohammedmuostafa.github.io/portfolio/)
+Premium bilingual portfolio for **MOHMOS**, `Protocol Lead | LitVM Ecosystem`, with a focus on development, Web3 building, and professional Discord server building.
 
-## Content
+**Live portfolio:** [mohammedmuostafa.github.io/portfolio](https://mohammedmuostafa.github.io/portfolio/)
 
-The site presents the CV-verified profile in this order:
+## Overview
+
+The portfolio presents MOHMOS's verified background, current role, experience, education, skills, and official profiles in one responsive English/Arabic experience. It uses native scrolling with a short cinematic introduction and coordinated motion that supports the content without blocking navigation.
+
+## Highlights
+
+- Full English and Arabic localization with RTL-aware layouts and metadata.
+- Responsive presentation across mobile, tablet, and desktop viewports.
+- Cinematic GSAP entrance and section-specific scroll choreography.
+- Rotating professional titles: Developer, Web3 Builder, and Discord Server Builder.
+- Pointer-responsive cards, avatar motion, and a section-aware Canvas background.
+- Keyboard-friendly navigation, semantic markup, and reduced-motion support.
+- Automated validation and GitHub Pages deployment through GitHub Actions.
+
+## Technology
+
+- Semantic HTML5 and modular CSS.
+- Vanilla JavaScript ES modules.
+- GSAP and ScrollTrigger.
+- Canvas 2D background rendering.
+- PostCSS, Tailwind CSS, and Autoprefixer.
+- Lucide icons and official inline brand SVGs.
+- GitHub Actions and GitHub Pages.
+
+## Portfolio Structure
 
 1. Hero
 2. About Me
@@ -17,15 +41,15 @@ The site presents the CV-verified profile in this order:
 7. Languages & Personal Information
 8. Contact & Socials
 
-The page uses native scrolling, a short cinematic intro, coordinated GSAP scene choreography, pointer-responsive cards and avatar motion, and a reduced-motion-aware canvas background that reacts to pointer, scroll velocity, and active sections. English and Arabic share one semantic document with runtime metadata, direction, and accessibility-label updates.
+## Official Profiles
 
-## Contact & Socials
-
-- [Lit Clinic](https://litclinic.xyz)
-- [Linktree](https://linktr.ee/moh.mos)
-- [GitHub](https://github.com/MohammedMuostafa)
-- [X](https://x.com/mohmos_base)
-- [Telegram](https://t.me/MOHMOS_base)
-- [YouTube](https://www.youtube.com/@MOH-MOS)
-- [Kick](https://kick.com/moh-mos)
-- Discord: `mohmos`
+| Platform | Profile |
+| --- | --- |
+| Lit Clinic | [litclinic.xyz](https://litclinic.xyz) |
+| Linktree | [moh.mos](https://linktr.ee/moh.mos) |
+| GitHub | [MohammedMuostafa](https://github.com/MohammedMuostafa) |
+| X | [@mohmos_base](https://x.com/mohmos_base) |
+| Telegram | [MOHMOS_base](https://t.me/MOHMOS_base) |
+| YouTube | [@MOH-MOS](https://www.youtube.com/@MOH-MOS) |
+| Kick | [moh-mos](https://kick.com/moh-mos) |
+| Discord | `mohmos` |
