@@ -2,6 +2,7 @@
 @import url('./layout.css');
 @import url('./components.css');
 @import url('./animations.css');
+@import url('./github.css');
 
 @tailwind base;
 @tailwind components;

@@ -5,10 +5,11 @@
   "description": "Portfolio for MOHMOS, Protocol Lead in the LitVM Ecosystem, Web3 Builder, Developer, and Discord Server Builder.",
   "type": "module",
   "scripts": {
-    "build": "npm run optimize:images && npm run build:icons && postcss css/main.css -o styles.css && node scripts/build-site.js",
+    "github:data": "node scripts/fetch-github-profile.js",
+    "build": "npm run github:data && npm run optimize:images && npm run build:icons && postcss css/main.css -o styles.css && node scripts/build-site.js",
     "build:icons": "esbuild js/icons-runtime.js --bundle --minify --format=iife --outfile=vendor/lucide-icons.min.js",
     "dev": "npm run build && node scripts/server.js",
-    "lint": "eslint js scripts tests eslint.config.js && html-validate index.html",
+    "lint": "eslint js scripts tests eslint.config.js && html-validate index.html github.html",
     "optimize:images": "node scripts/optimize-images.js",
     "start": "node scripts/server.js",
     "test": "node --test",
@@ -20,7 +21,8 @@
     "lit-clinic",
     "litvm",
     "discord-infrastructure",
-    "web3-builder"
+    "web3-builder",
+    "github-dashboard"
   ],
   "author": "MOHMOS",
   "license": "UNLICENSED",
