@@ -8,6 +8,7 @@ const sceneProfiles = new Map([
     ['education', { energy: 0.5, connections: 0.8, focus: 0 }],
     ['skills', { energy: 0.85, connections: 1.22, focus: 0.04 }],
     ['details', { energy: 0.5, connections: 0.82, focus: 0 }],
+    ['github', { energy: 0.85, connections: 1.15, focus: 0.08 }],
     ['connect', { energy: 0.7, connections: 1.05, focus: 0.2 }],
 ]);
 

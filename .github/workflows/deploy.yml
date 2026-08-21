@@ -33,6 +33,9 @@ jobs:
         run: npm run type-check
       - name: Build
         run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_PROFILE_USERNAME: MohammedMuostafa
       - name: Test
         run: npm test
       - name: Configure GitHub Pages

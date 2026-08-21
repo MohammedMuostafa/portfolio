@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const USERNAME = process.env.GITHUB_PROFILE_USERNAME || 'MohammedMuostafa';
-const TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || '';
+const TOKEN = process.env.GH_PROFILE_TOKEN || process.env.GITHUB_TOKEN || process.env.GH_TOKEN || '';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputPath = path.join(root, 'data', 'github-profile.json');
 const currentYear = new Date().getUTCFullYear();
@@ -12,7 +12,7 @@ const years = Array.from({ length: 5 }, (_, index) => currentYear - index);
 /** @param {string} url @param {RequestInit} [options] @returns {Promise<any>} */
 async function fetchJson(url, options = {}) {
     const response = await fetch(url, options);
-    if (!response.ok) throw new Error(`${url} returned ${response.status}`);
+    if (!response.ok) throw new Error(`GitHub API request failed with status ${response.status}`);
     return response.json();
 }
 
@@ -160,83 +160,100 @@ async function buildData() {
     if (!TOKEN) {
         try {
             JSON.parse(await readFile(outputPath, 'utf8'));
-            console.warn('[github:data] No GITHUB_TOKEN found. Keeping committed fallback data.');
+            console.warn('[github:data] No GITHUB_TOKEN or GH_PROFILE_TOKEN found. Keeping committed fallback data.');
             return null;
         } catch {
             throw new Error('GITHUB_TOKEN is missing and no fallback data/github-profile.json exists.');
         }
     }
 
-    const response = await fetchJson('https://api.github.com/graphql', {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${TOKEN}`,
-            'Content-Type': 'application/json',
-            'User-Agent': 'MOHMOS-Portfolio',
-        },
-        body: JSON.stringify({ query: buildQuery() }),
-    });
-
-    const errors = /** @type {any[]} */ (response.errors ?? []);
-    if (errors.length) throw new Error(errors.map((item) => item.message).join('; '));
-    const user = response.data?.user;
-    if (!user) throw new Error(`GitHub user ${USERNAME} was not found.`);
-
-    const repositories = (user.repositories?.nodes ?? []).filter(Boolean);
-    const contributions = years.map((year) => {
-        const collection = user[`y${year}`];
-        const weeks = /** @type {any[]} */ (collection?.contributionCalendar?.weeks ?? []);
-        const days = /** @type {any[]} */ (weeks.flatMap((week) => week.contributionDays));
-        const max = days.reduce((value, day) => Math.max(value, day.contributionCount), 0);
-        const range = dateRange(year);
-        return {
-            year,
-            total: collection?.contributionCalendar?.totalContributions ?? 0,
-            from: range.from.slice(0, 10),
-            to: range.to.slice(0, 10),
-            days: days.map((day) => ({
-                date: day.date,
-                count: day.contributionCount,
-                weekday: day.weekday,
-                level: contributionLevel(day.contributionCount, max),
-            })),
-            stats: {
-                commits: collection?.totalCommitContributions ?? 0,
-                pullRequests: collection?.totalPullRequestContributions ?? 0,
-                issues: collection?.totalIssueContributions ?? 0,
-                reviews: collection?.totalPullRequestReviewContributions ?? 0,
+    try {
+        const response = await fetchJson('https://api.github.com/graphql', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${TOKEN}`,
+                'Content-Type': 'application/json',
+                'User-Agent': 'MOHMOS-Portfolio',
             },
-        };
-    });
+            body: JSON.stringify({ query: buildQuery() }),
+        });
 
-    return {
-        generatedAt: new Date().toISOString(),
-        profile: {
-            login: user.login,
-            name: user.name || 'MOHMOS',
-            bio: 'Computer Science student • Protocol Lead • Web3 Builder • Developer • Discord Server Builder',
-            avatarUrl: user.avatarUrl,
-            url: user.url,
-            location: user.location,
-            company: user.company,
-            websiteUrl: user.websiteUrl,
-            createdAt: user.createdAt,
-            followers: user.followers?.totalCount ?? 0,
-            following: user.following?.totalCount ?? 0,
-            publicRepos: user.repositories?.totalCount ?? repositories.length,
-        },
-        organizations: (user.organizations?.nodes ?? []).filter(Boolean),
-        pinned: /** @type {any[]} */ (user.pinnedItems?.nodes ?? []).filter(Boolean).map(normalizeRepository),
-        repositories: repositories.map(normalizeRepository),
-        languages: aggregateLanguages(repositories),
-        contributions,
-        recentActivity: await fetchRecentActivity(),
-    };
+        const errors = /** @type {any[]} */ (response.errors ?? []);
+        if (errors.length) throw new Error(errors.map((item) => item.message).join('; '));
+        const user = response.data?.user;
+        if (!user) throw new Error(`GitHub user ${USERNAME} was not found.`);
+
+        const repositories = (user.repositories?.nodes ?? []).filter(Boolean);
+        const contributions = years.map((year) => {
+            const collection = user[`y${year}`];
+            const weeks = /** @type {any[]} */ (collection?.contributionCalendar?.weeks ?? []);
+            const days = /** @type {any[]} */ (weeks.flatMap((week) => week.contributionDays));
+            const max = days.reduce((value, day) => Math.max(value, day.contributionCount), 0);
+            const range = dateRange(year);
+            return {
+                year,
+                total: collection?.contributionCalendar?.totalContributions ?? 0,
+                from: range.from.slice(0, 10),
+                to: range.to.slice(0, 10),
+                days: days.map((day) => ({
+                    date: day.date,
+                    count: day.contributionCount,
+                    weekday: day.weekday,
+                    level: contributionLevel(day.contributionCount, max),
+                })),
+                stats: {
+                    commits: collection?.totalCommitContributions ?? 0,
+                    pullRequests: collection?.totalPullRequestContributions ?? 0,
+                    issues: collection?.totalIssueContributions ?? 0,
+                    reviews: collection?.totalPullRequestReviewContributions ?? 0,
+                },
+            };
+        });
+
+        return {
+            isLive: true,
+            generatedAt: new Date().toISOString(),
+            profile: {
+                login: user.login,
+                name: user.name || 'MOHMOS',
+                bio: 'Computer Science student • Protocol Lead • Web3 Builder • Developer • Discord Server Builder',
+                avatarUrl: user.avatarUrl,
+                url: user.url,
+                location: user.location,
+                company: user.company,
+                websiteUrl: user.websiteUrl,
+                createdAt: user.createdAt,
+                followers: user.followers?.totalCount ?? null,
+                following: user.following?.totalCount ?? null,
+                publicRepos: user.repositories?.totalCount ?? repositories.length,
+            },
+            organizations: (user.organizations?.nodes ?? []).filter(Boolean),
+            pinned: /** @type {any[]} */ (user.pinnedItems?.nodes ?? []).filter(Boolean).map(normalizeRepository),
+            repositories: repositories.map(normalizeRepository),
+            languages: aggregateLanguages(repositories),
+            contributions,
+            recentActivity: await fetchRecentActivity(),
+        };
+    } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[github:data] Warning: Failed to fetch live GitHub data (${message}).`);
+        try {
+            JSON.parse(await readFile(outputPath, 'utf8'));
+            console.warn('[github:data] Preserving committed fallback data.');
+            return null;
+        } catch {
+            throw new Error(`[github:data] Live fetch failed and no fallback data found: ${message}`);
+        }
+    }
 }
 
 const data = await buildData();
 if (data) {
+    const jsonString = `${JSON.stringify(data, null, 2)}\n`;
+    if (jsonString.includes('ghp_') || jsonString.includes('github_pat_') || jsonString.includes('Bearer ') || jsonString.includes('Authorization:')) {
+        throw new Error('[github:data] Security validation failed: generated data contains secret patterns.');
+    }
     await mkdir(path.dirname(outputPath), { recursive: true });
-    await writeFile(outputPath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+    await writeFile(outputPath, jsonString, 'utf8');
     console.log(`[github:data] Wrote ${path.relative(root, outputPath)} for ${USERNAME}.`);
 }

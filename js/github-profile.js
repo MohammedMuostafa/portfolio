@@ -15,15 +15,12 @@ const BIO = {
 /** @typedef {{name:string,description?:string,url:string,homepageUrl?:string,stars?:number,forks?:number,language?:{name:string,color?:string},updatedAt?:string,isPrivate?:boolean}} Repository */
 /** @typedef {{type:string,createdAt?:string,repo?:{name:string}}} GitHubEvent */
 /** @typedef {{login?:string,name?:string,bio?:string,avatarUrl?:string,url?:string,location?:string,company?:string,websiteUrl?:string,followers?:number,following?:number,publicRepos?:number}} GitHubProfile */
-/** @typedef {{generatedAt?:string,profile?:GitHubProfile,organizations?:Organization[],pinned?:Repository[],repositories?:Repository[],languages?:LanguageStat[],contributions?:ContributionYear[],recentActivity?:GitHubEvent[]}} GitHubProfileData */
+/** @typedef {{isLive?:boolean,generatedAt?:string,profile?:GitHubProfile,organizations?:Organization[],pinned?:Repository[],repositories?:Repository[],languages?:LanguageStat[],contributions?:ContributionYear[],recentActivity?:GitHubEvent[]}} GitHubProfileData */
 
 /** @type {GitHubProfileData | null} */
 let data = null;
 /** @type {number | null} */
 let selectedYear = null;
-let initialized = false;
-let utilitiesCleanup = () => {};
-const pageController = new AbortController();
 
 /** @param {string} en @param {string} ar */
 function text(en, ar) {
@@ -99,8 +96,10 @@ function renderProfile(payload) {
     if (avatar instanceof HTMLImageElement && avatarUrl) avatar.src = avatarUrl;
     setText('github-name', profile.name || 'MOHMOS');
     setText('github-login', profile.login || USERNAME);
-    setText('github-followers', profile.followers == null ? '—' : formatNumber(safeNumber(profile.followers)));
-    setText('github-following', profile.following == null ? '—' : formatNumber(safeNumber(profile.following)));
+
+    const isLive = Boolean(payload.isLive);
+    setText('github-followers', isLive && profile.followers != null ? formatNumber(safeNumber(profile.followers)) : '—');
+    setText('github-following', isLive && profile.following != null ? formatNumber(safeNumber(profile.following)) : '—');
 
     const bio = document.getElementById('github-bio');
     if (bio) bio.textContent = document.documentElement.lang === 'ar' ? BIO.ar : BIO.en;
@@ -173,12 +172,20 @@ function renderMetrics(payload) {
     const repositories = publicRepositories(Array.isArray(payload.repositories) ? payload.repositories : []);
     const contributionYears = Array.isArray(payload.contributions) ? payload.contributions : [];
     const current = contributionYears.find((item) => item.year === selectedYear) ?? contributionYears[0];
+    const isLive = Boolean(payload.isLive);
     const totalStars = repositories.reduce((sum, repo) => sum + safeNumber(repo.stars), 0);
     const totalForks = repositories.reduce((sum, repo) => sum + safeNumber(repo.forks), 0);
-    setText('metric-repos', formatNumber(safeNumber(payload.profile?.publicRepos ?? repositories.length)));
-    setText('metric-stars', formatNumber(totalStars));
-    setText('metric-forks', formatNumber(totalForks));
-    setText('metric-contributions', current ? formatNumber(safeNumber(current.total)) : '—');
+    setText('metric-repos', repositories.length ? formatNumber(safeNumber(payload.profile?.publicRepos ?? repositories.length)) : '—');
+    setText('metric-stars', isLive || totalStars > 0 ? formatNumber(totalStars) : '—');
+    setText('metric-forks', isLive || totalForks > 0 ? formatNumber(totalForks) : '—');
+    setText('metric-contributions', isLive && current && current.total > 0 ? formatNumber(safeNumber(current.total)) : '—');
+
+    const contribLabel = document.getElementById('metric-contrib-label');
+    if (contribLabel) {
+        contribLabel.textContent = isLive && current?.year
+            ? text(`Contributions (${current.year})`, `المساهمات (${current.year})`)
+            : text('Contributions', 'المساهمات');
+    }
 }
 
 /** @param {Repository} repository */
@@ -271,7 +278,7 @@ function bindYearTabs() {
         renderOverview(data);
         renderMetrics(data);
         window.portfolioIcons?.create();
-    }, { signal: pageController.signal });
+    });
 }
 
 /** @param {GitHubProfileData} payload */
@@ -327,13 +334,16 @@ function renderCalendar(payload) {
     calendar.replaceChildren();
     calendar.removeAttribute('aria-label');
 
-    if (!yearData || !Array.isArray(yearData.days) || !yearData.days.length) {
+    const isLive = Boolean(payload.isLive);
+    const hasContributions = isLive && yearData && Array.isArray(yearData.days) && yearData.days.some((d) => d.count > 0);
+
+    if (!hasContributions) {
         const empty = document.createElement('p');
         empty.className = 'github-empty';
-        empty.textContent = text('Contribution history is not available from GitHub for this year.', 'سجل المساهمات غير متاح من GitHub لهذه السنة.');
+        empty.textContent = text('Live data available after deployment.', 'البيانات المباشرة متاحة بعد النشر.');
         calendar.append(empty);
         setText('contribution-total', '—');
-        setText('contribution-range', yearData ? String(yearData.year) : '');
+        setText('contribution-range', text('GitHub activity unavailable', 'بيانات نشاط GitHub غير متاحة'));
         document.getElementById('github-months')?.replaceChildren();
         return;
     }
@@ -392,7 +402,23 @@ function activityStats(payload) {
 
 /** @param {GitHubProfileData} payload */
 function renderOverview(payload) {
+    const isLive = Boolean(payload.isLive);
     const stats = activityStats(payload);
+    const hasActivity = isLive && (stats.commits > 0 || stats.pullRequests > 0 || stats.issues > 0 || stats.reviews > 0);
+    const container = document.getElementById('github-activity-breakdown');
+    if (!hasActivity) {
+        if (container) {
+            container.replaceChildren();
+            const empty = document.createElement('p');
+            empty.className = 'github-empty';
+            empty.textContent = text('Activity overview will update after deployment.', 'نظرة النشاط ستُحدَّث بعد النشر.');
+            container.append(empty);
+        }
+        const polygon = document.getElementById('github-radar-value');
+        if (polygon) polygon.setAttribute('points', '120,120 120,120 120,120 120,120');
+        return;
+    }
+
     /** @type {Array<[string, number, string]>} */
     const entries = [
         ['commits', safeNumber(stats.commits), text('Commits', 'Commits')],
@@ -402,7 +428,6 @@ function renderOverview(payload) {
     ];
     const total = Math.max(1, entries.reduce((sum, entry) => sum + entry[1], 0));
     const maximum = Math.max(1, ...entries.map((entry) => entry[1]));
-    const container = document.getElementById('github-activity-breakdown');
     if (container) {
         container.replaceChildren();
         entries.forEach(([, value, label]) => {
@@ -438,8 +463,8 @@ function renderLanguages(payload) {
     if (!container) return;
     container.replaceChildren();
     const languages = Array.isArray(payload.languages) ? payload.languages.slice(0, 8) : [];
-    const total = Math.max(1, languages.reduce((sum, item) => sum + safeNumber(item.size), 0));
-    if (!languages.length) {
+    const total = languages.reduce((sum, item) => sum + safeNumber(item.size), 0);
+    if (!languages.length || total === 0) {
         const empty = document.createElement('p');
         empty.className = 'github-empty';
         empty.textContent = text('Language data is not available yet.', 'بيانات اللغات غير متاحة بعد.');
@@ -469,13 +494,14 @@ function renderLanguages(payload) {
 function achievementData(payload) {
     const repositories = publicRepositories(Array.isArray(payload.repositories) ? payload.repositories : []);
     const contributions = Array.isArray(payload.contributions) ? payload.contributions : [];
+    const isLive = Boolean(payload.isLive);
     const totalContributions = contributions.reduce((sum, item) => sum + safeNumber(item.total), 0);
     const totalStars = repositories.reduce((sum, repo) => sum + safeNumber(repo.stars), 0);
     return [
         ['🧱', text('Public repositories', 'مستودعات عامة')],
-        ['⚡', text(`${formatNumber(totalContributions)} tracked contributions`, `${formatNumber(totalContributions)} مساهمة مسجلة`)],
-        ['📦', text(`${repositories.length} public repositories tracked`, `${repositories.length} مستودع عام متابع`)],
-        ['⭐', text(`${formatNumber(totalStars)} repository stars`, `${formatNumber(totalStars)} نجمة على المستودعات`)],
+        ['⚡', isLive && totalContributions > 0 ? text(`${formatNumber(totalContributions)} lifetime contributions`, `${formatNumber(totalContributions)} مساهمة إجمالية`) : text('Lifetime contributions on deployment', 'المساهمات الإجمالية عند النشر')],
+        ['📦', repositories.length > 0 ? text(`${repositories.length} public repositories tracked`, `${repositories.length} مستودع عام متابع`) : text('Repositories tracked', 'مستودعات متابعة')],
+        ['⭐', isLive && totalStars > 0 ? text(`${formatNumber(totalStars)} repository stars`, `${formatNumber(totalStars)} نجمة على المستودعات`) : text('Repository stars', 'نجوم المستودعات')],
     ];
 }
 
@@ -519,12 +545,13 @@ function renderRecent(payload) {
     const container = document.getElementById('github-recent');
     if (!container) return;
     container.replaceChildren();
-    const events = Array.isArray(payload.recentActivity) ? payload.recentActivity.slice(0, 10) : [];
+    const isLive = Boolean(payload.isLive);
+    const events = isLive && Array.isArray(payload.recentActivity) ? payload.recentActivity.slice(0, 10) : [];
     if (!events.length) {
         const empty = document.createElement('p');
         empty.className = 'github-empty';
         empty.style.padding = '18px';
-        empty.textContent = text('No recent public activity is available yet.', 'لا يوجد نشاط عام حديث متاح بعد.');
+        empty.textContent = text('Live public activity will update after deployment.', 'النشاط العام المباشر سيُحدَّث بعد النشر.');
         container.append(empty);
         return;
     }
@@ -548,12 +575,24 @@ function renderRecent(payload) {
             const date = new Date(event.createdAt);
             if (!Number.isNaN(date.getTime())) {
                 time.dateTime = date.toISOString();
-                time.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short', day: 'numeric' }).format(date);
+                time.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(date);
             }
         }
         row.append(icon, paragraph, time);
         container.append(row);
     });
+}
+
+/** @param {GitHubProfileData} payload */
+function renderBadge(payload) {
+    const badge = document.getElementById('github-badge');
+    if (!badge) return;
+    const isLive = Boolean(payload?.isLive);
+    badge.setAttribute('data-lang-en', isLive ? 'Live GitHub data' : 'Fallback data');
+    badge.setAttribute('data-lang-ar', isLive ? 'بيانات GitHub المباشرة' : 'بيانات احتياطية');
+    badge.textContent = isLive
+        ? text('Live GitHub data', 'بيانات GitHub المباشرة')
+        : text('Fallback data', 'بيانات احتياطية');
 }
 
 /** @param {GitHubProfileData} payload */
@@ -567,6 +606,7 @@ function renderGenerated(payload) {
 function renderAll() {
     const payload = data;
     if (!payload) return;
+    renderBadge(payload);
     renderProfile(payload);
     bindYearTabs();
     renderYears(payload);
@@ -581,9 +621,9 @@ function renderAll() {
     window.portfolioIcons?.create();
 }
 
-/** @returns {Promise<GitHubProfileData>} */
-async function loadData() {
-    const response = await fetch(DATA_URL, { cache: 'no-store', signal: pageController.signal });
+/** @param {AbortSignal} [signal] @returns {Promise<GitHubProfileData>} */
+async function loadData(signal) {
+    const response = await fetch(DATA_URL, { cache: 'no-store', signal });
     if (!response.ok) throw new Error(`GitHub profile data request failed: ${response.status}`);
     return /** @type {Promise<GitHubProfileData>} */ (response.json());
 }
@@ -598,29 +638,39 @@ function showUnavailable() {
     document.querySelector('.github-content')?.prepend(message);
 }
 
-async function initialize() {
-    if (initialized) return;
-    initialized = true;
-    utilitiesCleanup = initUtilities();
-    try {
-        data = await loadData();
-        selectedYear = data?.contributions?.[0]?.year ?? null;
-        renderAll();
-        document.querySelector('[data-github-root]')?.setAttribute('aria-busy', 'false');
-    } catch {
-        showUnavailable();
+/** @param {string} [rootSelector='[data-github-root]'] @returns {() => void} */
+export function initGitHubProfile(rootSelector = '[data-github-root]') {
+    const root = document.querySelector(rootSelector);
+    if (!root) return () => {};
+
+    const controller = new AbortController();
+
+    async function run() {
+        try {
+            data = await loadData(controller.signal);
+            selectedYear = data?.contributions?.[0]?.year ?? null;
+            renderAll();
+            root?.setAttribute('aria-busy', 'false');
+        } catch {
+            showUnavailable();
+        }
+    }
+
+    bindYearTabs();
+    window.addEventListener('portfolio:language-change', renderAll, { signal: controller.signal });
+    run();
+
+    return () => {
+        controller.abort();
+    };
+}
+
+if (typeof document !== 'undefined' && document.body?.classList.contains('github-body')) {
+    initUtilities();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => initGitHubProfile(), { once: true });
+    } else {
+        initGitHubProfile();
     }
 }
 
-window.addEventListener('portfolio:language-change', renderAll, { signal: pageController.signal });
-window.addEventListener('pagehide', () => {
-    utilitiesCleanup();
-    pageController.abort();
-    initialized = false;
-}, { once: true });
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialize, { once: true });
-} else {
-    initialize();
-}

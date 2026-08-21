@@ -30,7 +30,7 @@ const decodedHtml = html.replaceAll('&amp;', '&');
 
 test('page follows the CV section order and ends with a normal footer', () => {
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
-    const sectionIds = ['home', 'about', 'current-project', 'experience', 'education', 'skills', 'details', 'connect'];
+    const sectionIds = ['home', 'about', 'current-project', 'experience', 'education', 'skills', 'github', 'details', 'connect'];
     const positions = sectionIds.map((id) => html.indexOf(`id="${id}"`));
     assert.ok(positions.every((position) => position >= 0));
     assert.deepEqual([...positions].sort((first, second) => first - second), positions);
@@ -191,4 +191,79 @@ test('all local assets exist and deployable URLs stay relative for Pages', async
     assert.match(buildScript, /background\.js/);
     ['hero.js', 'interactions.js', 'intro.js', 'motion.js'].forEach((module) => assert.ok(buildScript.includes(module)));
     assert.doesNotMatch(buildScript, /cp\(path\.join\(root, 'js'\).*recursive/);
+});
+
+test('profile data and client runtime never expose tokens or authorization secrets', async () => {
+    const [githubData, githubHtml, githubEntryJs, githubProfileJs] = await Promise.all([
+        readSource('data/github-profile.json'),
+        readSource('github.html'),
+        readSource('js/github-entry.js'),
+        readSource('js/github-profile.js'),
+    ]);
+    const secretPatterns = [
+        'github_pat_',
+        'ghp_',
+        'gho_',
+        'ghu_',
+        'ghs_',
+        'ghr_',
+        'Authorization:',
+        'Bearer ',
+        'GITHUB_TOKEN=',
+        'GH_PROFILE_TOKEN=',
+    ];
+    secretPatterns.forEach((pattern) => {
+        assert.ok(!githubData.includes(pattern), `Found secret pattern in data/github-profile.json: ${pattern}`);
+        assert.ok(!html.includes(pattern), `Found secret pattern in index.html: ${pattern}`);
+        assert.ok(!githubHtml.includes(pattern), `Found secret pattern in github.html: ${pattern}`);
+        assert.ok(!githubEntryJs.includes(pattern), `Found secret pattern in js/github-entry.js: ${pattern}`);
+        assert.ok(!githubProfileJs.includes(pattern), `Found secret pattern in js/github-profile.js: ${pattern}`);
+    });
+
+    // Verify all target="_blank" links in HTML have rel="noopener noreferrer"
+    const allHtml = [html, githubHtml].join('\n');
+    const targetBlankAnchors = allHtml.match(/<a\b[^>]*target="_blank"[^>]*>/g) ?? [];
+    assert.ok(targetBlankAnchors.length > 0);
+    targetBlankAnchors.forEach((anchor) => {
+        assert.match(anchor, /rel="noopener noreferrer"/, `Anchor missing rel="noopener noreferrer": ${anchor}`);
+    });
+
+    // Verify no innerHTML sinks in client JS
+    [githubEntryJs, githubProfileJs].forEach((script) => {
+        assert.doesNotMatch(script, /\.innerHTML\s*=/, 'Found innerHTML assignment in client script');
+        assert.doesNotMatch(script, /document\.write/, 'Found document.write in client script');
+        assert.doesNotMatch(script, /\beval\s*\(/, 'Found eval in client script');
+    });
+});
+
+test('GitHub dashboard is integrated on homepage and supported standalone', async () => {
+    const [githubHtml, githubProfileJs, appJs] = await Promise.all([
+        readSource('github.html'),
+        readSource('js/github-profile.js'),
+        readSource('js/app.js'),
+    ]);
+
+    // 1. index.html contains id="github"
+    assert.match(html, /<section[^>]*\bid="github"/);
+
+    // 2. desktop navigation contains href="#github"
+    const desktopNavMatch = html.match(/<nav class="desktop-nav"[\s\S]*?<\/nav>/);
+    assert.ok(desktopNavMatch && desktopNavMatch[0].includes('href="#github"'), 'Desktop nav missing href="#github"');
+
+    // 3. mobile navigation contains href="#github"
+    const mobileNavMatch = html.match(/<nav class="mobile-menu"[\s\S]*?<\/nav>/);
+    assert.ok(mobileNavMatch && mobileNavMatch[0].includes('href="#github"'), 'Mobile nav missing href="#github"');
+
+    // 4. index.html contains GitHub dashboard root
+    assert.match(html, /data-github-root/);
+
+    // 5. github.html continues to work with data-github-root
+    assert.match(githubHtml, /data-github-root/);
+
+    // 6. GitHub renderer supports both pages via exported initGitHubProfile
+    assert.match(githubProfileJs, /export function initGitHubProfile/);
+    assert.match(appJs, /initGitHubProfile/);
+
+    // 7. data/github-profile.json is verified
+    assert.match(buildScript, /github-profile\.json/);
 });

@@ -1,5 +1,5 @@
 import { initNetworkBackground } from './background.js';
-import { initGitHubEntry } from './github-entry.js';
+import { initGitHubProfile } from './github-profile.js';
 import { initHero } from './hero.js';
 import { initInteractions } from './interactions.js';
 import { initIntro } from './intro.js';
@@ -20,7 +20,7 @@ function initialize() {
     const intro = initIntro();
     cleanups = [
         utilitiesCleanup,
-        initGitHubEntry(),
+        initGitHubProfile(),
         initNavigation(),
         initNetworkBackground(),
         initScrollExperience(),

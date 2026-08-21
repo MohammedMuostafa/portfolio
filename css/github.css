@@ -876,3 +876,256 @@
         transition: none;
     }
 }
+
+/* Homepage GitHub Section Styles */
+.github-heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.github-home-container {
+    display: grid;
+    gap: 24px;
+    margin-top: 10px;
+}
+
+.github-home-top-grid {
+    display: grid;
+    grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.github-home-profile {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.github-home-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.github-home-avatar-wrap {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    flex: 0 0 68px;
+}
+
+.github-home-avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: var(--page-deep);
+    object-fit: cover;
+}
+
+.github-home-avatar-wrap .github-status {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-end: 2px;
+    width: 14px;
+    height: 14px;
+    border: 2.5px solid var(--surface-solid);
+    border-radius: 50%;
+    background: #3fb950;
+}
+
+.github-home-profile-info {
+    min-width: 0;
+}
+
+.github-home-profile-info h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+}
+
+.github-home-follow-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.github-home-follow-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.github-home-follow-stats strong {
+    color: var(--text);
+}
+
+.github-home-follow-stats svg {
+    width: 14px;
+    height: 14px;
+}
+
+.github-home-bio {
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.github-home-profile-footer {
+    margin-top: auto;
+    padding-top: 4px;
+}
+
+.github-home-profile-footer .button {
+    width: 100%;
+}
+
+.github-home-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.github-home-metric-card {
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.github-metric-icon {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    display: grid;
+    place-items: center;
+    color: var(--cyan);
+}
+
+.github-metric-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.github-home-metric-card strong {
+    display: block;
+    margin-top: 4px;
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+.github-home-block {
+    display: grid;
+    gap: 16px;
+}
+
+.github-home-block-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.github-home-block-title h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+}
+
+.github-home-contributions {
+    padding: 24px;
+    display: grid;
+    gap: 16px;
+}
+
+.github-home-bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.github-home-languages,
+.github-home-recent {
+    padding: 24px;
+    display: grid;
+    gap: 16px;
+}
+
+.github-home-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+.github-home-actions .button {
+    min-height: 3.25rem;
+    padding-inline: 1.5rem;
+}
+
+.github-empty-notice {
+    padding: 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .github-home-top-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .github-home-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .github-home-metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .github-repo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .github-home-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .github-home-actions .button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .github-home-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .github-home-profile {
+        padding: 18px;
+    }
+
+    .github-home-contributions,
+    .github-home-languages,
+    .github-home-recent {
+        padding: 18px;
+    }
+}
