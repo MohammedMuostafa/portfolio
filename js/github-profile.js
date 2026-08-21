@@ -1,14 +1,18 @@
 import { initUtilities } from './utils.js';
 
 const USERNAME = 'MohammedMuostafa';
-const DATA_URL = 'data/github-profile.json';
+const DATA_URL = new URL('../data/github-profile.json', import.meta.url).href;
+const BIO = {
+    en: 'Computer Science student • Protocol Lead • Web3 Builder • Developer • Discord Server Builder',
+    ar: 'طالب علوم الحاسب • قائد بروتوكول • باني Web3 • مطور • منشئ خوادم Discord',
+};
 
 /** @typedef {{date:string,count:number,level:number,weekday?:number}} ContributionDay */
 /** @typedef {{commits:number,pullRequests:number,issues:number,reviews:number}} ActivityStats */
 /** @typedef {{year:number,total:number,from?:string,to?:string,days:ContributionDay[],stats?:ActivityStats}} ContributionYear */
 /** @typedef {{name:string,color?:string,size:number}} LanguageStat */
 /** @typedef {{login?:string,name?:string,url:string,avatarUrl?:string}} Organization */
-/** @typedef {{name:string,description?:string,url:string,homepageUrl?:string,stars?:number,forks?:number,language?:{name:string,color?:string}}} Repository */
+/** @typedef {{name:string,description?:string,url:string,homepageUrl?:string,stars?:number,forks?:number,language?:{name:string,color?:string},updatedAt?:string,isPrivate?:boolean}} Repository */
 /** @typedef {{type:string,createdAt?:string,repo?:{name:string}}} GitHubEvent */
 /** @typedef {{login?:string,name?:string,bio?:string,avatarUrl?:string,url?:string,location?:string,company?:string,websiteUrl?:string,followers?:number,following?:number,publicRepos?:number}} GitHubProfile */
 /** @typedef {{generatedAt?:string,profile?:GitHubProfile,organizations?:Organization[],pinned?:Repository[],repositories?:Repository[],languages?:LanguageStat[],contributions?:ContributionYear[],recentActivity?:GitHubEvent[]}} GitHubProfileData */
@@ -17,7 +21,9 @@ const DATA_URL = 'data/github-profile.json';
 let data = null;
 /** @type {number | null} */
 let selectedYear = null;
+let initialized = false;
 let utilitiesCleanup = () => {};
+const pageController = new AbortController();
 
 /** @param {string} en @param {string} ar */
 function text(en, ar) {
@@ -32,6 +38,29 @@ function safeNumber(value) {
 /** @param {number} value */
 function formatNumber(value) {
     return new Intl.NumberFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { notation: value >= 10000 ? 'compact' : 'standard' }).format(value);
+}
+
+/** @param {unknown} value */
+function safeHttpsUrl(value) {
+    if (typeof value !== 'string' || value.length > 500) return null;
+    try {
+        const url = new URL(value);
+        if (url.protocol !== 'https:') return null;
+        return url.href;
+    } catch {
+        return null;
+    }
+}
+
+/** @param {unknown} value */
+function safeGitHubAssetUrl(value) {
+    const href = safeHttpsUrl(value);
+    if (!href) return null;
+    const { hostname } = new URL(href);
+    if (hostname === 'github.com' || hostname === 'avatars.githubusercontent.com' || hostname.endsWith('.githubusercontent.com') || hostname.endsWith('.github.io')) {
+        return href;
+    }
+    return null;
 }
 
 /** @param {string} id @param {string} value */
@@ -57,37 +86,44 @@ function createIcon(name) {
     return icon;
 }
 
+/** @param {Repository[]} repositories */
+function publicRepositories(repositories) {
+    return repositories.filter((repository) => repository && !repository.isPrivate && safeHttpsUrl(repository.url));
+}
+
 /** @param {GitHubProfileData} payload */
 function renderProfile(payload) {
     const profile = payload.profile ?? {};
     const avatar = document.getElementById('github-avatar');
-    if (avatar instanceof HTMLImageElement && profile.avatarUrl) avatar.src = profile.avatarUrl;
+    const avatarUrl = safeGitHubAssetUrl(profile.avatarUrl);
+    if (avatar instanceof HTMLImageElement && avatarUrl) avatar.src = avatarUrl;
     setText('github-name', profile.name || 'MOHMOS');
     setText('github-login', profile.login || USERNAME);
     setText('github-followers', profile.followers == null ? '—' : formatNumber(safeNumber(profile.followers)));
     setText('github-following', profile.following == null ? '—' : formatNumber(safeNumber(profile.following)));
 
     const bio = document.getElementById('github-bio');
-    if (bio) {
-        bio.textContent = document.documentElement.lang === 'ar'
-            ? 'قائد بروتوكول • باني Web3 • مطور • منشئ خوادم Discord'
-            : 'Protocol Lead • Web3 Builder • Developer • Discord Server Builder';
-    }
+    if (bio) bio.textContent = document.documentElement.lang === 'ar' ? BIO.ar : BIO.en;
 
     const profileLink = document.getElementById('github-profile-link');
-    if (profileLink instanceof HTMLAnchorElement) profileLink.href = profile.url || `https://github.com/${USERNAME}`;
+    if (profileLink instanceof HTMLAnchorElement) {
+        profileLink.href = safeHttpsUrl(profile.url) || `https://github.com/${USERNAME}`;
+    }
 
     setOptionalRow('github-company-row', 'github-company', profile.company);
     setOptionalRow('github-location-row', 'github-location', profile.location);
 
-    if (profile.websiteUrl) {
-        const row = document.getElementById('github-website-row');
-        const link = document.getElementById('github-website');
-        if (row && link instanceof HTMLAnchorElement) {
-            link.href = profile.websiteUrl;
-            link.textContent = profile.websiteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-            row.hidden = false;
-        }
+    const websiteUrl = safeHttpsUrl(profile.websiteUrl);
+    const websiteRow = document.getElementById('github-website-row');
+    const websiteHost = document.getElementById('github-website');
+    if (websiteUrl && websiteRow && websiteHost) {
+        const link = document.createElement('a');
+        link.href = websiteUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = websiteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        websiteHost.replaceChildren(link);
+        websiteRow.hidden = false;
     }
 
     const orgs = document.getElementById('github-orgs');
@@ -101,14 +137,17 @@ function renderProfile(payload) {
             orgs.append(empty);
         } else {
             organizations.forEach((organization) => {
+                const href = safeHttpsUrl(organization.url);
+                if (!href) return;
                 const link = document.createElement('a');
                 link.className = 'github-org-chip';
-                link.href = organization.url;
+                link.href = href;
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
-                if (organization.avatarUrl) {
+                const imageUrl = safeGitHubAssetUrl(organization.avatarUrl);
+                if (imageUrl) {
                     const image = document.createElement('img');
-                    image.src = organization.avatarUrl;
+                    image.src = imageUrl;
                     image.alt = '';
                     image.width = 20;
                     image.height = 20;
@@ -119,13 +158,19 @@ function renderProfile(payload) {
                 link.append(label);
                 orgs.append(link);
             });
+            if (!orgs.childElementCount) {
+                const empty = document.createElement('span');
+                empty.className = 'github-empty';
+                empty.textContent = text('No public organizations listed.', 'لا توجد منظمات عامة معروضة.');
+                orgs.append(empty);
+            }
         }
     }
 }
 
 /** @param {GitHubProfileData} payload */
 function renderMetrics(payload) {
-    const repositories = Array.isArray(payload.repositories) ? payload.repositories : [];
+    const repositories = publicRepositories(Array.isArray(payload.repositories) ? payload.repositories : []);
     const contributionYears = Array.isArray(payload.contributions) ? payload.contributions : [];
     const current = contributionYears.find((item) => item.year === selectedYear) ?? contributionYears[0];
     const totalStars = repositories.reduce((sum, repo) => sum + safeNumber(repo.stars), 0);
@@ -133,7 +178,7 @@ function renderMetrics(payload) {
     setText('metric-repos', formatNumber(safeNumber(payload.profile?.publicRepos ?? repositories.length)));
     setText('metric-stars', formatNumber(totalStars));
     setText('metric-forks', formatNumber(totalForks));
-    setText('metric-contributions', formatNumber(safeNumber(current?.total)));
+    setText('metric-contributions', current ? formatNumber(safeNumber(current.total)) : '—');
 }
 
 /** @param {Repository} repository */
@@ -145,14 +190,14 @@ function repoCard(repository) {
     title.className = 'github-repo-title';
     title.append(createIcon('book-marked'));
     const link = document.createElement('a');
-    link.href = repository.url;
+    link.href = /** @type {string} */ (safeHttpsUrl(repository.url));
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.textContent = repository.name;
     title.append(link);
     const badge = document.createElement('span');
     badge.className = 'github-repo-badge';
-    badge.textContent = 'Public';
+    badge.textContent = text('Public', 'عام');
     title.append(badge);
 
     const description = document.createElement('p');
@@ -173,6 +218,15 @@ function repoCard(repository) {
     const forks = document.createElement('span');
     forks.append(createIcon('git-fork'), String(safeNumber(repository.forks)));
     meta.append(stars, forks);
+    if (repository.updatedAt) {
+        const updated = new Date(repository.updatedAt);
+        if (!Number.isNaN(updated.getTime())) {
+            const time = document.createElement('time');
+            time.dateTime = updated.toISOString();
+            time.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(updated);
+            meta.append(time);
+        }
+    }
 
     article.append(title, description, meta);
     return article;
@@ -183,11 +237,12 @@ function renderPinned(payload) {
     const container = document.getElementById('github-pinned');
     if (!container) return;
     container.replaceChildren();
-    const pinned = Array.isArray(payload.pinned) && payload.pinned.length ? payload.pinned : (payload.repositories ?? []).slice(0, 4);
+    const pinnedSource = Array.isArray(payload.pinned) && payload.pinned.length ? payload.pinned : (payload.repositories ?? []);
+    const pinned = publicRepositories(pinnedSource);
     if (!pinned.length) {
         const empty = document.createElement('p');
         empty.className = 'github-empty';
-        empty.textContent = text('No repositories available.', 'لا توجد مستودعات متاحة.');
+        empty.textContent = text('No public repositories available.', 'لا توجد مستودعات عامة متاحة.');
         container.append(empty);
         return;
     }
@@ -199,6 +254,24 @@ function getLevel(day, max) {
     if (Number.isFinite(day.level)) return Math.max(0, Math.min(4, day.level));
     if (!day.count || !max) return 0;
     return Math.max(1, Math.min(4, Math.ceil((day.count / max) * 4)));
+}
+
+function bindYearTabs() {
+    const tabs = document.getElementById('github-year-tabs');
+    if (!tabs || tabs.dataset.bound === 'true') return;
+    tabs.dataset.bound = 'true';
+    tabs.addEventListener('click', (event) => {
+        const button = event.target instanceof Element ? event.target.closest('button[data-year]') : null;
+        if (!(button instanceof HTMLButtonElement) || !data) return;
+        const year = Number(button.dataset.year);
+        if (!Number.isFinite(year) || year === selectedYear) return;
+        selectedYear = year;
+        renderYears(data);
+        renderCalendar(data);
+        renderOverview(data);
+        renderMetrics(data);
+        window.portfolioIcons?.create();
+    }, { signal: pageController.signal });
 }
 
 /** @param {GitHubProfileData} payload */
@@ -213,16 +286,9 @@ function renderYears(payload) {
     years.forEach((item) => {
         const button = document.createElement('button');
         button.type = 'button';
-        button.role = 'tab';
+        button.dataset.year = String(item.year);
+        button.setAttribute('aria-pressed', String(item.year === selectedYear));
         button.textContent = String(item.year);
-        button.setAttribute('aria-selected', String(item.year === selectedYear));
-        button.addEventListener('click', () => {
-            selectedYear = item.year;
-            renderYears(payload);
-            renderCalendar(payload);
-            renderOverview(payload);
-            renderMetrics(payload);
-        });
         tabs.append(button);
     });
 }
@@ -240,6 +306,7 @@ function renderMonths(days) {
 
     days.forEach((day) => {
         const date = new Date(`${day.date}T00:00:00`);
+        if (Number.isNaN(date.getTime())) return;
         const monthKey = `${date.getFullYear()}-${date.getMonth()}`;
         if (seen.has(monthKey) || !baseSunday) return;
         seen.add(monthKey);
@@ -256,13 +323,31 @@ function renderMonths(days) {
 function renderCalendar(payload) {
     const yearData = (payload.contributions ?? []).find((item) => item.year === selectedYear);
     const calendar = document.getElementById('github-calendar');
-    if (!calendar || !yearData) return;
-    const days = Array.isArray(yearData.days) ? yearData.days : [];
-    const max = days.reduce((maximum, day) => Math.max(maximum, safeNumber(day.count)), 0);
+    if (!calendar) return;
     calendar.replaceChildren();
+    calendar.removeAttribute('aria-label');
 
-    const firstDate = days.length ? new Date(`${days[0].date}T00:00:00`) : null;
-    if (firstDate) {
+    if (!yearData || !Array.isArray(yearData.days) || !yearData.days.length) {
+        const empty = document.createElement('p');
+        empty.className = 'github-empty';
+        empty.textContent = text('Contribution history is not available from GitHub for this year.', 'سجل المساهمات غير متاح من GitHub لهذه السنة.');
+        calendar.append(empty);
+        setText('contribution-total', '—');
+        setText('contribution-range', yearData ? String(yearData.year) : '');
+        document.getElementById('github-months')?.replaceChildren();
+        return;
+    }
+
+    const days = yearData.days;
+    const max = days.reduce((maximum, day) => Math.max(maximum, safeNumber(day.count)), 0);
+    calendar.setAttribute('role', 'img');
+    calendar.setAttribute('aria-label', text(
+        `Contribution calendar for ${yearData.year}, ${formatNumber(safeNumber(yearData.total))} contributions.`,
+        `تقويم المساهمات لعام ${yearData.year}، ${formatNumber(safeNumber(yearData.total))} مساهمة.`,
+    ));
+
+    const firstDate = new Date(`${days[0].date}T00:00:00`);
+    if (!Number.isNaN(firstDate.getTime())) {
         const leading = firstDate.getDay();
         for (let index = 0; index < leading; index += 1) {
             const spacer = document.createElement('span');
@@ -276,16 +361,15 @@ function renderCalendar(payload) {
     days.forEach((day) => {
         const cell = document.createElement('span');
         cell.className = 'github-day';
-        const level = getLevel(day, max);
-        cell.dataset.level = String(level);
-        cell.setAttribute('role', 'gridcell');
+        cell.dataset.level = String(getLevel(day, max));
+        cell.setAttribute('aria-hidden', 'true');
         const date = new Date(`${day.date}T00:00:00`);
-        const dateLabel = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { dateStyle: 'medium' }).format(date);
-        const label = document.documentElement.lang === 'ar'
-            ? `${day.count} مساهمة في ${dateLabel}`
-            : `${day.count} contribution${day.count === 1 ? '' : 's'} on ${dateLabel}`;
-        cell.setAttribute('aria-label', label);
-        cell.title = label;
+        if (!Number.isNaN(date.getTime())) {
+            const dateLabel = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { dateStyle: 'medium' }).format(date);
+            cell.title = document.documentElement.lang === 'ar'
+                ? `${day.count} مساهمة في ${dateLabel}`
+                : `${day.count} contribution${day.count === 1 ? '' : 's'} on ${dateLabel}`;
+        }
         calendar.append(cell);
     });
 
@@ -295,7 +379,9 @@ function renderCalendar(payload) {
     const from = yearData.from ? new Date(`${yearData.from}T00:00:00`) : null;
     const to = yearData.to ? new Date(`${yearData.to}T00:00:00`) : null;
     const formatter = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    setText('contribution-range', from && to ? `${formatter.format(from)} — ${formatter.format(to)}` : String(yearData.year));
+    const fromValid = from && !Number.isNaN(from.getTime());
+    const toValid = to && !Number.isNaN(to.getTime());
+    setText('contribution-range', fromValid && toValid ? `${formatter.format(from)} — ${formatter.format(to)}` : String(yearData.year));
 }
 
 /** @param {GitHubProfileData} payload @returns {ActivityStats} */
@@ -356,7 +442,7 @@ function renderLanguages(payload) {
     if (!languages.length) {
         const empty = document.createElement('p');
         empty.className = 'github-empty';
-        empty.textContent = text('Language data will appear after the next deployment.', 'ستظهر بيانات اللغات بعد عملية النشر التالية.');
+        empty.textContent = text('Language data is not available yet.', 'بيانات اللغات غير متاحة بعد.');
         container.append(empty);
         return;
     }
@@ -381,12 +467,12 @@ function renderLanguages(payload) {
 
 /** @param {GitHubProfileData} payload @returns {Array<[string, string]>} */
 function achievementData(payload) {
-    const repositories = Array.isArray(payload.repositories) ? payload.repositories : [];
+    const repositories = publicRepositories(Array.isArray(payload.repositories) ? payload.repositories : []);
     const contributions = Array.isArray(payload.contributions) ? payload.contributions : [];
     const totalContributions = contributions.reduce((sum, item) => sum + safeNumber(item.total), 0);
     const totalStars = repositories.reduce((sum, repo) => sum + safeNumber(repo.stars), 0);
     return [
-        ['🧱', text('Open-source builder', 'باني مشاريع مفتوحة المصدر')],
+        ['🧱', text('Public repositories', 'مستودعات عامة')],
         ['⚡', text(`${formatNumber(totalContributions)} tracked contributions`, `${formatNumber(totalContributions)} مساهمة مسجلة`)],
         ['📦', text(`${repositories.length} public repositories tracked`, `${repositories.length} مستودع عام متابع`)],
         ['⭐', text(`${formatNumber(totalStars)} repository stars`, `${formatNumber(totalStars)} نجمة على المستودعات`)],
@@ -413,7 +499,7 @@ function renderAchievements(payload) {
 /** @param {GitHubEvent} event */
 function eventDescription(event) {
     const repo = event.repo?.name || 'GitHub';
-    const link = `https://github.com/${repo}`;
+    const link = safeHttpsUrl(`https://github.com/${repo}`) || 'https://github.com';
     /** @type {Record<string, [string, string]>} */
     const descriptions = {
         PushEvent: [text('Pushed commits to', 'رفع commits إلى'), 'git-commit-horizontal'],
@@ -438,7 +524,7 @@ function renderRecent(payload) {
         const empty = document.createElement('p');
         empty.className = 'github-empty';
         empty.style.padding = '18px';
-        empty.textContent = text('Recent public activity will appear after the next deployment.', 'سيظهر أحدث النشاط العام بعد عملية النشر التالية.');
+        empty.textContent = text('No recent public activity is available yet.', 'لا يوجد نشاط عام حديث متاح بعد.');
         container.append(empty);
         return;
     }
@@ -460,8 +546,10 @@ function renderRecent(payload) {
         const time = document.createElement('time');
         if (event.createdAt) {
             const date = new Date(event.createdAt);
-            time.dateTime = date.toISOString();
-            time.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short', day: 'numeric' }).format(date);
+            if (!Number.isNaN(date.getTime())) {
+                time.dateTime = date.toISOString();
+                time.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en-US', { month: 'short', day: 'numeric' }).format(date);
+            }
         }
         row.append(icon, paragraph, time);
         container.append(row);
@@ -480,6 +568,7 @@ function renderAll() {
     const payload = data;
     if (!payload) return;
     renderProfile(payload);
+    bindYearTabs();
     renderYears(payload);
     renderCalendar(payload);
     renderMetrics(payload);
@@ -494,31 +583,41 @@ function renderAll() {
 
 /** @returns {Promise<GitHubProfileData>} */
 async function loadData() {
-    const response = await fetch(DATA_URL, { cache: 'no-store' });
+    const response = await fetch(DATA_URL, { cache: 'no-store', signal: pageController.signal });
     if (!response.ok) throw new Error(`GitHub profile data request failed: ${response.status}`);
     return /** @type {Promise<GitHubProfileData>} */ (response.json());
 }
 
+function showUnavailable() {
+    const root = document.querySelector('[data-github-root]');
+    root?.setAttribute('aria-busy', 'false');
+    if (document.querySelector('.github-error')) return;
+    const message = document.createElement('p');
+    message.className = 'github-error';
+    message.textContent = text('GitHub data is temporarily unavailable. The rest of the portfolio is still available.', 'بيانات GitHub غير متاحة مؤقتاً، ويمكنك متابعة باقي البورتفوليو بشكل طبيعي.');
+    document.querySelector('.github-content')?.prepend(message);
+}
+
 async function initialize() {
+    if (initialized) return;
+    initialized = true;
     utilitiesCleanup = initUtilities();
     try {
         data = await loadData();
         selectedYear = data?.contributions?.[0]?.year ?? null;
         renderAll();
         document.querySelector('[data-github-root]')?.setAttribute('aria-busy', 'false');
-    } catch (error) {
-        void error;
-        const root = document.querySelector('[data-github-root]');
-        root?.setAttribute('aria-busy', 'false');
-        const message = document.createElement('p');
-        message.className = 'github-error';
-        message.textContent = text('GitHub data is temporarily unavailable. The rest of the portfolio is still available.', 'بيانات GitHub غير متاحة مؤقتاً، ويمكنك متابعة باقي البورتفوليو بشكل طبيعي.');
-        document.querySelector('.github-content')?.prepend(message);
+    } catch {
+        showUnavailable();
     }
 }
 
-window.addEventListener('portfolio:language-change', renderAll);
-window.addEventListener('pagehide', () => utilitiesCleanup(), { once: true });
+window.addEventListener('portfolio:language-change', renderAll, { signal: pageController.signal });
+window.addEventListener('pagehide', () => {
+    utilitiesCleanup();
+    pageController.abort();
+    initialized = false;
+}, { once: true });
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initialize, { once: true });

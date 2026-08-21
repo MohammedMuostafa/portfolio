@@ -79,7 +79,7 @@ function buildQuery() {
           pinnedItems(first: 6, types: REPOSITORY) {
             nodes {
               ... on Repository {
-                name description url homepageUrl stargazerCount forkCount
+                name description url homepageUrl stargazerCount forkCount updatedAt
                 primaryLanguage { name color }
               }
             }
@@ -214,7 +214,7 @@ async function buildData() {
         profile: {
             login: user.login,
             name: user.name || 'MOHMOS',
-            bio: 'Protocol Lead • Web3 Builder • Developer • Discord Server Builder',
+            bio: 'Computer Science student • Protocol Lead • Web3 Builder • Developer • Discord Server Builder',
             avatarUrl: user.avatarUrl,
             url: user.url,
             location: user.location,
