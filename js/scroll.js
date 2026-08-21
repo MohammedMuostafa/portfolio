@@ -254,65 +254,28 @@ function setupGitHub(gsap, isRtl, travel) {
     const section = document.getElementById('github');
     if (!section) return;
 
-    const profile = section.querySelector('.github-home-profile');
-    if (profile) {
-        gsap.fromTo(profile, { x: (isRtl ? 1 : -1) * travel, autoAlpha: 0 }, {
+    const sidebar = section.querySelector('.github-sidebar');
+    if (sidebar) {
+        gsap.fromTo(sidebar, { x: (isRtl ? 1 : -1) * travel, autoAlpha: 0 }, {
             x: 0,
             autoAlpha: 1,
             duration: 0.65,
             ease: 'power3.out',
             clearProps: 'transform',
-            scrollTrigger: { trigger: profile, start: 'top 86%', toggleActions: 'play none none reverse' },
+            scrollTrigger: { trigger: sidebar, start: 'top 86%', toggleActions: 'play none none reverse' },
         });
     }
 
-    section.querySelectorAll('.github-home-metric-card').forEach((card, index) => {
-        gsap.fromTo(card, { y: travel * 0.7, autoAlpha: 0, scale: 0.98 }, {
+    const panels = section.querySelectorAll('.github-readme, .github-metrics, .github-section-block, .github-contributions, .github-analysis-grid');
+    panels.forEach((panel, index) => {
+        gsap.fromTo(panel, { y: travel * 0.6, autoAlpha: 0 }, {
             y: 0,
             autoAlpha: 1,
-            scale: 1,
-            duration: 0.5,
-            delay: index * 0.05,
+            duration: 0.55,
+            delay: index * 0.04,
             ease: 'power3.out',
             clearProps: 'transform',
-            scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none reverse' },
-        });
-    });
-
-    const pinnedBlock = section.querySelector('.github-home-block');
-    if (pinnedBlock) {
-        gsap.fromTo(pinnedBlock, { y: travel * 0.7, autoAlpha: 0 }, {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.58,
-            ease: 'power3.out',
-            clearProps: 'transform',
-            scrollTrigger: { trigger: pinnedBlock, start: 'top 88%', toggleActions: 'play none none reverse' },
-        });
-    }
-
-    const contributions = section.querySelector('.github-home-contributions');
-    if (contributions) {
-        gsap.fromTo(contributions, { y: travel * 0.7, autoAlpha: 0, scale: 0.99 }, {
-            y: 0,
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.6,
-            ease: 'power3.out',
-            clearProps: 'transform',
-            scrollTrigger: { trigger: contributions, start: 'top 88%', toggleActions: 'play none none reverse' },
-        });
-    }
-
-    section.querySelectorAll('.github-home-languages, .github-home-recent').forEach((panel, index) => {
-        gsap.fromTo(panel, { y: travel * 0.7, autoAlpha: 0 }, {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.58,
-            delay: index * 0.06,
-            ease: 'power3.out',
-            clearProps: 'transform',
-            scrollTrigger: { trigger: panel, start: 'top 90%', toggleActions: 'play none none reverse' },
+            scrollTrigger: { trigger: panel, start: 'top 88%', toggleActions: 'play none none reverse' },
         });
     });
 
@@ -323,6 +286,7 @@ function setupGitHub(gsap, isRtl, travel) {
             autoAlpha: 1,
             duration: 0.5,
             ease: 'power3.out',
+            clearProps: 'transform',
             scrollTrigger: { trigger: actions, start: 'top 92%', toggleActions: 'play none none reverse' },
         });
     }
