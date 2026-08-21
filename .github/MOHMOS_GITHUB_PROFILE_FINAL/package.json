@@ -1,0 +1,52 @@
+{
+  "name": "mohmos-web3-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portfolio for MOHMOS, Protocol Lead in the LitVM Ecosystem, Web3 Builder, Developer, and Discord Server Builder.",
+  "type": "module",
+  "scripts": {
+    "github:data": "node scripts/fetch-github-profile.js",
+    "build": "npm run github:data && npm run optimize:images && npm run build:icons && postcss css/main.css -o styles.css && node scripts/build-site.js",
+    "build:icons": "esbuild js/icons-runtime.js --bundle --minify --format=iife --outfile=vendor/lucide-icons.min.js",
+    "dev": "npm run build && node scripts/server.js",
+    "lint": "eslint js scripts tests eslint.config.js && html-validate index.html github.html",
+    "optimize:images": "node scripts/optimize-images.js",
+    "start": "node scripts/server.js",
+    "test": "node --test",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "web3",
+    "portfolio",
+    "lit-clinic",
+    "litvm",
+    "discord-infrastructure",
+    "web3-builder",
+    "github-dashboard"
+  ],
+  "author": "MOHMOS",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "npm@11.16.0",
+  "dependencies": {
+    "gsap": "3.15.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.10.2",
+    "autoprefixer": "10.4.20",
+    "esbuild": "0.28.1",
+    "eslint": "10.8.0",
+    "globals": "15.14.0",
+    "html-validate": "11.5.6",
+    "lucide": "1.27.0",
+    "postcss": "8.5.23",
+    "postcss-cli": "11.0.0",
+    "postcss-import": "16.1.0",
+    "sharp": "0.35.3",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.2"
+  }
+}
