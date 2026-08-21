@@ -286,13 +286,23 @@ function renderYears(payload) {
     const tabs = document.getElementById('github-year-tabs');
     if (!tabs) return;
     tabs.replaceChildren();
-    const years = [...(payload.contributions ?? [])].sort((a, b) => b.year - a.year);
-    if (!years.length) return;
-    if (!selectedYear || !years.some((item) => item.year === selectedYear)) selectedYear = years[0].year;
+    const allYears = [...(payload.contributions ?? [])].sort((a, b) => b.year - a.year);
+    if (!allYears.length) return;
+
+    // Gracefully handle years: only show years with activity, or the latest year
+    const validYears = allYears.filter((item, index) => item.total > 0 || index === 0);
+    const years = validYears.length ? validYears : [allYears[0]];
+
+    // Default to the latest year that has valid contributions, or current year
+    const defaultYear = years.find((item) => item.total > 0)?.year ?? years[0].year;
+    if (!selectedYear || !years.some((item) => item.year === selectedYear)) {
+        selectedYear = defaultYear;
+    }
 
     years.forEach((item) => {
         const button = document.createElement('button');
         button.type = 'button';
+        button.className = 'github-year-pill';
         button.dataset.year = String(item.year);
         button.setAttribute('aria-pressed', String(item.year === selectedYear));
         button.textContent = String(item.year);
@@ -546,7 +556,7 @@ function renderRecent(payload) {
     if (!container) return;
     container.replaceChildren();
     const isLive = Boolean(payload.isLive);
-    const events = isLive && Array.isArray(payload.recentActivity) ? payload.recentActivity.slice(0, 10) : [];
+    const events = isLive && Array.isArray(payload.recentActivity) ? payload.recentActivity.slice(0, 3) : [];
     if (!events.length) {
         const empty = document.createElement('p');
         empty.className = 'github-empty';
